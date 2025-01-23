@@ -6,7 +6,7 @@
     <parent>
         <groupId>com.rickey</groupId>
         <artifactId>ticketflow</artifactId>
-        <version>0.0.1-SNAPSHOT</version>
+        <version>${revision}</version>
     </parent>
 
     <artifactId>ticketflow-thread-pool-framework</artifactId>
@@ -23,10 +23,9 @@
             <artifactId>spring-boot-starter-web</artifactId>
             <optional>true</optional>
         </dependency>
-        <!--TODO 解决依赖问题-->
         <dependency>
-            <groupId>com.example</groupId>
-            <artifactId>damai-common</artifactId>
+            <groupId>com.rickey</groupId>
+            <artifactId>ticketflow-common</artifactId>
             <version>${revision}</version>
         </dependency>
     </dependencies>
