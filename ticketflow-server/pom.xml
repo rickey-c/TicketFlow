@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>com.rickey</groupId>
+        <artifactId>ticketflow</artifactId>
+        <version>${revision}</version>
+    </parent>
+
+
+    <artifactId>ticketflow-server</artifactId>
+    <packaging>pom</packaging>
+
+    <name>server</name>
+    <description>服务模块</description>
+
+    <modules>
+        <module>ticketflow-order-service</module>
+        <module>ticketflow-gateway-service</module>
+        <module>ticketflow-base-data-service</module>
+        <module>ticketflow-user-service</module>
+        <module>ticketflow-admin-service</module>
+        <module>ticketflow-customize-service</module>
+        <module>ticketflow-program-service</module>
+        <module>ticketflow-pay-service</module>
+        <module>ticketflow-mybatis-plus-service</module>
+    </modules>
+</project>

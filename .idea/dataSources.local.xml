@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="dataSourceStorageLocal" created-in="IU-243.23654.117">
+    <data-source name="@47.96.135.134" uuid="9198c982-08e8-4dc8-8e2f-a2fe4b9b3132">
+      <database-info product="MySQL" version="8.0.31" jdbc-version="4.2" driver-name="MySQL Connector/J" driver-version="mysql-connector-j-8.2.0 (Revision: 06a1f724497fd81c6a659131fda822c9e5085b6c)" dbms="MYSQL" exact-version="8.0.31" exact-driver-version="8.2">
+        <extra-name-characters>#@</extra-name-characters>
+        <identifier-quote-string>`</identifier-quote-string>
+      </database-info>
+      <case-sensitivity plain-identifiers="exact" quoted-identifiers="exact" />
+      <secret-storage>master_key</secret-storage>
+      <user-name>root</user-name>
+      <schema-mapping>
+        <introspection-scope>
+          <node kind="schema">
+            <name qname="ticketflow_base_data" />
+            <name qname="ticketflow_customize" />
+            <name qname="ticketflow_order_0" />
+            <name qname="ticketflow_order_1" />
+            <name qname="ticketflow_pay_0" />
+            <name qname="ticketflow_pay_1" />
+            <name qname="ticketflow_program_0" />
+            <name qname="ticketflow_program_1" />
+            <name qname="ticketflow_user_0" />
+            <name qname="ticketflow_user_1" />
+          </node>
+        </introspection-scope>
+      </schema-mapping>
+    </data-source>
+  </component>
+</project>

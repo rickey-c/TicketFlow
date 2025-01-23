@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ExternalStorageConfigurationManager" enabled="true" />
+  <component name="MavenProjectsManager">
+    <option name="originalFiles">
+      <list>
+        <option value="$PROJECT_DIR$/ticketflow-server/pom.xml" />
+        <option value="$PROJECT_DIR$/pom.xml" />
+        <option value="$PROJECT_DIR$/ticketflow-server/ticketflow-order-service/pom.xml" />
+        <option value="$PROJECT_DIR$/ticketflow-server/ticketflow-gateway-service/pom.xml" />
+        <option value="$PROJECT_DIR$/ticketflow-server/ticketflow-base-data-service/pom.xml" />
+        <option value="$PROJECT_DIR$/ticketflow-server/ticketflow-user-service/pom.xml" />
+        <option value="$PROJECT_DIR$/ticketflow-server/ticketflow-admin-service/pom.xml" />
+        <option value="$PROJECT_DIR$/ticketflow-server/ticketflow-customize-service/pom.xml" />
+        <option value="$PROJECT_DIR$/ticketflow-server/ticketflow-program-service/pom.xml" />
+        <option value="$PROJECT_DIR$/ticketflow-server/ticketflow-pay-service/pom.xml" />
+        <option value="$PROJECT_DIR$/ticketflow-server/ticketflow-mybatis-plus-service/pom.xml" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_17" default="true" project-jdk-name="17" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/out" />
+  </component>
+</project>
