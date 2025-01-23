@@ -16,6 +16,9 @@
 
 # Ignore .flattened-pom.xml files
 **/.flattened-pom.xml
+.flattened-pom.xml
 
 # Ignore specific IntelliJ IDEA project file
 ticketflow.iml
+
+
