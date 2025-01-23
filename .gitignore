@@ -1,0 +1,21 @@
+# Default ignored files
+/shelf/
+/workspace.xml
+
+# Editor-based HTTP Client requests
+/httpRequests/
+
+# Datasource local storage ignored files
+/dataSources/
+
+# Ignore .idea directory
+.idea
+
+# Ignore target directories
+**/target
+
+# Ignore .flattened-pom.xml files
+**/.flattened-pom.xml
+
+# Ignore specific IntelliJ IDEA project file
+ticketflow.iml
