@@ -14,12 +14,14 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.List;
 
+import static com.ticketflow.constant.Constant.SPRING_INJECT_PREFIX_DISTINCTION_NAME;
+
 
 /**
- * @program: 极度真实还原大麦网高并发实战项目。 添加 阿星不是程序员 微信，添加时备注 大麦 来获取项目的完整资料 
- * @description: 基础数据服务 feign
- * @author: 阿星不是程序员
- **/
+ * @Description: 基础数据服务 feign
+ * @Author: rickey-c
+ * @Date: 2025/1/24 15:31
+ */
 @Component
 @FeignClient(value = SPRING_INJECT_PREFIX_DISTINCTION_NAME+"-"+"base-data-service",fallback  = BaseDataClientFallback.class)
 public interface BaseDataClient {
