@@ -1,6 +1,9 @@
 package com.ticketflow.config;
 
 import de.codecentric.boot.admin.server.config.AdminServerProperties;
+import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -18,7 +21,8 @@ import static org.springframework.security.config.Customizer.withDefaults;
 public class SecurityConfig {
  
     private final String adminContextPath;
- 
+    
+    @Autowired
     public SecurityConfig(AdminServerProperties adminServerProperties) {
         this.adminContextPath = adminServerProperties.getContextPath();
     }

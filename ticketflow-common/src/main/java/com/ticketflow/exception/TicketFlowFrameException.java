@@ -2,6 +2,8 @@ package com.ticketflow.exception;
 
 import com.ticketflow.common.ApiResponse;
 import com.ticketflow.enums.BaseCode;
+import lombok.Data;
+import lombok.Getter;
 
 /**
  * @Description: 业务异常类
@@ -10,8 +12,10 @@ import com.ticketflow.enums.BaseCode;
  */
 public class TicketFlowFrameException extends BaseException {
 
+    @Getter
     private Integer code;
 
+    @Getter
     private String message;
 
     public TicketFlowFrameException() {
@@ -61,5 +65,6 @@ public class TicketFlowFrameException extends BaseException {
         this.code = code;
         this.message = message;
     }
-
+    
+    
 }

@@ -16,6 +16,8 @@
         <module>ticketflow-common</module>
         <module>ticketflow-server-client</module>
         <module>ticketflow-server-client/ticketflow-base-data-client</module>
+        <module>ticketflow-spring-cloud-framework</module>
+        <module>ticketflow-spring-cloud-framework/ticketflow-service-common</module>
     </modules>
 
     <properties>
