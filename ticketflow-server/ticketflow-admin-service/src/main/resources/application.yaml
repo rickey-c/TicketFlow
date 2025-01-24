@@ -1,0 +1,60 @@
+server:
+  port: 10082
+spring:
+  profiles:
+    include: application-dev.yaml
+    active: dev
+  application:
+    name: ticketflow-admin-service
+  boot:
+    admin:
+      ui:
+        title: 服务监控中心
+        brand: <span>服务监控中心</span>
+  cloud:
+    nacos:
+      discovery:
+        server-addr: ${spring.cloud.nacos.server-addr}
+        username: ${spring.cloud.nacos.username}
+        password: ${spring.cloud.nacos.password}
+  security:
+    user:
+      name: admin
+      password: admin
+  main:
+    allow-bean-definition-overriding: true
+management:
+  endpoint:
+    web:
+      exposure:
+        include: '*'
+    health:
+      show-details: always
+  security:
+    enabled: false
+    
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html
+    tags-sorter: alpha
+    operations-sorter: alpha
+  api-docs:
+    path: /v3/api-docs
+  group-configs:
+    - group: 'default'
+      paths-to-match: '/**'
+      #生成文档所需的扫包路径，一般为启动类目录
+      packages-to-scan: com.rickey.adminservice.controller
+#knife4j配置
+knife4j:
+  #是否启用增强设置
+  enable: true
+  #开启生产环境屏蔽
+  production: false
+  #是否启用登录认证
+  basic:
+    enable: false
+  setting:
+    language: zh_cn
+    enable-version: true
+    enable-swagger-models: true    

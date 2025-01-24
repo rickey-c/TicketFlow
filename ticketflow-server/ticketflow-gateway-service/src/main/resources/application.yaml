@@ -1,0 +1,7 @@
+# ????
+server:
+  port: 6083
+
+spring:
+  application:
+    name: ticketflow-gateway-service
