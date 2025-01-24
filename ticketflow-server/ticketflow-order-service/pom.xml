@@ -10,7 +10,7 @@
     </parent>
 
     <groupId>org.rickey</groupId>
-    <artifactId>order-service</artifactId>
+    <artifactId>ticketflow-order-service</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>ticketflow-order-service</name>
     <description>ticketflow-order-service</description>

@@ -1,9 +1,6 @@
 server:
   port: 10082
 spring:
-  profiles:
-    include: application-dev.yaml
-    active: dev
   application:
     name: ticketflow-admin-service
   boot:
@@ -14,9 +11,9 @@ spring:
   cloud:
     nacos:
       discovery:
-        server-addr: ${spring.cloud.nacos.server-addr}
-        username: ${spring.cloud.nacos.username}
-        password: ${spring.cloud.nacos.password}
+        server-addr: 47.96.135.134
+        username: nacos
+        password: Crq13709390514..
   security:
     user:
       name: admin

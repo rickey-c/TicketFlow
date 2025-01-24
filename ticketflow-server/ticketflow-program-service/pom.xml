@@ -9,7 +9,7 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>org.rickey</groupId>
-    <artifactId>program-service</artifactId>
+    <artifactId>ticketflow-program-service</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>ticketflow-program-service</name>
     <description>ticketflow-program-service</description>

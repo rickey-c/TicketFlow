@@ -10,7 +10,7 @@
     </parent>
     
     <groupId>org.rickey</groupId>
-    <artifactId>admin-service</artifactId>
+    <artifactId>ticketflow-admin-service</artifactId>
     <version>${revision}</version>
     
     <name>ticketflow-admin-service</name>

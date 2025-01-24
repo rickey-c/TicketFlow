@@ -14,6 +14,8 @@
         <module>ticketflow-server</module>
         <module>ticketflow-thread-pool-framework</module>
         <module>ticketflow-common</module>
+        <module>ticketflow-server-client</module>
+        <module>ticketflow-server-client/ticketflow-base-data-client</module>
     </modules>
 
     <properties>
