@@ -21,6 +21,6 @@
 # Ignore specific IntelliJ IDEA project file
 ticketflow.iml
 
-# Ignore myapplication
-**/application-dev.yaml
+## Ignore myapplication
+#**/application-dev.yaml
 
