@@ -19,8 +19,6 @@
 .flattened-pom.xml
 
 # Ignore specific IntelliJ IDEA project file
-ticketflow.iml
+**/.iml
 
-## Ignore myapplication
-#**/application-dev.yaml
 
