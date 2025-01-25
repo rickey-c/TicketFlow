@@ -1,0 +1,4 @@
+org.springframework.boot.env.EnvironmentPostProcessor=\
+  com.ticketflow.environment.SpringEnvironment
+org.springframework.context.ApplicationContextInitializer=\
+  com.ticketflow.core.SpringUtil
