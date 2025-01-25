@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    
+    <parent>
+        <groupId>com.rickey</groupId>
+        <artifactId>ticketflow-redis-tool-framework</artifactId>
+        <version>${revision}</version>
+    </parent>
+
+    <artifactId>ticketflow-redis-framework</artifactId>
+    <packaging>pom</packaging>
+
+    <name>ticketflow-redis-framework</name>
+    <description>redis封装</description>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+            <exclusions>
+                <!--去除spring boot自带的 -->
+                <exclusion>
+                    <groupId>org.springframework.boot</groupId>
+                    <artifactId>spring-boot-starter-logging</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-redis</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.rickey</groupId>
+            <artifactId>ticketflow-common</artifactId>
+            <version>${revision}</version>
+        </dependency>
+        
+
+        <dependency>
+            <groupId>com.rickey</groupId>
+            <artifactId>ticketflow-redis-common-framework</artifactId>
+            <version>${revision}</version>
+        </dependency>
+    </dependencies>
+</project>
