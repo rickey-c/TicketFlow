@@ -1,0 +1,2 @@
+com.ticketflow.feign.ExtraFeignAutoConfiguration
+com.ticketflow.filter.FilterAutoConfiguration
