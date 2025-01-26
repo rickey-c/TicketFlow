@@ -5,6 +5,7 @@ import com.ticketflow.toolkit.SnowflakeIdGenerator;
 import com.ticketflow.toolkit.WorkAndDataIdCenterHandler;
 import com.ticketflow.toolkit.WorkDataCenterId;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Component;
 
@@ -13,7 +14,7 @@ import org.springframework.stereotype.Component;
  * @Author: rickey-c
  * @Date: 2025/1/26 12:52
  */
-@Component
+@Configuration
 public class IdGeneratorConfig {
 
     @Bean
