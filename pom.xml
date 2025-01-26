@@ -15,9 +15,10 @@
         <module>ticketflow-thread-pool-framework</module>
         <module>ticketflow-common</module>
         <module>ticketflow-server-client</module>
-        <module>ticketflow-server-client/ticketflow-base-data-client</module>
         <module>ticketflow-spring-cloud-framework</module>
-        <module>ticketflow-spring-cloud-framework/ticketflow-service-common</module>
+        <module>ticketflow-redis-tool-framework</module>
+        <module>ticketflow-id-generator-framework</module>
+        <module>ticketflow-redisson-framework</module>
     </modules>
 
     <properties>

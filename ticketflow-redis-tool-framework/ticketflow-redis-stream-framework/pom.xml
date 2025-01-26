@@ -9,7 +9,6 @@
     </parent>
 
     <artifactId>ticketflow-redis-stream-framework</artifactId>
-    <packaging>pom</packaging>
 
     <name>ticketflow-redis-stream-framework</name>
 

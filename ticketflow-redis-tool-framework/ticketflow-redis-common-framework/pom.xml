@@ -10,7 +10,6 @@
     </parent>
 
     <artifactId>ticketflow-redis-common-framework</artifactId>
-    <packaging>pom</packaging>
 
     <dependencies>
         <dependency>

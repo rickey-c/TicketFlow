@@ -57,32 +57,31 @@
             <artifactId>ticketflow-common</artifactId>
             <version>${revision}</version>
         </dependency>
-        <!--TODO 后续补充组件-->
-        <!--<dependency>-->
-        <!--    <groupId>com.example</groupId>-->
-        <!--    <artifactId>damai-redis-framework</artifactId>-->
-        <!--    <version>${revision}</version>-->
-        <!--</dependency>-->
-        <!--<dependency>-->
-        <!--    <groupId>com.example</groupId>-->
-        <!--    <artifactId>damai-base-data-client</artifactId>-->
-        <!--    <version>${revision}</version>-->
-        <!--</dependency>-->
-        <!--<dependency>-->
-        <!--    <groupId>com.example</groupId>-->
-        <!--    <artifactId>damai-service-component</artifactId>-->
-        <!--    <version>${revision}</version>-->
-        <!--</dependency>-->
+        <dependency>
+            <groupId>com.rickey</groupId>
+            <artifactId>ticketflow-redis-framework</artifactId>
+            <version>${revision}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.rickey</groupId>
+            <artifactId>ticketflow-base-data-client</artifactId>
+            <version>${revision}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.rickey</groupId>
+            <artifactId>ticketflow-service-component</artifactId>
+            <version>${revision}</version>
+        </dependency>
         <!-- nacos start -->
         <dependency>
             <groupId>com.alibaba.cloud</groupId>
             <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
         </dependency>
-        <!--<dependency>-->
-        <!--    <groupId>com.example</groupId>-->
-        <!--    <artifactId>damai-id-generator-framework</artifactId>-->
-        <!--    <version>${revision}</version>-->
-        <!--</dependency>-->
+        <dependency>
+            <groupId>com.rickey</groupId>
+            <artifactId>ticketflow-id-generator-framework</artifactId>
+            <version>${revision}</version>
+        </dependency>
         <dependency>
             <groupId>com.baomidou</groupId>
             <artifactId>mybatis-plus-spring-boot3-starter</artifactId>
@@ -114,6 +113,7 @@
             <artifactId>jasypt-spring-boot-starter</artifactId>
             <version>${jasypt.version}</version>
         </dependency>
+        <!--TODO-->
         <!--<dependency>-->
         <!--    <groupId>com.example</groupId>-->
         <!--    <artifactId>damai-service-gray-transition-webmvc-framework</artifactId>-->

@@ -10,7 +10,6 @@
     </parent>
 
     <artifactId>ticketflow-redis-framework</artifactId>
-    <packaging>pom</packaging>
 
     <name>ticketflow-redis-framework</name>
     <description>redis封装</description>

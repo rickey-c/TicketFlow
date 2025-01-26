@@ -8,7 +8,6 @@
     </parent>
 
     <artifactId>ticketflow-id-generator-framework</artifactId>
-    <packaging>pom</packaging>
 
     <name>ticketflow-id-generator-framework</name>
     <url>http://maven.apache.org</url>
