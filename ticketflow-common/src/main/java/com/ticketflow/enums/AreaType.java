@@ -10,17 +10,17 @@ import lombok.Getter;
 public enum AreaType {
     /**
      * 省
-     * */
-    PROVINCE(1,"省"),
+     */
+    PROVINCE(1, "省"),
     /**
      * 市
-     * */
-    MUNICIPALITIES(2,"市"),
-    
+     */
+    MUNICIPALITIES(2, "市"),
+
     /**
      * 区或县
-     * */
-    PREFECTURE(3,"区或县"),
+     */
+    PREFECTURE(3, "区或县"),
     ;
 
     @Getter
