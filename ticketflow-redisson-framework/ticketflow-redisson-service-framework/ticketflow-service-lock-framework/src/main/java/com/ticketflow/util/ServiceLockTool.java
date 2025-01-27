@@ -9,6 +9,7 @@ import com.ticketflow.servicelock.factory.ServiceLockFactory;
 import com.ticketflow.servicelock.info.LockTimeOutStrategy;
 import lombok.AllArgsConstructor;
 import org.redisson.api.RLock;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.concurrent.TimeUnit;
 
@@ -19,9 +20,9 @@ import java.util.concurrent.TimeUnit;
  */
 @AllArgsConstructor
 public class ServiceLockTool {
-
+    
     private final LockInfoHandleFactory lockInfoHandleFactory;
-
+    
     private final ServiceLockFactory serviceLockFactory;
 
     /**

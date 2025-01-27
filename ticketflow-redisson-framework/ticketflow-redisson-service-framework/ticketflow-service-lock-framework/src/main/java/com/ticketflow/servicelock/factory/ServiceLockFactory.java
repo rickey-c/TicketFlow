@@ -4,6 +4,7 @@ import com.ticketflow.core.ManageLocker;
 import com.ticketflow.servicelock.LockType;
 import com.ticketflow.servicelock.ServiceLocker;
 import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 
 
 /**
