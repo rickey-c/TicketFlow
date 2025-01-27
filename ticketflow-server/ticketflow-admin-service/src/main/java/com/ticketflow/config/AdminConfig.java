@@ -5,6 +5,7 @@ import io.swagger.v3.oas.models.info.Contact;
 import io.swagger.v3.oas.models.info.Info;
 import org.springframework.boot.autoconfigure.jackson.Jackson2ObjectMapperBuilderCustomizer;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
 
 /**
@@ -12,6 +13,7 @@ import org.springframework.context.annotation.Primary;
  * @Author: rickey-c
  * @Date: 2025/1/24 14:31
  */
+@Configuration
 public class AdminConfig {
     
     @Primary
