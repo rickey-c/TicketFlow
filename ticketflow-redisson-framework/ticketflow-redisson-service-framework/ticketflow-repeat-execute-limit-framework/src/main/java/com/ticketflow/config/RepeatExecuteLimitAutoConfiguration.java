@@ -19,11 +19,23 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class RepeatExecuteLimitAutoConfiguration {
 
+    /**
+     * 策略实现 LockInfoHandle
+     * @return RepeatExecuteLimitHandle
+     */
     @Bean(LockInfoType.REPEAT_EXECUTE_LIMIT)
     public LockInfoHandle repeatExecuteLimitHandle() {
         return new RepeatExecuteLimitLockInfoHandle();
     }
 
+    /**
+     * 注解AOP自动装配
+     * @param localLockCache
+     * @param lockInfoHandleFactory
+     * @param serviceLockFactory
+     * @param redissonDataHandle
+     * @return RepeatExecuteLimitAspect
+     */
     @Bean
     public RepeatExecuteLimitAspect repeatExecuteLimitAspect(LocalLockCache localLockCache,
                                                              LockInfoHandleFactory lockInfoHandleFactory,
