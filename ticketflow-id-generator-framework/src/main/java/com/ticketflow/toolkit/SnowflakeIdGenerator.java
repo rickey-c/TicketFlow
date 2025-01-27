@@ -4,6 +4,7 @@ import cn.hutool.core.date.SystemClock;
 import cn.hutool.core.lang.Assert;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang.StringUtils;
+import org.springframework.stereotype.Component;
 
 import java.lang.management.ManagementFactory;
 import java.net.InetAddress;
@@ -29,11 +30,10 @@ public class SnowflakeIdGenerator {
     private final long workerIdShift = sequenceBits;
     private final long datacenterIdShift = sequenceBits + workerIdBits;
     private final long timestampLeftShift = sequenceBits + workerIdBits + datacenterIdBits;
-    private final long sequenceMask = -1L ^ (-1L << sequenceBits);
 
     // 最大值
-    private final long maxWorkerId = -1L ^ (-1L << workerIdBits);
-    private final long maxDatacenterId = -1L ^ (-1L << datacenterIdBits);
+    private final long maxWorkerId = ~(-1L << workerIdBits);
+    private final long maxDatacenterId = ~(-1L << datacenterIdBits);
 
     private final long workerId;
 
@@ -119,6 +119,7 @@ public class SnowflakeIdGenerator {
 
         if (lastTimestamp == timestamp) {
             // 相同毫秒内，序列号自增
+            long sequenceMask = ~(-1L << sequenceBits);
             sequence = (sequence + 1) & sequenceMask;
             if (sequence == 0) {
                 // 同一毫秒的序列数已经达到最大
