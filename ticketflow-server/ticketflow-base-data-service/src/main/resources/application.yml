@@ -4,18 +4,9 @@ server:
 # 应用名称
 spring:
   profiles:
-    active: dev
-    include: application-dev.yaml
-  datasource:
-    type: com.zaxxer.hikari.HikariDataSource
-    driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://47.96.135.134:3306/ticketflow_base_data?useUnicode=true&characterEncoding=UTF-8&rewriteBatchedStatements=true&allowMultiQueries=true&serverTimezone=Asia/Shanghai
-    username: root
-    password: Crq13709390514..
-    hikari:
-      max-lifetime: 60000
+    active: local
   application:
-    name: ticketflow-base-data-service
+    name: ${prefix.distinction.name:ticketflow}-base-data-service
   main:
     allow-bean-definition-overriding: true
   mvc:
@@ -41,8 +32,6 @@ spring:
         server-addr: 47.96.135.134:8848
         username: nacos
         password: Crq13709390514..
-  config:
-    import: application
 mybatis-plus:
   mapper-locations: classpath:mapper/*.xml
   global-config:
@@ -89,11 +78,10 @@ management:
     metrics:
       export:
         enabled: true
-jasypt:
-  encryptor:
-    password: bgtjkjl!%^sdc
-    algorithm: PBEWithMD5AndDES
-
+#jasypt:
+#  encryptor:
+#    password: bgtjkjl!%^sdc
+#    algorithm: PBEWithMD5AndDES
 
 springdoc:
   swagger-ui:
@@ -106,7 +94,7 @@ springdoc:
     - group: 'default'
       paths-to-match: '/**'
       #生成文档所需的扫包路径，一般为启动类目录
-      packages-to-scan: com.damai.controller
+      packages-to-scan: com.ticketflow.controller
 #knife4j配置
 knife4j:
   #是否启用增强设置

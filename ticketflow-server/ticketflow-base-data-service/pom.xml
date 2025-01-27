@@ -34,7 +34,7 @@
     <dependencies>
         <dependency>
             <groupId>com.rickey</groupId>
-            <artifactId>ticketflow-common</artifactId>
+            <artifactId>ticketflow-service-common</artifactId>
             <version>${revision}</version>
         </dependency>
         <dependency>
@@ -113,7 +113,7 @@
             <artifactId>jasypt-spring-boot-starter</artifactId>
             <version>${jasypt.version}</version>
         </dependency>
-        <!--TODO-->
+        <!--TODO 灰度发布组件-->
         <!--<dependency>-->
         <!--    <groupId>com.example</groupId>-->
         <!--    <artifactId>damai-service-gray-transition-webmvc-framework</artifactId>-->
@@ -131,12 +131,11 @@
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-loadbalancer</artifactId>
         </dependency>
-        <!--TODO 组件-->
-        <!--<dependency>-->
-        <!--    <groupId>com.example</groupId>-->
-        <!--    <artifactId>damai-service-lock-framework</artifactId>-->
-        <!--    <version>${revision}</version>-->
-        <!--</dependency>-->
+        <dependency>
+            <groupId>com.rickey</groupId>
+            <artifactId>ticketflow-service-lock-framework</artifactId>
+            <version>${revision}</version>
+        </dependency>
         <dependency>
             <groupId>io.micrometer</groupId>
             <artifactId>micrometer-registry-prometheus</artifactId>

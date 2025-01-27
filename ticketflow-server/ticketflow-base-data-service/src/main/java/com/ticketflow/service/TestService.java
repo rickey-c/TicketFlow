@@ -2,7 +2,7 @@ package com.ticketflow.service;
 
 import com.alibaba.ttl.TransmittableThreadLocal;
 import com.alibaba.ttl.TtlRunnable;
-import com.damai.util.StringUtil;
+import com.ticketflow.utils.StringUtil;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.extern.slf4j.Slf4j;
 import org.slf4j.MDC;
@@ -12,9 +12,9 @@ import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 
 /**
- * @program: damai
- * @description:
- * @author: k
+ * @program: TicketFlow
+ * @description: 测试方法
+ * @author: rickey-c
  * @create: 2024-12-03
  **/
 @Slf4j
