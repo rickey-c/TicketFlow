@@ -4,6 +4,7 @@ import com.ticketflow.servicelock.ServiceLocker;
 import lombok.AllArgsConstructor;
 import org.redisson.api.RLock;
 import org.redisson.api.RedissonClient;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.concurrent.TimeUnit;
 
@@ -14,7 +15,7 @@ import java.util.concurrent.TimeUnit;
  */
 @AllArgsConstructor
 public class RedissonReadLocker implements ServiceLocker {
-
+    
     private final RedissonClient redissonClient;
 
     @Override

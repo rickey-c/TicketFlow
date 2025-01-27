@@ -22,31 +22,30 @@ import static com.ticketflow.servicelock.LockType.Write;
  * @Author: rickey-c
  * @Date: 2025/1/27 16:22
  */
-@AllArgsConstructor
 public class ManageLocker {
-    
-    private final Map<LockType, ServiceLocker> lockerMap = new HashMap<>();
+
+    private final Map<LockType, ServiceLocker> cacheLocker = new HashMap<>();
 
     public ManageLocker(RedissonClient redissonClient){
-        lockerMap.put(Reentrant,new RedissonReentrantLocker(redissonClient));
-        lockerMap.put(Fair,new RedissonFairLocker(redissonClient));
-        lockerMap.put(Write,new RedissonWriteLocker(redissonClient));
-        lockerMap.put(Read,new RedissonReadLocker(redissonClient));
+        cacheLocker.put(Reentrant,new RedissonReentrantLocker(redissonClient));
+        cacheLocker.put(Fair,new RedissonFairLocker(redissonClient));
+        cacheLocker.put(Write,new RedissonWriteLocker(redissonClient));
+        cacheLocker.put(Read,new RedissonReadLocker(redissonClient));
     }
 
     public ServiceLocker getReentrantLocker(){
-        return lockerMap.get(Reentrant);
+        return cacheLocker.get(Reentrant);
     }
 
     public ServiceLocker getFairLocker(){
-        return lockerMap.get(Fair);
+        return cacheLocker.get(Fair);
     }
 
     public ServiceLocker getWriteLocker(){
-        return lockerMap.get(Write);
+        return cacheLocker.get(Write);
     }
 
     public ServiceLocker getReadLocker(){
-        return lockerMap.get(Read);
+        return cacheLocker.get(Read);
     }
 }

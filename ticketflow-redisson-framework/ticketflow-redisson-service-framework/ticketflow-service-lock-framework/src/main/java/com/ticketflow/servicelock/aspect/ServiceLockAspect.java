@@ -16,6 +16,7 @@ import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.reflect.MethodSignature;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.annotation.Order;
 
 import java.lang.reflect.InvocationTargetException;
@@ -32,9 +33,9 @@ import java.util.concurrent.TimeUnit;
 @Order(-10)
 @AllArgsConstructor
 public class ServiceLockAspect {
-
+    
     private final LockInfoHandleFactory lockInfoHandleFactory;
-
+    
     private final ServiceLockFactory serviceLockFactory;
 
     /**
