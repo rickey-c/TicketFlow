@@ -20,7 +20,7 @@ import java.util.stream.Collectors;
  */
 @AllArgsConstructor
 public class RedisCacheImpl implements RedisCache {
-
+    
     private StringRedisTemplate redisTemplate;
 
     @Override
