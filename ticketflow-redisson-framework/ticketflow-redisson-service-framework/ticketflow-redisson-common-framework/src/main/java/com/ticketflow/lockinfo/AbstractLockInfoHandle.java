@@ -19,8 +19,8 @@ import java.util.List;
 
 import static com.ticketflow.constant.Constants.SEPARATOR;
 
-/**
- * @Description:
+/** 
+ * @Description: 锁信息抽象类，提供了锁名称的生成、SpEL表达式的解析等功能。
  * @Author: rickey-c
  * @Date: 2025/1/26 14:40
  */

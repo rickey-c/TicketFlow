@@ -9,6 +9,7 @@ import org.redisson.config.Config;
 import org.springframework.boot.autoconfigure.data.redis.RedisProperties;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.stereotype.Component;
 import org.springframework.util.ReflectionUtils;
 
@@ -19,11 +20,11 @@ import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.atomic.AtomicInteger;
 
 /**
- * @Description:
+ * @Description: redisson自动装配类
  * @Author: rickey-c
  * @Date: 2025/1/26 14:21
  */
-@Component
+@Configuration
 @EnableConfigurationProperties(RedissonBaseProperties.class)
 public class RedissonCommonAutoConfiguration {
     
