@@ -13,7 +13,7 @@
     <artifactId>ticketflow-server</artifactId>
     <packaging>pom</packaging>
 
-    <name>server</name>
+    <name>ticketflow-server</name>
     <description>服务模块</description>
 
     <modules>

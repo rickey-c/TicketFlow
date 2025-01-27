@@ -3,16 +3,17 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
+    
     <parent>
         <groupId>com.rickey</groupId>
         <artifactId>ticketflow</artifactId>
-        <version>0.0.1-SNAPSHOT</version>
+        <version>${revision}</version>
     </parent>
 
     <artifactId>ticketflow-server-client</artifactId>
     <packaging>pom</packaging>
     
-    <name>server-client</name>
+    <name>ticketflow-server-client</name>
     <description>服务feign接口</description>
     
     <modules>
