@@ -19,6 +19,16 @@
 .flattened-pom.xml
 
 # Ignore specific IntelliJ IDEA project file
-**/.iml
+**/*.iml
 
+*/.iml
 
+/ticketflow.iml
+/ticketflow-base-data-client.iml
+/ticketflow-id-generator-framework.iml
+/ticketflow-redis-stream-framework.iml
+/ticketflow-redis-common-framework.iml
+/ticketflow-redis-framework.iml
+
+logs
+/ticketflow-common/target/
