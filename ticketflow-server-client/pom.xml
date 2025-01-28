@@ -18,6 +18,7 @@
     
     <modules>
         <module>ticketflow-base-data-client</module>
+        <module>ticketflow-customize-client</module>
     </modules>
 
     <dependencies>
