@@ -1,0 +1,117 @@
+server:
+  port: 6084
+spring:
+  profiles:
+    active: local
+  application:
+    name: ${prefix.distinction.name:ticketflow}-customize-service
+    main:
+      allow-bean-definition-overriding: true
+    mvc:
+      pathmatch:
+        matching-strategy: ant_path_matcher
+      servlet:
+        load-on-startup: 1
+      jackson:
+        time-zone: GMT+8
+        date-format: yyyy-MM-dd HH:mm:ss
+        generator:
+          WRITE_NUMBERS_AS_STRINGS: true
+  data:
+    redis:
+      database: 0
+      host: ticketflow
+      port: 6379
+      timeout: 3000
+      password: Crq13709390514..
+  cloud:
+    nacos:
+      discovery:
+        server-addr: ticketflow:8848
+        username: nacos
+        password: Crq13709390514..
+  kafka:
+    bootstrap-servers: common-framework.com.cn:9092
+    consumer:
+      #\u9ED8\u8BA4\u7684\u6D88\u8D39\u7EC4ID
+      group-id: api_data
+      #\u662F\u5426\u81EA\u52A8\u63D0\u4EA4offset
+      enable-auto-commit: true
+      #\u63D0\u4EA4offset\u5EF6\u65F6
+      auto-commit-interval: 2000
+      # \u5F53kafka\u4E2D\u6CA1\u6709\u521D\u59CBoffset\u6216offset\u8D85\u51FA\u8303\u56F4\u65F6\u5C06\u81EA\u52A8\u91CD\u7F6Eoffset
+      # earliest:\u91CD\u7F6E\u4E3A\u5206\u533A\u4E2D\u6700\u5C0F\u7684offset;
+      # latest:\u91CD\u7F6E\u4E3A\u5206\u533A\u4E2D\u6700\u65B0\u7684offset(\u6D88\u8D39\u5206\u533A\u4E2D\u65B0\u4EA7\u751F\u7684\u6570\u636E);
+      # none:\u53EA\u8981\u6709\u4E00\u4E2A\u5206\u533A\u4E0D\u5B58\u5728\u5DF2\u63D0\u4EA4\u7684offset,\u5C31\u629B\u51FA\u5F02\u5E38;
+      auto-offset-reset: latest
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      # \u4E3B\u9898
+      topic: save_api_data
+mybatis-plus:
+  mapper-locations: classpath:mapper/*.xml
+  global-config:
+    db-config:
+      logic-delete-field: status
+      logic-delete-value: 0
+      logic-not-delete-value: 1
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+    local-cache-scope: statement
+feign:
+  sentinel:
+    enabled: false
+  hystrix:
+    enabled: true
+  httpclient:
+    enabled: false
+  okhttp:
+    enabled: true
+  compression:
+    request:
+      enabled: true
+      mime-types: text/xml,application/xml,application/json
+      min-request-size: 512
+    response:
+      enabled: true
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+    health:
+      show-details: always
+  security:
+    enabled: false
+  health:
+    elasticsearch:
+      enabled: false
+#jasypt:
+#  encryptor:
+#    password: bgtjkjl!%^sdc
+#    algorithm: PBEWithMD5AndDES
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html
+    tags-sorter: alpha
+    operations-sorter: alpha
+  api-docs:
+    path: /v3/api-docs
+  group-configs:
+    - group: 'default'
+      paths-to-match: '/**'
+      #\u751F\u6210\u6587\u6863\u6240\u9700\u7684\u626B\u5305\u8DEF\u5F84\uFF0C\u4E00\u822C\u4E3A\u542F\u52A8\u7C7B\u76EE\u5F55
+      packages-to-scan: com.ticketflow.controller
+#knife4j\u914D\u7F6E
+knife4j:
+  #\u662F\u5426\u542F\u7528\u589E\u5F3A\u8BBE\u7F6E
+  enable: true
+  #\u5F00\u542F\u751F\u4EA7\u73AF\u5883\u5C4F\u853D
+  production: false
+  #\u662F\u5426\u542F\u7528\u767B\u5F55\u8BA4\u8BC1
+  basic:
+    enable: false
+  setting:
+    language: zh_cn
+    enable-version: true
+    enable-swagger-models: true
