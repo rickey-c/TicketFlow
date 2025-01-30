@@ -1,0 +1,79 @@
+spring:
+  cloud:
+    gateway:
+      enabled: true
+      discovery:
+        locator:
+          enabled: true
+      routes:
+        - id: ${prefix.distinction.name:ticketflow}-base-data-service
+          uri: lb://${prefix.distinction.name:ticketflow}-base-data-service
+          predicates:
+            - Path=/ticketflow/basedata/**
+          filters:
+            - StripPrefix=2
+          metadata:
+            title: 基础数据服务
+
+        - id: ${prefix.distinction.name:ticketflow}-customize-service
+          uri: lb://${prefix.distinction.name:ticketflow}-customize-service
+          predicates:
+            - Path=/ticketflow/customize/**
+          filters:
+            - StripPrefix=2
+          metadata:
+            title: 定制化服务
+
+        - id: ${prefix.distinction.name:ticketflow}-job-service
+          uri: lb://${prefix.distinction.name:ticketflow}-job-service
+          predicates:
+            - Path=/ticketflow/job/**
+          filters:
+            - StripPrefix=2
+          metadata:
+            title: 任务执行服务
+
+        - id: ${prefix.distinction.name:ticketflow}-order-service
+          uri: lb://${prefix.distinction.name:ticketflow}-order-service
+          predicates:
+            - Path=/ticketflow/order/**
+          filters:
+            - StripPrefix=2
+          metadata:
+            title: 订单服务
+
+        - id: ${prefix.distinction.name:ticketflow}-pay-service
+          uri: lb://${prefix.distinction.name:ticketflow}-pay-service
+          predicates:
+            - Path=/ticketflow/pay/**
+          filters:
+            - StripPrefix=2
+          metadata:
+            title: 支付服务
+
+        - id: ${prefix.distinction.name:ticketflow}-program-service
+          uri: lb://${prefix.distinction.name:ticketflow}-program-service
+          predicates:
+            - Path=/ticketflow/program/**
+          filters:
+            - StripPrefix=2
+          metadata:
+            title: 节目服务
+
+        - id: ${prefix.distinction.name:ticketflow}-user-service
+          uri: lb://${prefix.distinction.name:ticketflow}-user-service
+          predicates:
+            - Path=/ticketflow/user/**
+          filters:
+            - StripPrefix=2
+          metadata:
+            title: 用户服务
+            
+        - id: ${prefix.distinction.name:ticketflow}-admin-service
+          uri: lb://${prefix.distinction.name:ticketflow}-admin-service
+          predicates:
+            - Path=/ticketflow/admin/**
+          filters:
+            - StripPrefix=2
+          metadata:
+            title: 监听服务    
