@@ -1,5 +1,7 @@
 package com.ticketflow.exception;
 
+import lombok.Data;
+
 import java.util.List;
 
 /**
@@ -7,6 +9,7 @@ import java.util.List;
  * @Author: rickey-c
  * @Date: 2025/1/23 16:17
  */
+@Data
 public class ArgumentException extends BaseException {
 
     private Integer code;
