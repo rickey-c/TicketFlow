@@ -1,0 +1,2 @@
+com.ticketflow.config.InitializeAutoConfig
+com.ticketflow.impl.composite.CompositeAutoConfiguration
