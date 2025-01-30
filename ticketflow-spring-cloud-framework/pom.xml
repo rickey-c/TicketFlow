@@ -15,6 +15,7 @@
     <modules>
         <module>ticketflow-service-common</module>
         <module>ticketflow-service-component</module>
+        <module>ticketflow-service-initialize</module>
     </modules>
 
 </project>
