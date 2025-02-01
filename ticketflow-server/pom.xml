@@ -25,6 +25,5 @@
         <module>ticketflow-customize-service</module>
         <module>ticketflow-program-service</module>
         <module>ticketflow-pay-service</module>
-        <module>ticketflow-mybatis-plus-service</module>
     </modules>
 </project>
