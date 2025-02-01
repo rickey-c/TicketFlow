@@ -19,6 +19,7 @@
         <module>ticketflow-redis-tool-framework</module>
         <module>ticketflow-id-generator-framework</module>
         <module>ticketflow-redisson-framework</module>
+        <module>ticketflow-captcha-manage-framework</module>
     </modules>
 
     <properties>
