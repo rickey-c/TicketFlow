@@ -14,7 +14,7 @@
     
     <modules>
         <module>ticketflow-redisson-service-framework</module>
-        <module>ticketflow-delay-queue-framework</module>
+        <module>ticketflow-service-delay-queue-framework</module>
     </modules>
 
 </project>
