@@ -20,6 +20,7 @@
         <module>ticketflow-id-generator-framework</module>
         <module>ticketflow-redisson-framework</module>
         <module>ticketflow-captcha-manage-framework</module>
+        <module>ticketflow-elasticsearch-framework</module>
     </modules>
 
     <properties>
