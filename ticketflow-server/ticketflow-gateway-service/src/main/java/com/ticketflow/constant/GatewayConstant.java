@@ -6,7 +6,7 @@ package com.ticketflow.constant;
  * @Date: 2025/1/29 20:41
  */
 public class GatewayConstant {
-    
+
     public static final String REQUEST_BODY = "body";
 
     public static final String ENCRYPT = "encrypt";

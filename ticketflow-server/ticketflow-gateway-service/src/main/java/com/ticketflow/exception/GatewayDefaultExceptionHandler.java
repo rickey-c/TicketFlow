@@ -3,7 +3,7 @@ package com.ticketflow.exception;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.ticketflow.common.ApiResponse;
-import com.ticketflow.conf.RequestTemporaryWrapper;
+import com.ticketflow.config.RequestTemporaryWrapper;
 import com.ticketflow.enums.BaseCode;
 import lombok.extern.slf4j.Slf4j;
 import org.jetbrains.annotations.NotNull;
@@ -23,7 +23,7 @@ import reactor.core.publisher.Mono;
  */
 @Slf4j
 public class GatewayDefaultExceptionHandler implements ErrorWebExceptionHandler {
-    
+
     @NotNull
     @Override
     public Mono<Void> handle(ServerWebExchange exchange, @NotNull Throwable ex) {

@@ -1,4 +1,4 @@
-package com.ticketflow.conf;
+package com.ticketflow.config;
 
 import com.ticketflow.common.ApiResponse;
 import lombok.Data;
@@ -12,8 +12,8 @@ import java.util.Map;
  */
 @Data
 public class RequestTemporaryWrapper {
-    
-    private Map<String,String> map;
-    
+
+    private Map<String, String> map;
+
     private ApiResponse<?> apiResponse;
 }

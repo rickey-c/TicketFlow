@@ -3,7 +3,7 @@ package com.ticketflow.filter;
 import cn.hutool.core.collection.CollectionUtil;
 import com.alibaba.fastjson.JSON;
 import com.baidu.fsg.uid.UidGenerator;
-import com.ticketflow.conf.RequestTemporaryWrapper;
+import com.ticketflow.config.RequestTemporaryWrapper;
 import com.ticketflow.enums.BaseCode;
 import com.ticketflow.exception.ArgumentError;
 import com.ticketflow.exception.ArgumentException;
@@ -83,25 +83,25 @@ public class RequestValidationFilter implements GlobalFilter, Ordered {
 
     @Autowired
     private RateLimiter rateLimiter;
-    
+
     @Override
     public Mono<Void> filter(ServerWebExchange exchange, GatewayFilterChain chain) {
-        if (rateLimiterProperty.getRateSwitch()){
-            try{
+        if (rateLimiterProperty.getRateSwitch()) {
+            try {
                 rateLimiter.acquire();
-                return doFilter(exchange,chain);
-            }catch (InterruptedException e) {
-                log.error("interrupted error",e);
+                return doFilter(exchange, chain);
+            } catch (InterruptedException e) {
+                log.error("interrupted error", e);
                 throw new TicketFlowFrameException(BaseCode.THREAD_INTERRUPTED);
             } finally {
                 rateLimiter.release();
             }
-        }else {
-            return doFilter(exchange,chain);
+        } else {
+            return doFilter(exchange, chain);
         }
     }
-    
-    public Mono<Void> doFilter(ServerWebExchange exchange,GatewayFilterChain chain){
+
+    public Mono<Void> doFilter(ServerWebExchange exchange, GatewayFilterChain chain) {
         ServerHttpRequest request = exchange.getRequest();
         String traceId = request.getHeaders().getFirst(TRACE_ID);
         String gray = request.getHeaders().getFirst(GRAY_PARAMETER);
@@ -109,20 +109,20 @@ public class RequestValidationFilter implements GlobalFilter, Ordered {
         if (StringUtil.isEmpty(traceId)) {
             traceId = String.valueOf(uidGenerator.getUid());
         }
-        MDC.put(TRACE_ID,traceId);
-        Map<String,String> headMap = new HashMap<>(8);
-        headMap.put(TRACE_ID,traceId);
-        headMap.put(GRAY_PARAMETER,gray);
+        MDC.put(TRACE_ID, traceId);
+        Map<String, String> headMap = new HashMap<>(8);
+        headMap.put(TRACE_ID, traceId);
+        headMap.put(GRAY_PARAMETER, gray);
         if (StringUtil.isNotEmpty(noVerify)) {
-            headMap.put(NO_VERIFY,noVerify);
+            headMap.put(NO_VERIFY, noVerify);
         }
-        BaseParameterHolder.setParameter(TRACE_ID,traceId);
-        BaseParameterHolder.setParameter(GRAY_PARAMETER,gray);
+        BaseParameterHolder.setParameter(TRACE_ID, traceId);
+        BaseParameterHolder.setParameter(GRAY_PARAMETER, gray);
         MediaType contentType = request.getHeaders().getContentType();
         // json请求
-        if (Objects.nonNull(contentType) && contentType.toString().toLowerCase().contains(MediaType.APPLICATION_JSON_VALUE.toLowerCase())){
-            return readBody(exchange,chain,headMap);
-        }else {
+        if (Objects.nonNull(contentType) && contentType.toString().toLowerCase().contains(MediaType.APPLICATION_JSON_VALUE.toLowerCase())) {
+            return readBody(exchange, chain, headMap);
+        } else {
             Map<String, String> map = doExecute("", exchange);
             map.remove(REQUEST_BODY);
             map.putAll(headMap);
@@ -181,8 +181,8 @@ public class RequestValidationFilter implements GlobalFilter, Ordered {
                 .onErrorResume((Function<Throwable, Mono<Void>>) Mono::error
                 );
     }
-    
-    public String execute(RequestTemporaryWrapper requestTemporaryWrapper,String requestBody,ServerWebExchange exchange){
+
+    public String execute(RequestTemporaryWrapper requestTemporaryWrapper, String requestBody, ServerWebExchange exchange) {
         // 进行业务验证，并将相关参数放入map
         Map<String, String> map = doExecute(requestBody, exchange);
         String body = map.get(REQUEST_BODY);
@@ -191,8 +191,8 @@ public class RequestValidationFilter implements GlobalFilter, Ordered {
         return body;
     }
 
-    private Map<String,String> doExecute(String originalBody,ServerWebExchange exchange){
-        log.info("current thread verify: {}",Thread.currentThread().getName());
+    private Map<String, String> doExecute(String originalBody, ServerWebExchange exchange) {
+        log.info("current thread verify: {}", Thread.currentThread().getName());
         ServerHttpRequest request = exchange.getRequest();
         String requestBody = originalBody;
         Map<String, String> bodyContent = new HashMap<>(32);
@@ -208,7 +208,7 @@ public class RequestValidationFilter implements GlobalFilter, Ordered {
         if ((!allowNormalAccess) && (VERIFY_VALUE.equals(noVerify))) {
             throw new TicketFlowFrameException(BaseCode.ONLY_SIGNATURE_ACCESS_IS_ALLOWED);
         }
-        if (checkParameter(originalBody,noVerify) && !skipCheckParameter(url)) {
+        if (checkParameter(originalBody, noVerify) && !skipCheckParameter(url)) {
 
             String encrypt = request.getHeaders().getFirst(ENCRYPT);
             //应用渠道
@@ -219,8 +219,8 @@ public class RequestValidationFilter implements GlobalFilter, Ordered {
             GetChannelDataVo channelDataVo = channelDataService.getChannelDataByCode(code);
 
             if (StringUtil.isNotEmpty(encrypt) && V2.equals(encrypt)) {
-                String decrypt = RsaTool.decrypt(bodyContent.get(BUSINESS_BODY),channelDataVo.getDataSecretKey());
-                bodyContent.put(BUSINESS_BODY,decrypt);
+                String decrypt = RsaTool.decrypt(bodyContent.get(BUSINESS_BODY), channelDataVo.getDataSecretKey());
+                bodyContent.put(BUSINESS_BODY, decrypt);
             }
             boolean checkFlag = RsaSignTool.verifyRsaSign256(bodyContent, channelDataVo.getSignPublicKey());
             if (!checkFlag) {
@@ -234,36 +234,37 @@ public class RequestValidationFilter implements GlobalFilter, Ordered {
                 argumentError.setMessage("token参数为空");
                 List<ArgumentError> argumentErrorList = new ArrayList<>();
                 argumentErrorList.add(argumentError);
-                throw new ArgumentException(BaseCode.ARGUMENT_EMPTY.getCode(),argumentErrorList);
+                throw new ArgumentException(BaseCode.ARGUMENT_EMPTY.getCode(), argumentErrorList);
             }
 
             if (!skipCheckTokenResult) {
-                UserVo userVo = tokenService.getUser(token,code,channelDataVo.getTokenSecret());
+                UserVo userVo = tokenService.getUser(token, code, channelDataVo.getTokenSecret());
                 userId = userVo.getId();
             }
 
             if (StringUtil.isEmpty(userId) && checkNeedUserId(url) && StringUtil.isNotEmpty(token)) {
-                UserVo userVo = tokenService.getUser(token,code,channelDataVo.getTokenSecret());
+                UserVo userVo = tokenService.getUser(token, code, channelDataVo.getTokenSecret());
                 userId = userVo.getId();
             }
 
             requestBody = bodyContent.get(BUSINESS_BODY);
         }
         // 限流检测
-        apiRestrictService.apiRestrict(userId,url,request);
-        Map<String,String> map = new HashMap<>(4);
-        map.put(REQUEST_BODY,requestBody);
+        apiRestrictService.apiRestrict(userId, url, request);
+        Map<String, String> map = new HashMap<>(4);
+        map.put(REQUEST_BODY, requestBody);
         if (StringUtil.isNotEmpty(code)) {
-            map.put(CODE,code);
+            map.put(CODE, code);
         }
         if (StringUtil.isNotEmpty(userId)) {
-            map.put(USER_ID,userId);
+            map.put(USER_ID, userId);
         }
         return map;
     }
 
     /**
      * 向后续服务传递参数
+     *
      * @param exchange
      * @param headers
      * @param outputMessage
@@ -271,11 +272,11 @@ public class RequestValidationFilter implements GlobalFilter, Ordered {
      * @param headMap
      * @return
      */
-    private ServerHttpRequestDecorator decorateHead(ServerWebExchange exchange, HttpHeaders headers, CachedBodyOutputMessage outputMessage, RequestTemporaryWrapper requestTemporaryWrapper, Map<String,String> headMap){
-        return new ServerHttpRequestDecorator(exchange.getRequest()){
+    private ServerHttpRequestDecorator decorateHead(ServerWebExchange exchange, HttpHeaders headers, CachedBodyOutputMessage outputMessage, RequestTemporaryWrapper requestTemporaryWrapper, Map<String, String> headMap) {
+        return new ServerHttpRequestDecorator(exchange.getRequest()) {
             @Override
             public HttpHeaders getHeaders() {
-                log.info("current thread getHeaders: {}",Thread.currentThread().getName());
+                log.info("current thread getHeaders: {}", Thread.currentThread().getName());
                 long contentLength = headers.getContentLength();
                 HttpHeaders newHeaders = new HttpHeaders();
                 newHeaders.putAll(headers);
@@ -286,13 +287,13 @@ public class RequestValidationFilter implements GlobalFilter, Ordered {
                 if (CollectionUtil.isNotEmpty(headMap)) {
                     newHeaders.setAll(headMap);
                 }
-                if (contentLength > 0){
+                if (contentLength > 0) {
                     newHeaders.setContentLength(contentLength);
-                }else {
-                    newHeaders.set(HttpHeaders.TRANSFER_ENCODING,"chunked");
+                } else {
+                    newHeaders.set(HttpHeaders.TRANSFER_ENCODING, "chunked");
                 }
                 if (CollectionUtil.isNotEmpty(headMap) && StringUtil.isNotEmpty(headMap.get(TRACE_ID))) {
-                    MDC.put(TRACE_ID,headMap.get(TRACE_ID));
+                    MDC.put(TRACE_ID, headMap.get(TRACE_ID));
                 }
                 return newHeaders;
             }
@@ -304,11 +305,11 @@ public class RequestValidationFilter implements GlobalFilter, Ordered {
         };
     }
 
-    public boolean checkParameter(String originalBody,String noVerify){
+    public boolean checkParameter(String originalBody, String noVerify) {
         return (!(VERIFY_VALUE.equals(noVerify))) && StringUtil.isNotEmpty(originalBody);
     }
 
-    public boolean skipCheckParameter(String url){
+    public boolean skipCheckParameter(String url) {
         for (String skipCheckTokenPath : gatewayProperty.getCheckSkipParmeterPaths()) {
             PathMatcher matcher = new AntPathMatcher();
             if (matcher.match(skipCheckTokenPath, url)) {
@@ -318,7 +319,7 @@ public class RequestValidationFilter implements GlobalFilter, Ordered {
         return false;
     }
 
-    public boolean skipCheckToken(String url){
+    public boolean skipCheckToken(String url) {
         for (String skipCheckTokenPath : gatewayProperty.getCheckTokenPaths()) {
             PathMatcher matcher = new AntPathMatcher();
             if (matcher.match(skipCheckTokenPath, url)) {
@@ -328,7 +329,7 @@ public class RequestValidationFilter implements GlobalFilter, Ordered {
         return true;
     }
 
-    private boolean checkNeedUserId(String url){
+    private boolean checkNeedUserId(String url) {
         for (String userIdPath : gatewayProperty.getUserIdPaths()) {
             PathMatcher matcher = new AntPathMatcher();
             if (matcher.match(userIdPath, url)) {

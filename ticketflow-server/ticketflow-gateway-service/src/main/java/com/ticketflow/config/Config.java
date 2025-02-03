@@ -1,4 +1,4 @@
-package com.ticketflow.conf;
+package com.ticketflow.config;
 
 import com.ticketflow.exception.GatewayDefaultExceptionHandler;
 import org.springframework.beans.factory.ObjectProvider;
@@ -55,7 +55,7 @@ public class Config implements WebFluxConfigurer {
                 .allowCredentials(true)
                 .maxAge(3600L);
     }
-    
+
     @Bean
     public ThreadPoolExecutor threadPoolExecutor() {
         return new ThreadPoolExecutor(Runtime.getRuntime().availableProcessors(),

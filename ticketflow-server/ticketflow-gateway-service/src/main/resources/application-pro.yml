@@ -68,7 +68,7 @@ spring:
             - StripPrefix=2
           metadata:
             title: 用户服务
-            
+
         - id: ${prefix.distinction.name:ticketflow}-admin-service
           uri: lb://${prefix.distinction.name:ticketflow}-admin-service
           predicates:
