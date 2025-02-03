@@ -28,6 +28,7 @@ spring:
       host: ticketflow
       port: 6379
       timeout: 3000
+      password: Crq13709390514..
   cloud:
     nacos:
       discovery:
