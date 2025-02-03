@@ -21,6 +21,7 @@
         <module>ticketflow-customize-client</module>
         <module>ticketflow-user-client</module>
         <module>ticketflow-program-client</module>
+        <module>ticketflow-order-client</module>
     </modules>
 
     <dependencies>
