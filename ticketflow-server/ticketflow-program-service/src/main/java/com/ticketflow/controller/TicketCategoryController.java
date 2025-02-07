@@ -15,10 +15,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
- * @program: 极度真实还原大麦网高并发实战项目。 添加 阿星不是程序员 微信，添加时备注 大麦 来获取项目的完整资料
- * @description: 票档 控制层
- * @author: 阿星不是程序员
- **/
+ * @Description: 节目票档 控制层
+ * @Author: rickey-c
+ * @Date: 2025/2/3 23:32
+ */
 @RestController
 @RequestMapping("/ticket/category")
 @Tag(name = "ticket-category", description = "票档")
