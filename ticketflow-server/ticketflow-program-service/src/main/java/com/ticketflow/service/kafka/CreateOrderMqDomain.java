@@ -1,6 +1,7 @@
 package com.ticketflow.service.kafka;
 
-import com.damai.exception.DaMaiFrameException;
+
+import com.ticketflow.exception.TicketFlowFrameException;
 
 /**
  * @Description: kafka消息中转
@@ -11,5 +12,5 @@ public class CreateOrderMqDomain {
 
     public String orderNumber;
 
-    public DaMaiFrameException daMaiFrameException;
+    public TicketFlowFrameException ticketFlowFrameException;
 }
