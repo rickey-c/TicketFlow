@@ -93,6 +93,11 @@
         </dependency>
         <dependency>
             <groupId>com.rickey</groupId>
+            <artifactId>ticketflow-user-client</artifactId>
+            <version>${revision}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.rickey</groupId>
             <artifactId>ticketflow-service-component</artifactId>
             <version>${revision}</version>
         </dependency>
@@ -185,6 +190,7 @@
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-loadbalancer</artifactId>
         </dependency>
+
     </dependencies>
 
 

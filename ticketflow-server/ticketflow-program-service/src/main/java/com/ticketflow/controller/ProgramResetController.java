@@ -21,11 +21,11 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/program/reset")
 @Tag(name = "program-reset", description = "节目数据重置")
 public class ProgramResetController {
-    
+
     @Autowired
     private ProgramService programService;
-    
-    @Operation(summary  = "执行重置(根据节目id)")
+
+    @Operation(summary = "执行重置(根据节目id)")
     @PostMapping(value = "/execute")
     public ApiResponse<Boolean> resetExecute(@Valid @RequestBody ProgramResetExecuteDto programResetExecuteDto) {
         return ApiResponse.ok(programService.resetExecute(programResetExecuteDto));

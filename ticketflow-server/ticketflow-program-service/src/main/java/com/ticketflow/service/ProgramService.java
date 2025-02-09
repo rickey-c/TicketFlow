@@ -600,7 +600,7 @@ public class ProgramService extends ServiceImpl<ProgramMapper, Program> {
             lock.unlock();
         }
     }
-    
+
 
     public Map<Long, TicketCategoryAggregate> selectTicketCategorieMap(List<Long> programIdList) {
         List<TicketCategoryAggregate> ticketCategorieList = ticketCategoryMapper.selectAggregateList(programIdList);
