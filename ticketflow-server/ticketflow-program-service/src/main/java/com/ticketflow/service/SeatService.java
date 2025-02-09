@@ -12,7 +12,6 @@ import com.damai.enums.SeatType;
 import com.damai.enums.SellStatus;
 import com.damai.exception.DaMaiFrameException;
 import com.damai.util.DateUtils;
-import com.ticketflow.ProgramShowTimeService;
 import com.ticketflow.core.RedisKeyManage;
 import com.ticketflow.dto.*;
 import com.ticketflow.entity.ProgramShowTime;

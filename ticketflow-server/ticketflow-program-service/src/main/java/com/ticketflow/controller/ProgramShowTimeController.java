@@ -1,6 +1,6 @@
 package com.ticketflow.controller;
 
-import com.ticketflow.ProgramShowTimeService;
+import com.ticketflow.service.ProgramShowTimeService;
 import com.ticketflow.common.ApiResponse;
 import com.ticketflow.dto.ProgramShowTimeAddDto;
 import io.swagger.v3.oas.annotations.Operation;

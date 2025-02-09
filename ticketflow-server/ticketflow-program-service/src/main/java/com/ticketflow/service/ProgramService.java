@@ -18,7 +18,6 @@ import com.damai.threadlocal.BaseParameterHolder;
 import com.damai.util.DateUtils;
 import com.damai.util.StringUtil;
 import com.ticketflow.BusinessThreadPool;
-import com.ticketflow.ProgramShowTimeService;
 import com.ticketflow.RedisStreamPushHandler;
 import com.ticketflow.client.BaseDataClient;
 import com.ticketflow.client.OrderClient;
