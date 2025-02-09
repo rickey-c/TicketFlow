@@ -3,6 +3,7 @@ package com.ticketflow.client;
 import com.ticketflow.common.ApiResponse;
 import com.ticketflow.dto.AccountOrderCountDto;
 import com.ticketflow.dto.OrderCreateDto;
+import com.ticketflow.vo.AccountOrderCountVo;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.stereotype.Component;
 
@@ -29,6 +30,6 @@ public interface OrderClient {
      * @param accountOrderCountDto 订单数量 dto
      * @return 结果
      */
-    ApiResponse<AccountOrderCountDto> accountOrderCount(AccountOrderCountDto accountOrderCountDto);
+    ApiResponse<AccountOrderCountVo> accountOrderCount(AccountOrderCountDto accountOrderCountDto);
     
 }
