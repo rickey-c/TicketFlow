@@ -11,14 +11,14 @@ import lombok.Data;
  * @Date: 2025/12/3 14:40
  */
 @Data
-@Schema(title="OrderPayCheckDto", description ="订单支付后状态检查")
+@Schema(title = "OrderPayCheckDto", description = "订单支付后状态检查")
 public class OrderPayCheckDto {
-    
-    @Schema(name ="orderNumber", type ="String", description ="订单编号", requiredMode= RequiredMode.REQUIRED)
+
+    @Schema(name = "orderNumber", type = "String", description = "订单编号", requiredMode = RequiredMode.REQUIRED)
     @NotNull
     private Long orderNumber;
-    
-    @Schema(name ="payChannelType", type ="Integer", description ="支付方式1.支付宝 2.微信", requiredMode= RequiredMode.REQUIRED)
+
+    @Schema(name = "payChannelType", type = "Integer", description = "支付方式1.支付宝 2.微信", requiredMode = RequiredMode.REQUIRED)
     @NotNull
     private Integer payChannelType;
 }

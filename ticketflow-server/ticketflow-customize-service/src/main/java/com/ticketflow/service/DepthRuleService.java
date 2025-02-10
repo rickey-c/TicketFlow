@@ -36,7 +36,7 @@ public class DepthRuleService {
     private final DepthRuleMapper depthRuleMapper;
 
     private final RuleService ruleService;
-    
+
     private final UidGenerator uidGenerator;
 
     @Transactional(rollbackFor = Exception.class)
@@ -50,13 +50,13 @@ public class DepthRuleService {
     @Transactional(rollbackFor = Exception.class)
     public void add(DepthRuleDto depthRuleDto) {
         DepthRule depthRule = new DepthRule();
-        BeanUtil.copyProperties(depthRuleDto,depthRule);
+        BeanUtil.copyProperties(depthRuleDto, depthRule);
         depthRule.setId(uidGenerator.getUid());
         depthRule.setCreateTime(DateUtils.now());
         depthRuleMapper.insert(depthRule);
     }
 
-    public void check(@NotBlank String startTimeWindow,@NotBlank String endTimeWindow) {
+    public void check(@NotBlank String startTimeWindow, @NotBlank String endTimeWindow) {
         LambdaQueryWrapper<DepthRule> wrapper = Wrappers.lambdaQuery(DepthRule.class).eq(DepthRule::getStatus, RuleStatus.RUN.getCode());
         List<DepthRule> depthRules = depthRuleMapper.selectList(wrapper);
         for (DepthRule depthRule : depthRules) {
@@ -64,17 +64,17 @@ public class DepthRuleService {
             long checkEndTimeWindowTimestamp = getTimeWindowTimestamp(endTimeWindow);
             long startTimeWindowTimestamp = getTimeWindowTimestamp(depthRule.getStartTimeWindow());
             long endTimeWindowTimestamp = getTimeWindowTimestamp(depthRule.getEndTimeWindow());
-            boolean checkStartLimitTimeResult = checkStartTimeWindowTimestamp >= startTimeWindowTimestamp 
+            boolean checkStartLimitTimeResult = checkStartTimeWindowTimestamp >= startTimeWindowTimestamp
                     && checkStartTimeWindowTimestamp <= endTimeWindowTimestamp;
-            boolean checkEndLimitTimeResult = checkEndTimeWindowTimestamp >= startTimeWindowTimestamp 
+            boolean checkEndLimitTimeResult = checkEndTimeWindowTimestamp >= startTimeWindowTimestamp
                     && checkEndTimeWindowTimestamp <= endTimeWindowTimestamp;
-            if (!checkStartLimitTimeResult || !checkEndLimitTimeResult){
+            if (!checkStartLimitTimeResult || !checkEndLimitTimeResult) {
                 throw new TicketFlowFrameException(BaseCode.API_RULE_TIME_WINDOW_INTERSECT);
             }
         }
     }
-    
-    public long getTimeWindowTimestamp(String timeWindow){
+
+    public long getTimeWindowTimestamp(String timeWindow) {
         String today = DateUtil.today();
         return DateUtil.parse(today + " " + timeWindow).getTime();
     }
@@ -82,7 +82,7 @@ public class DepthRuleService {
     @Transactional(rollbackFor = Exception.class)
     public void depthRuleUpdate(final DepthRuleUpdateDto depthRuleUpdateDto) {
         DepthRule depthRule = new DepthRule();
-        BeanUtils.copyProperties(depthRuleUpdateDto,depthRule);
+        BeanUtils.copyProperties(depthRuleUpdateDto, depthRule);
         depthRuleMapper.updateById(depthRule);
     }
 
@@ -101,7 +101,7 @@ public class DepthRuleService {
     }
 
     @Transactional(rollbackFor = Exception.class)
-    public List<DepthRuleVo> selectList(){
+    public List<DepthRuleVo> selectList() {
         List<DepthRule> depthRules = depthRuleMapper.selectList(null);
         return depthRules.stream().map(depthRule -> {
             DepthRuleVo depthRuleVo = new DepthRuleVo();
@@ -109,9 +109,9 @@ public class DepthRuleService {
             return depthRuleVo;
         }).collect(Collectors.toList());
     }
-    
+
     @Transactional(rollbackFor = Exception.class)
-    public void delAll(){
+    public void delAll() {
         depthRuleMapper.delAll();
     }
 }

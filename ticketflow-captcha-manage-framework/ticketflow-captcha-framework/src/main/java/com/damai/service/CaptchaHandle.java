@@ -17,9 +17,9 @@ import org.springframework.web.context.request.ServletRequestAttributes;
  */
 @AllArgsConstructor
 public class CaptchaHandle {
-    
+
     private final CaptchaService captchaService;
-    
+
     public ResponseModel getCaptcha(CaptchaVO captchaVO) {
         RequestAttributes requestAttributes = RequestContextHolder.getRequestAttributes();
         assert requestAttributes != null;
@@ -27,7 +27,7 @@ public class CaptchaHandle {
         captchaVO.setBrowserInfo(RemoteUtil.getRemoteId(request));
         return captchaService.get(captchaVO);
     }
-    
+
     public ResponseModel checkCaptcha(CaptchaVO captchaVO) {
         RequestAttributes requestAttributes = RequestContextHolder.getRequestAttributes();
         assert requestAttributes != null;
@@ -35,7 +35,7 @@ public class CaptchaHandle {
         captchaVO.setBrowserInfo(RemoteUtil.getRemoteId(request));
         return captchaService.check(captchaVO);
     }
-    
+
     public ResponseModel verification(CaptchaVO captchaVO) {
         return captchaService.verification(captchaVO);
     }

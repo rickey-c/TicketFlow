@@ -20,9 +20,9 @@ import java.util.concurrent.TimeUnit;
  */
 @AllArgsConstructor
 public class ServiceLockTool {
-    
+
     private final LockInfoHandleFactory lockInfoHandleFactory;
-    
+
     private final ServiceLockFactory serviceLockFactory;
 
     /**
@@ -88,23 +88,24 @@ public class ServiceLockTool {
 
     /**
      * 有返回值的加锁执行
+     *
      * @param taskCall 要执行的任务
-     * @param name 锁的业务名
-     * @param keys 锁的标识
+     * @param name     锁的业务名
+     * @param keys     锁的标识
      * @return 要执行的任务的返回值
-     * */
-    public <T> T submit(TaskCall<T> taskCall,String name,String [] keys){
+     */
+    public <T> T submit(TaskCall<T> taskCall, String name, String[] keys) {
         LockInfoHandle lockInfoHandle = lockInfoHandleFactory.getLockInfoHandler(LockInfoType.SERVICE_LOCK);
-        String lockName = lockInfoHandle.simpleGetLockName(name,keys);
+        String lockName = lockInfoHandle.simpleGetLockName(name, keys);
         ServiceLocker lock = serviceLockFactory.getLock(LockType.Reentrant);
         boolean result = lock.tryLock(lockName, TimeUnit.SECONDS, 30);
         if (result) {
             try {
                 return taskCall.call();
-            }finally {
+            } finally {
                 lock.unlock(lockName);
             }
-        }else {
+        } else {
             LockTimeOutStrategy.FAIL.handler(lockName);
         }
         return null;
@@ -112,28 +113,28 @@ public class ServiceLockTool {
 
     /**
      * 获得锁
-     * @param lockType 锁类型
-     * @param name 锁的业务名
-     * @param keys 锁的标识
      *
-     * */
-    public RLock getLock(LockType lockType, String name, String [] keys) {
+     * @param lockType 锁类型
+     * @param name     锁的业务名
+     * @param keys     锁的标识
+     */
+    public RLock getLock(LockType lockType, String name, String[] keys) {
         LockInfoHandle lockInfoHandle = lockInfoHandleFactory.getLockInfoHandler(LockInfoType.SERVICE_LOCK);
-        String lockName = lockInfoHandle.simpleGetLockName(name,keys);
+        String lockName = lockInfoHandle.simpleGetLockName(name, keys);
         ServiceLocker lock = serviceLockFactory.getLock(lockType);
         return lock.getLock(lockName);
     }
 
     /**
      * 获得锁
+     *
      * @param lockType 锁类型
      * @param lockName 锁名
-     *
-     * */
+     */
     public RLock getLock(LockType lockType, String lockName) {
         ServiceLocker lock = serviceLockFactory.getLock(lockType);
         return lock.getLock(lockName);
     }
-    
+
 
 }

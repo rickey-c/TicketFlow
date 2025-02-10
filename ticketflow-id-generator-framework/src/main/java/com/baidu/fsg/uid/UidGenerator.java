@@ -31,20 +31,22 @@ public interface UidGenerator {
      * @throws UidGenerateException
      */
     long getUid() throws UidGenerateException;
-    
+
     /**
      * 获取id
+     *
      * @return 结果
-     * */
+     */
     long getId();
-    
+
     /**
      * 获取订单编号
-     * @param userId 用户id
+     *
+     * @param userId     用户id
      * @param tableCount 分表数量
      * @return 结果
-     * */
-    long getOrderNumber(long userId,long tableCount);
+     */
+    long getOrderNumber(long userId, long tableCount);
 
     /**
      * Parse the UID into elements which are used to generate the UID. <br>

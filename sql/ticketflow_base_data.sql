@@ -1,4 +1,5 @@
-USE ticketflow_base_data;
+USE
+ticketflow_base_data;
 
 DROP TABLE IF EXISTS `d_area`;
 /*!40101 SET @saved_cs_client = @@character_set_client */;
@@ -10,12 +11,12 @@ CREATE TABLE `d_area`
     `name`         varchar(120) NOT NULL COMMENT '区域名字',
     `type`         int(11)      NOT NULL DEFAULT '2' COMMENT '1:省 2:区 3:县',
     `municipality` tinyint(1)   NOT NULL DEFAULT '0' COMMENT '1:是 0:否',
-    `create_time`  datetime              DEFAULT NULL COMMENT '创建时间',
-    `edit_time`    datetime              DEFAULT NULL COMMENT '编辑时间',
+    `create_time`  datetime DEFAULT NULL COMMENT '创建时间',
+    `edit_time`    datetime DEFAULT NULL COMMENT '编辑时间',
     `status`       tinyint(1)            DEFAULT '1' COMMENT '1:正常 0:删除',
     PRIMARY KEY (`id`),
-    KEY `parent_id` (`parent_id`),
-    KEY `ctype` (`type`)
+    KEY            `parent_id` (`parent_id`),
+    KEY            `ctype` (`type`)
 ) ENGINE = InnoDB
   AUTO_INCREMENT = 3409
   DEFAULT CHARSET = utf8 COMMENT ='地区表';
@@ -25,7 +26,8 @@ CREATE TABLE `d_area`
 -- Dumping data for table `d_area`
 --
 
-LOCK TABLES `d_area` WRITE;
+LOCK
+TABLES `d_area` WRITE;
 /*!40000 ALTER TABLE `d_area`
     DISABLE KEYS */;
 INSERT INTO `d_area`
@@ -3439,7 +3441,8 @@ VALUES (1, 0, '全国', 0, 0, '2024-01-07 22:15:00', '2024-01-07 22:15:00', 1),
        (3408, 3401, '肥西县', 3, 0, '2024-01-07 22:15:00', '2024-01-07 22:15:00', 1);
 /*!40000 ALTER TABLE `d_area`
     ENABLE KEYS */;
-UNLOCK TABLES;
+UNLOCK
+TABLES;
 
 --
 -- Table structure for table `d_channel_data`
@@ -3473,7 +3476,8 @@ CREATE TABLE `d_channel_data`
 -- Dumping data for table `d_channel_data`
 --
 
-LOCK TABLES `d_channel_data` WRITE;
+LOCK
+TABLES `d_channel_data` WRITE;
 /*!40000 ALTER TABLE `d_channel_data`
     DISABLE KEYS */;
 INSERT INTO `d_channel_data`
@@ -3486,4 +3490,5 @@ VALUES (7762202481762402304, 'pc网站', '0001', 'pc网站平台',
         'CSYZWECHAT', 1, NULL, '2024-01-08 00:00:00');
 /*!40000 ALTER TABLE `d_channel_data`
     ENABLE KEYS */;
-UNLOCK TABLES;
+UNLOCK
+TABLES;

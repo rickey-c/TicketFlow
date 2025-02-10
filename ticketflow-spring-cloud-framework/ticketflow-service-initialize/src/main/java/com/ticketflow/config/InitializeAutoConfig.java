@@ -18,25 +18,25 @@ public class InitializeAutoConfig {
 
     @Bean
     public ApplicationInitializingBeanExecute applicationInitializingBeanExecute(
-            ConfigurableApplicationContext applicationContext){
+            ConfigurableApplicationContext applicationContext) {
         return new ApplicationInitializingBeanExecute(applicationContext);
     }
 
     @Bean
     public ApplicationPostConstructExecute applicationPostConstructExecute(
-            ConfigurableApplicationContext applicationContext){
+            ConfigurableApplicationContext applicationContext) {
         return new ApplicationPostConstructExecute(applicationContext);
     }
 
     @Bean
     public ApplicationStartEventListenerExecute applicationStartEventListenerExecute(
-            ConfigurableApplicationContext applicationContext){
+            ConfigurableApplicationContext applicationContext) {
         return new ApplicationStartEventListenerExecute(applicationContext);
     }
 
     @Bean
     public ApplicationCommandLineRunnerExecute applicationCommandLineRunnerExecute(
-            ConfigurableApplicationContext applicationContext){
+            ConfigurableApplicationContext applicationContext) {
         return new ApplicationCommandLineRunnerExecute(applicationContext);
     }
 }

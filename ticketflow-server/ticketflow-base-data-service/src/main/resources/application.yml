@@ -25,7 +25,7 @@ spring:
       host: 47.96.135.134
       port: 6379
       timeout: 3000
-      password:  Crq13709390514..
+      password: Crq13709390514..
   cloud:
     nacos:
       discovery:

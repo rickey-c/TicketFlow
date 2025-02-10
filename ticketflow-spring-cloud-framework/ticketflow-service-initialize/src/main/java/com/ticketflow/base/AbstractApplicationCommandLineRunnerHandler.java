@@ -10,7 +10,7 @@ import static com.ticketflow.constant.InitializeHandlerType.APPLICATION_COMMAND_
  * @Date: 2025/1/30 21:44
  */
 public abstract class AbstractApplicationCommandLineRunnerHandler implements InitializeHandler {
-    
+
     @Override
     public String type() {
         return APPLICATION_COMMAND_LINE_RUNNER;

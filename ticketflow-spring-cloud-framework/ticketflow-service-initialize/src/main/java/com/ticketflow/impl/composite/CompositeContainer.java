@@ -34,7 +34,8 @@ public class CompositeContainer<T> {
 
     /**
      * 执行组合校验逻辑
-     * @param type 组合类型
+     *
+     * @param type  组合类型
      * @param param 执行需要的参数
      */
     public void execute(String type, T param) {

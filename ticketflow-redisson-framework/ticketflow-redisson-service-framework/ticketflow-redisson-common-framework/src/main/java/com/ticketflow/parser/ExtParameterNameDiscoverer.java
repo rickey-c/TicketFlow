@@ -9,7 +9,7 @@ import org.springframework.core.NativeDetector;
  * @Date: 2025/1/26 14:50
  */
 public class ExtParameterNameDiscoverer extends DefaultParameterNameDiscoverer {
-    
+
     public ExtParameterNameDiscoverer() {
         super();
         if (!NativeDetector.inNativeImage()) {

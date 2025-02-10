@@ -8,10 +8,9 @@ package com.ticketflow.enums;
 public enum BusinessStatus {
     /**
      * 通用状态枚举
-     * */
-    YES(1,"是"),
-    NO(0,"否")
-    ;
+     */
+    YES(1, "是"),
+    NO(0, "否");
 
     private Integer code;
 
@@ -25,11 +24,11 @@ public enum BusinessStatus {
     public Integer getCode() {
         return code;
     }
-    
+
     public String getMsg() {
         return this.msg == null ? "" : this.msg;
     }
-    
+
     public static String getMsg(Integer code) {
         for (BusinessStatus re : BusinessStatus.values()) {
             if (re.code.intValue() == code.intValue()) {

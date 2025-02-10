@@ -25,6 +25,7 @@ public class DefaultExceptionHandler {
 
     /**
      * 业务异常
+     *
      * @param request
      * @param ticketFlowFrameException
      * @return
@@ -37,6 +38,7 @@ public class DefaultExceptionHandler {
 
     /**
      * 参数校验异常
+     *
      * @param request
      * @param ex
      * @return
@@ -46,7 +48,7 @@ public class DefaultExceptionHandler {
     public ApiResponse<List<ArgumentError>> validExceptionHandler(HttpServletRequest request, MethodArgumentNotValidException ex) {
         log.error("参数验证异常 method : {} url : {} query : {} ", request.getMethod(), getRequestUrl(request), getRequestQuery(request), ex);
         BindingResult bindingResult = ex.getBindingResult();
-        List<ArgumentError> argumentErrorList = 
+        List<ArgumentError> argumentErrorList =
                 bindingResult.getFieldErrors()
                         .stream()
                         .map(fieldError -> {
@@ -55,11 +57,12 @@ public class DefaultExceptionHandler {
                             argumentError.setMessage(fieldError.getDefaultMessage());
                             return argumentError;
                         }).collect(Collectors.toList());
-        return ApiResponse.error(BaseCode.PARAMETER_ERROR.getCode(),argumentErrorList);
+        return ApiResponse.error(BaseCode.PARAMETER_ERROR.getCode(), argumentErrorList);
     }
 
     /**
      * 其他异常
+     *
      * @param request
      * @param throwable
      * @return
@@ -72,6 +75,7 @@ public class DefaultExceptionHandler {
 
     /**
      * 获取请求路径
+     *
      * @param request
      * @return
      */
@@ -81,10 +85,11 @@ public class DefaultExceptionHandler {
 
     /**
      * 获取请求路径拼接参数
+     *
      * @param request
      * @return
      */
-    private String getRequestQuery(HttpServletRequest request){
+    private String getRequestQuery(HttpServletRequest request) {
         return request.getQueryString();
     }
 }

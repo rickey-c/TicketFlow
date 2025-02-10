@@ -21,22 +21,28 @@ import org.slf4j.LoggerFactory;
 
 /**
  * AbstractDockerUtils
- * 
+ *
  * @author yutianbao
  */
 public abstract class AbstractDockerUtils {
     private static final Logger LOGGER = LoggerFactory.getLogger(AbstractDockerUtils.class);
 
-    /** Environment param keys */
+    /**
+     * Environment param keys
+     */
     private static final String ENV_KEY_HOST = "JPAAS_HOST";
     private static final String ENV_KEY_PORT = "JPAAS_HTTP_PORT";
     private static final String ENV_KEY_PORT_ORIGINAL = "JPAAS_HOST_PORT_8080";
 
-    /** Docker host & port */
+    /**
+     * Docker host & port
+     */
     private static String DOCKER_HOST = "";
     private static String DOCKER_PORT = "";
 
-    /** Whether is docker */
+    /**
+     * Whether is docker
+     */
     private static boolean IS_DOCKER;
 
     static {
@@ -45,7 +51,7 @@ public abstract class AbstractDockerUtils {
 
     /**
      * Retrieve docker host
-     * 
+     *
      * @return empty string if not a docker
      */
     public static String getDockerHost() {
@@ -54,7 +60,7 @@ public abstract class AbstractDockerUtils {
 
     /**
      * Retrieve docker port
-     * 
+     *
      * @return empty string if not a docker
      */
     public static String getDockerPort() {
@@ -63,7 +69,7 @@ public abstract class AbstractDockerUtils {
 
     /**
      * Whether a docker
-     * 
+     *
      * @return
      */
     public static boolean isDocker() {

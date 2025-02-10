@@ -13,7 +13,7 @@ import static com.ticketflow.constant.InitializeHandlerType.APPLICATION_INITIALI
  */
 public class ApplicationInitializingBeanExecute extends AbstractApplicationExecute implements InitializingBean {
 
-    public ApplicationInitializingBeanExecute(ConfigurableApplicationContext applicationContext){
+    public ApplicationInitializingBeanExecute(ConfigurableApplicationContext applicationContext) {
         super(applicationContext);
     }
 

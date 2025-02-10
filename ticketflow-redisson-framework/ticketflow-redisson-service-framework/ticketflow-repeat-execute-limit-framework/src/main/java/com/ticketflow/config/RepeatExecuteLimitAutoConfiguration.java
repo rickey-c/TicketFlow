@@ -21,6 +21,7 @@ public class RepeatExecuteLimitAutoConfiguration {
 
     /**
      * 策略实现 LockInfoHandle
+     *
      * @return RepeatExecuteLimitHandle
      */
     @Bean(LockInfoType.REPEAT_EXECUTE_LIMIT)
@@ -30,6 +31,7 @@ public class RepeatExecuteLimitAutoConfiguration {
 
     /**
      * 注解AOP自动装配
+     *
      * @param localLockCache
      * @param lockInfoHandleFactory
      * @param serviceLockFactory

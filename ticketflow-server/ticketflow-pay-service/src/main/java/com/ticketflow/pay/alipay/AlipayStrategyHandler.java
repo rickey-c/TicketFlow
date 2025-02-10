@@ -41,16 +41,16 @@ public class AlipayStrategyHandler implements PayStrategyHandler {
 
     /**
      * 支付宝的SDK
-     * */
+     */
     private final AlipayClient alipayClient;
-    
+
     /**
      * 支付宝相关配置
-     * */
+     */
     private final AlipayProperties aliPayProperties;
-    
+
     @Override
-    public PayResult pay(String outTradeNo, BigDecimal price, String subject, String notifyUrl, String returnUrl){
+    public PayResult pay(String outTradeNo, BigDecimal price, String subject, String notifyUrl, String returnUrl) {
         try {
             AlipayTradePagePayRequest request = new AlipayTradePagePayRequest();
             //异步接收地址，仅支持http/https，公网可访问
@@ -68,14 +68,14 @@ public class AlipayStrategyHandler implements PayStrategyHandler {
             //电脑网站支付场景固定传值FAST_INSTANT_TRADE_PAY
             bizContent.put("product_code", "FAST_INSTANT_TRADE_PAY");
             request.setBizContent(bizContent.toString());
-            AlipayTradePagePayResponse response = alipayClient.pageExecute(request,"POST");
-            return new PayResult(response.isSuccess(),response.getBody());
-        }catch (Exception e) {
-           log.error("alipay pay error",e);
-           throw new TicketFlowFrameException(BaseCode.PAY_ERROR);
+            AlipayTradePagePayResponse response = alipayClient.pageExecute(request, "POST");
+            return new PayResult(response.isSuccess(), response.getBody());
+        } catch (Exception e) {
+            log.error("alipay pay error", e);
+            throw new TicketFlowFrameException(BaseCode.PAY_ERROR);
         }
     }
-    
+
     @Override
     public boolean signVerify(final Map<String, String> params) {
         try {
@@ -85,45 +85,45 @@ public class AlipayStrategyHandler implements PayStrategyHandler {
                     AlipayConstants.CHARSET_UTF8,
                     //调用SDK验证签名
                     AlipayConstants.SIGN_TYPE_RSA2);
-        }catch (Exception e) {
-            log.error("alipay sign verify error",e);
+        } catch (Exception e) {
+            log.error("alipay sign verify error", e);
             return false;
         }
-        
+
     }
-    
+
     @Override
     public boolean dataVerify(final Map<String, String> params, PayBill payBill) {
         //2 判断 total_amount 是否确实为该订单的实际金额（即商户订单创建时的金额）
         BigDecimal notifyPayAmount = new BigDecimal(params.get("total_amount"));
         BigDecimal payAmount = payBill.getPayAmount();
         if (notifyPayAmount.compareTo(payAmount) != 0) {
-            log.error("回调金额和账单支付金额不一致 回调金额 : {}, 账单支付金额 : {}",notifyPayAmount,payAmount);
+            log.error("回调金额和账单支付金额不一致 回调金额 : {}, 账单支付金额 : {}", notifyPayAmount, payAmount);
             return false;
         }
         //3 校验通知中的 seller_id（或者 seller_email) 是否为 out_trade_no 这笔单据的对应的操作方
         String notifySellerId = params.get("seller_id");
         String alipaySellerId = aliPayProperties.getSellerId();
         if (!notifySellerId.equals(alipaySellerId)) {
-            log.error("回调商户pid和已配置商户pid不一致 回调商户pid : {}, 已配置商户pid : {}",notifySellerId,alipaySellerId);
+            log.error("回调商户pid和已配置商户pid不一致 回调商户pid : {}, 已配置商户pid : {}", notifySellerId, alipaySellerId);
             return false;
         }
         //4 验证 app_id 是否为该商户本身
         String notifyAppId = params.get("app_id");
         String alipayAppId = aliPayProperties.getAppId();
-        if(!notifyAppId.equals(alipayAppId)){
-            log.error("回调appId和已配置appId不一致 回调appId : {}, 已配置appId : {}",notifyAppId,alipayAppId);
+        if (!notifyAppId.equals(alipayAppId)) {
+            log.error("回调appId和已配置appId不一致 回调appId : {}, 已配置appId : {}", notifyAppId, alipayAppId);
             return false;
         }
         //在支付宝的业务通知中，只有交易通知状态为 TRADE_SUCCESS时，支付宝才会认定为买家付款成功
         String tradeStatus = params.get("trade_status");
-        if(!AlipayTradeStatus.TRADE_SUCCESS.getValue().equals(tradeStatus)){
-            log.error("支付未成功 tradeStatus : {}",tradeStatus);
+        if (!AlipayTradeStatus.TRADE_SUCCESS.getValue().equals(tradeStatus)) {
+            log.error("支付未成功 tradeStatus : {}", tradeStatus);
             return false;
         }
         return true;
     }
-    
+
     @Override
     public TradeResult queryTrade(String outTradeNo) {
         String successCode = "10000";
@@ -154,15 +154,15 @@ public class AlipayStrategyHandler implements PayStrategyHandler {
                     tradeResult.setPayBillStatus(convertPayBillStatus(alipayTradeQueryResponse.getString("trade_status")));
                     return tradeResult;
                 }
-            }else {
-                log.error("支付宝交易查询结果失败 response : {}",JSON.toJSONString(response));
+            } else {
+                log.error("支付宝交易查询结果失败 response : {}", JSON.toJSONString(response));
             }
-        }catch (Exception e) {
-            log.error("alipay trade query error",e);
+        } catch (Exception e) {
+            log.error("alipay trade query error", e);
         }
         return tradeResult;
     }
-    
+
     @Override
     public RefundResult refund(String outTradeNo, BigDecimal price, String reason) {
         AlipayTradeRefundRequest request = new AlipayTradeRefundRequest();
@@ -170,31 +170,31 @@ public class AlipayStrategyHandler implements PayStrategyHandler {
         bizContent.put("out_trade_no", outTradeNo);
         bizContent.put("refund_amount", price);
         bizContent.put("refund_reason", reason);
-        
+
         request.setBizContent(bizContent.toString());
         try {
             AlipayTradeRefundResponse response = alipayClient.execute(request);
-            return new RefundResult(response.isSuccess(),response.getBody(),response.getMsg());
+            return new RefundResult(response.isSuccess(), response.getBody(), response.getMsg());
         } catch (AlipayApiException e) {
-            log.error("alipay refund error",e);
+            log.error("alipay refund error", e);
             throw new TicketFlowFrameException(BaseCode.REFUND_ERROR);
         }
     }
-    
+
     @Override
     public String getChannel() {
         return PayChannel.ALIPAY.getValue();
     }
-    
+
     /**
      * 转换账单状态
-     * */
-    private Integer convertPayBillStatus(String tradeStatus){
+     */
+    private Integer convertPayBillStatus(String tradeStatus) {
         if (AlipayTradeStatus.WAIT_BUYER_PAY.getValue().equals(tradeStatus)) {
             return PayBillStatus.NO_PAY.getCode();
         } else if (AlipayTradeStatus.TRADE_CLOSED.getValue().equals(tradeStatus)) {
             return PayBillStatus.CANCEL.getCode();
-        } else if (AlipayTradeStatus.TRADE_SUCCESS.getValue().equals(tradeStatus) || 
+        } else if (AlipayTradeStatus.TRADE_SUCCESS.getValue().equals(tradeStatus) ||
                 AlipayTradeStatus.TRADE_FINISHED.getValue().equals(tradeStatus)) {
             return PayBillStatus.PAY.getCode();
         }

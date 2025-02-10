@@ -14,7 +14,7 @@ import static com.ticketflow.constant.InitializeHandlerType.APPLICATION_EVENT_LI
  */
 public class ApplicationStartEventListenerExecute extends AbstractApplicationExecute implements ApplicationListener<ApplicationStartedEvent> {
 
-    public ApplicationStartEventListenerExecute(ConfigurableApplicationContext applicationContext){
+    public ApplicationStartEventListenerExecute(ConfigurableApplicationContext applicationContext) {
         super(applicationContext);
     }
 

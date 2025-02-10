@@ -16,7 +16,7 @@ public class ApplicationPostConstructExecute extends AbstractApplicationExecute 
     public ApplicationPostConstructExecute(ConfigurableApplicationContext applicationContext) {
         super(applicationContext);
     }
-    
+
     @PostConstruct
     public void postConstructExecute() {
         execute();
@@ -26,5 +26,5 @@ public class ApplicationPostConstructExecute extends AbstractApplicationExecute 
     public String type() {
         return APPLICATION_POST_CONSTRUCT;
     }
-    
+
 }

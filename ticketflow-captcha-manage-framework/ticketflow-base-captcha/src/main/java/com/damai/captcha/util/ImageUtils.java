@@ -30,29 +30,29 @@ public class ImageUtils {
      * 旋转底图
      */
     private static final Map<String, String> ORIGINAL_ROTATE_CACHE_MAP = new ConcurrentHashMap<>();
-    
+
     /**
      * 旋转块
-     * */
+     */
     private static final Map<String, String> ROTATE_BLOCK_CACHE_MAP = new ConcurrentHashMap<>();
-    
+
     /**
      * 滑块底图
-     * */
+     */
     private static final Map<String, String> ORIGINAL_CACHE_MAP = new ConcurrentHashMap<>();
-    
+
     /**
      * 滑块
-     * */
+     */
     private static final Map<String, String> SLIDING_BLOCK_CACHE_MAP = new ConcurrentHashMap<>();
-    
+
     /**
      * 点选文字
-     * */
-    private static final Map<String, String> PIC_CLICK_CACHE_MAP = new ConcurrentHashMap<>(); 
-    
+     */
+    private static final Map<String, String> PIC_CLICK_CACHE_MAP = new ConcurrentHashMap<>();
+
     private static final Map<String, String[]> FILE_NAME_MAP = new ConcurrentHashMap<>();
-    
+
     private static final Integer SIX = 6;
 
     public static void cacheImage(String captchaOriginalPathJigsaw, String captchaOriginalPathClick, String captchaOriginalPathRotate) {

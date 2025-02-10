@@ -11,14 +11,14 @@ import org.springframework.context.annotation.Configuration;
  */
 @Configuration
 public class CompositeAutoConfiguration {
-    
+
     @Bean
-    public CompositeContainer compositeContainer(){
+    public CompositeContainer compositeContainer() {
         return new CompositeContainer();
     }
-    
+
     @Bean
-    public CompositeInit compositeInit(CompositeContainer compositeContainer){
+    public CompositeInit compositeInit(CompositeContainer compositeContainer) {
         return new CompositeInit(compositeContainer);
     }
 }

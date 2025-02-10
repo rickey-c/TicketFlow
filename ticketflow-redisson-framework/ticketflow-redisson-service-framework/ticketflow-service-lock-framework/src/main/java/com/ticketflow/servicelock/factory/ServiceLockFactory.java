@@ -14,12 +14,12 @@ import org.springframework.beans.factory.annotation.Autowired;
  */
 @AllArgsConstructor
 public class ServiceLockFactory {
-    
+
     private final ManageLocker manageLocker;
-    
-    public ServiceLocker getLock(LockType lockType){
+
+    public ServiceLocker getLock(LockType lockType) {
         ServiceLocker lock;
-        switch (lockType){
+        switch (lockType) {
             case Fair:
                 lock = manageLocker.getFairLocker();
                 break;
@@ -35,5 +35,5 @@ public class ServiceLockFactory {
         }
         return lock;
     }
-    
+
 }

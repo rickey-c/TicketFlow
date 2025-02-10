@@ -11,10 +11,10 @@ import lombok.Data;
  * @Date: 2025/1/24 15:41
  */
 @Data
-@Schema(title="AreaGetDto", description ="AreaGetDto")
+@Schema(title = "AreaGetDto", description = "AreaGetDto")
 public class AreaGetDto {
-    
-    @Schema(name ="id", type ="Long",description="地区id",requiredMode= RequiredMode.REQUIRED)
+
+    @Schema(name = "id", type = "Long", description = "地区id", requiredMode = RequiredMode.REQUIRED)
     @NotNull
     private Long id;
 }

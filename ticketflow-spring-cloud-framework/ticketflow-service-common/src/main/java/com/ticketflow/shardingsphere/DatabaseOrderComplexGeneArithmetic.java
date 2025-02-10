@@ -8,6 +8,7 @@ import org.apache.shardingsphere.sharding.api.sharding.complex.ComplexKeysShardi
 import org.apache.shardingsphere.sharding.api.sharding.complex.ComplexKeysShardingValue;
 
 import java.util.*;
+
 /**
  * @Description: 订单分库
  * @Author: rickey-c
@@ -15,18 +16,19 @@ import java.util.*;
  */
 public class DatabaseOrderComplexGeneArithmetic implements ComplexKeysShardingAlgorithm<Long> {
     private static final String SHARDING_COUNT_KEY_NAME = "sharding-count";
-    
+
     private static final String TABLE_SHARDING_COUNT_KEY_NAME = "table-sharding-count";
-    
+
     private int shardingCount;
-    
+
     private int tableShardingCount;
-    
+
     @Override
     public void init(Properties props) {
         this.shardingCount = Integer.parseInt(props.getProperty(SHARDING_COUNT_KEY_NAME));
         this.tableShardingCount = Integer.parseInt(props.getProperty(TABLE_SHARDING_COUNT_KEY_NAME));
     }
+
     @Override
     public Collection<String> doSharding(Collection<String> allActualSplitDatabaseNames, ComplexKeysShardingValue<Long> complexKeysShardingValue) {
         List<String> actualDatabaseNames = new ArrayList<>(allActualSplitDatabaseNames.size());
@@ -34,10 +36,10 @@ public class DatabaseOrderComplexGeneArithmetic implements ComplexKeysShardingAl
         if (CollectionUtil.isEmpty(columnNameAndShardingValuesMap)) {
             return actualDatabaseNames;
         }
-        
+
         Collection<Long> orderNumberValues = columnNameAndShardingValuesMap.get("order_number");
         Collection<Long> userIdValues = columnNameAndShardingValuesMap.get("user_id");
-        
+
         Long value = null;
         if (CollectionUtil.isNotEmpty(orderNumberValues)) {
             value = orderNumberValues.stream().findFirst().orElseThrow(() -> new TicketFlowFrameException(BaseCode.ORDER_NUMBER_NOT_EXIST));
@@ -45,7 +47,7 @@ public class DatabaseOrderComplexGeneArithmetic implements ComplexKeysShardingAl
             value = userIdValues.stream().findFirst().orElseThrow(() -> new TicketFlowFrameException(BaseCode.USER_ID_NOT_EXIST));
         }
         if (Objects.nonNull(value)) {
-            long databaseIndex = calculateDatabaseIndex(shardingCount,value,tableShardingCount);
+            long databaseIndex = calculateDatabaseIndex(shardingCount, value, tableShardingCount);
             String databaseIndexStr = String.valueOf(databaseIndex);
             for (String actualSplitDatabaseName : allActualSplitDatabaseNames) {
                 if (actualSplitDatabaseName.contains(databaseIndexStr)) {
@@ -54,16 +56,16 @@ public class DatabaseOrderComplexGeneArithmetic implements ComplexKeysShardingAl
                 }
             }
             return actualDatabaseNames;
-        }else {
+        } else {
             return allActualSplitDatabaseNames;
         }
     }
-    
+
     /**
      * 计算给定表索引应分配到的数据库编号。
      *
      * @param databaseCount 数据库总数
-     * @param splicingKey    分片键
+     * @param splicingKey   分片键
      * @param tableCount    表总数
      * @return 分配到的数据库编号
      */
@@ -71,7 +73,7 @@ public class DatabaseOrderComplexGeneArithmetic implements ComplexKeysShardingAl
         String splicingKeyBinary = Long.toBinaryString(splicingKey);
         long replacementLength = log2N(tableCount);
         String geneBinaryStr = splicingKeyBinary.substring(splicingKeyBinary.length() - (int) replacementLength);
-        
+
         if (StringUtil.isNotEmpty(geneBinaryStr)) {
             int h;
             int geneOptimizeHashCode = (h = geneBinaryStr.hashCode()) ^ (h >>> 16);
@@ -79,8 +81,8 @@ public class DatabaseOrderComplexGeneArithmetic implements ComplexKeysShardingAl
         }
         throw new TicketFlowFrameException(BaseCode.NOT_FOUND_GENE);
     }
-    
+
     public long log2N(long count) {
-        return (long)(Math.log(count)/ Math.log(2));
+        return (long) (Math.log(count) / Math.log(2));
     }
 }

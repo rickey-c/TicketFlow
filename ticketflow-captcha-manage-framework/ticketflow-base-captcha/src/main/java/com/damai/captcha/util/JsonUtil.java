@@ -15,55 +15,56 @@ import java.util.Map;
  * @Date: 2025/1/30 21:45
  */
 public class JsonUtil {
-	private static final Logger logger = LoggerFactory.getLogger(JsonUtil.class);
-	public static List<PointVO> parseArray(String text, Class<PointVO> clazz) {
-		if (text == null) {
-			return null;
-		} else {
-			String[] arr = text.replaceFirst("\\[","")
-					.replaceFirst("\\]","").split("\\}");
-			List<PointVO> ret = new ArrayList<>(arr.length);
-			for (String s : arr) {
-				ret.add(parseObject(s,PointVO.class));
-			}
-			return ret;
-		}
-	}
+    private static final Logger logger = LoggerFactory.getLogger(JsonUtil.class);
 
-	public static PointVO parseObject(String text, Class<PointVO> clazz) {
-		if(text == null) {
-			return null;
-		}
-		try {
-			PointVO ret =  clazz.getDeclaredConstructor().newInstance();
-			return ret.parse(text);
-		}catch (Exception ex){
-			logger.error("json解析异常", ex);
+    public static List<PointVO> parseArray(String text, Class<PointVO> clazz) {
+        if (text == null) {
+            return null;
+        } else {
+            String[] arr = text.replaceFirst("\\[", "")
+                    .replaceFirst("\\]", "").split("\\}");
+            List<PointVO> ret = new ArrayList<>(arr.length);
+            for (String s : arr) {
+                ret.add(parseObject(s, PointVO.class));
+            }
+            return ret;
+        }
+    }
 
-		}
-		return null;
-	}
+    public static PointVO parseObject(String text, Class<PointVO> clazz) {
+        if (text == null) {
+            return null;
+        }
+        try {
+            PointVO ret = clazz.getDeclaredConstructor().newInstance();
+            return ret.parse(text);
+        } catch (Exception ex) {
+            logger.error("json解析异常", ex);
 
-	public static String toJsonString(Object object) {
-		if(object == null) {
-			return "{}";
-		}
-		if(object instanceof PointVO){
-			PointVO t = (PointVO)object;
-			return t.toJsonString();
-		}
-		if(object instanceof List){
-			List<PointVO> list = (List<PointVO>)object;
-			StringBuilder buf = new StringBuilder("[");
-			list.stream().forEach(t->{
-				buf.append(t.toJsonString()).append(",");
-			});
-			return buf.deleteCharAt(buf.lastIndexOf(",")).append("]").toString();
-		}
-		if(object instanceof Map){
-			return ((Map)object).entrySet().toString();
-		}
-		throw new UnsupportedOperationException("不支持的输入类型:"
-				+object.getClass().getSimpleName());
-	}
+        }
+        return null;
+    }
+
+    public static String toJsonString(Object object) {
+        if (object == null) {
+            return "{}";
+        }
+        if (object instanceof PointVO) {
+            PointVO t = (PointVO) object;
+            return t.toJsonString();
+        }
+        if (object instanceof List) {
+            List<PointVO> list = (List<PointVO>) object;
+            StringBuilder buf = new StringBuilder("[");
+            list.stream().forEach(t -> {
+                buf.append(t.toJsonString()).append(",");
+            });
+            return buf.deleteCharAt(buf.lastIndexOf(",")).append("]").toString();
+        }
+        if (object instanceof Map) {
+            return ((Map) object).entrySet().toString();
+        }
+        throw new UnsupportedOperationException("不支持的输入类型:"
+                + object.getClass().getSimpleName());
+    }
 }

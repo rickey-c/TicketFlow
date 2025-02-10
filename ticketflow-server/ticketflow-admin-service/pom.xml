@@ -2,20 +2,20 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    
+
     <parent>
         <groupId>com.rickey</groupId>
         <artifactId>ticketflow-server</artifactId>
         <version>${revision}</version>
     </parent>
-    
+
     <groupId>org.rickey</groupId>
     <artifactId>ticketflow-admin-service</artifactId>
     <version>${revision}</version>
-    
+
     <name>ticketflow-admin-service</name>
     <description>微服务监控服务</description>
-    
+
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>

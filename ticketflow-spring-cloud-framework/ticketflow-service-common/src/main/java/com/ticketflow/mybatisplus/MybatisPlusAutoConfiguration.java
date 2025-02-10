@@ -12,15 +12,15 @@ import org.springframework.context.annotation.Bean;
  * @Date: 2025/1/24 16:55
  */
 public class MybatisPlusAutoConfiguration {
-    
+
     /**
      * 必须字段自动填充
-     * */
+     */
     @Bean
-    public MetaObjectHandler metaObjectHandler(){
+    public MetaObjectHandler metaObjectHandler() {
         return new MybatisPlusMetaObjectHandler();
     }
-    
+
     /**
      * 分页插件
      */

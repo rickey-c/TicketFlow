@@ -14,7 +14,7 @@ import java.util.Objects;
 import java.util.concurrent.*;
 
 /**
- * @Description: 
+ * @Description:
  * @Author: rickey-c
  * @Date: 2025/1/30 21:45
  */
@@ -29,31 +29,33 @@ public final class CacheUtil {
     private static Integer CACHE_MAX_NUMBER = 1000;
 
     private static final Integer TWO = 2;
+
     /**
      * 初始化
+     *
      * @param cacheMaxNumber 缓存最大个数
-     * @param second 定时任务 秒执行清除过期缓存
+     * @param second         定时任务 秒执行清除过期缓存
      */
     public static void init(int cacheMaxNumber, long second) {
         CACHE_MAX_NUMBER = cacheMaxNumber;
         if (second > 0L) {
             scheduledExecutor = new ScheduledThreadPoolExecutor(1, new ThreadFactory() {
-				@Override
-				public Thread newThread(Runnable r) {
-					return new Thread(r,"thd-captcha-cache-clean");
-				}
-			},new ThreadPoolExecutor.CallerRunsPolicy());
+                @Override
+                public Thread newThread(Runnable r) {
+                    return new Thread(r, "thd-captcha-cache-clean");
+                }
+            }, new ThreadPoolExecutor.CallerRunsPolicy());
             scheduledExecutor.scheduleAtFixedRate(new Runnable() {
-				@Override
-				public void run() {
-					refresh();
-				}
-			},10,second,TimeUnit.SECONDS);
+                @Override
+                public void run() {
+                    refresh();
+                }
+            }, 10, second, TimeUnit.SECONDS);
 
             Runtime.getRuntime().addShutdownHook(new Thread(new Runnable() {
                 @Override
                 public void run() {
-                    if(Objects.nonNull(scheduledExecutor)){
+                    if (Objects.nonNull(scheduledExecutor)) {
                         clear();
                         scheduledExecutor.shutdownNow();
                     }
@@ -67,7 +69,7 @@ public final class CacheUtil {
     /**
      * 缓存刷新,清除过期数据
      */
-    public static void refresh(){
+    public static void refresh() {
         logger.debug("local缓存刷新,清除过期数据");
         for (String key : CACHE_MAP.keySet()) {
             exists(key);
@@ -75,25 +77,25 @@ public final class CacheUtil {
     }
 
 
-    public static void set(String key, String value, long expiresInSeconds){
+    public static void set(String key, String value, long expiresInSeconds) {
         //设置阈值，达到即clear缓存
         if (CACHE_MAP.size() > CACHE_MAX_NUMBER * TWO) {
             logger.info("CACHE_MAP达到阈值，clear map");
             clear();
         }
         CACHE_MAP.put(key, value);
-        if(expiresInSeconds >0) {
+        if (expiresInSeconds > 0) {
             //缓存失效时间
-			CACHE_MAP.put(key + "_HoldTime", System.currentTimeMillis() + expiresInSeconds * 1000);
-		}
+            CACHE_MAP.put(key + "_HoldTime", System.currentTimeMillis() + expiresInSeconds * 1000);
+        }
     }
 
-    public static void delete(String key){
+    public static void delete(String key) {
         CACHE_MAP.remove(key);
         CACHE_MAP.remove(key + "_HoldTime");
     }
 
-    public static boolean exists(String key){
+    public static boolean exists(String key) {
         Long cacheHoldTime = (Long) CACHE_MAP.get(key + "_HoldTime");
         if (cacheHoldTime == null || cacheHoldTime == 0L) {
             return false;
@@ -106,9 +108,9 @@ public final class CacheUtil {
     }
 
 
-    public static String get(String key){
+    public static String get(String key) {
         if (exists(key)) {
-            return (String)CACHE_MAP.get(key);
+            return (String) CACHE_MAP.get(key);
         }
         return null;
     }

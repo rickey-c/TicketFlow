@@ -9,5 +9,5 @@ package com.ticketflow.util;
 public interface TaskRun {
 
     void run();
-    
+
 }

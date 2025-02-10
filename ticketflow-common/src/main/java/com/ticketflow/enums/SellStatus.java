@@ -8,10 +8,10 @@ package com.ticketflow.enums;
 public enum SellStatus {
     /**
      * 售卖状态
-     * */
-    NO_SOLD(1,"未售卖"),
-    LOCK(2,"锁定"),
-    SOLD(3,"已售卖"),
+     */
+    NO_SOLD(1, "未售卖"),
+    LOCK(2, "锁定"),
+    SOLD(3, "已售卖"),
     ;
 
     private Integer code;

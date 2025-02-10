@@ -15,16 +15,16 @@ import org.springframework.context.annotation.Primary;
  */
 @Configuration
 public class AdminConfig {
-    
+
     @Primary
     @Bean
-    public Jackson2ObjectMapperBuilderCustomizer jacksonCustomEnhance(){
+    public Jackson2ObjectMapperBuilderCustomizer jacksonCustomEnhance() {
         return new JacksonCustomEnhance();
     }
-    
+
     @Bean
     public OpenAPI customOpenApi() {
-        
+
         return new OpenAPI()
                 .info(new Info()
                         .title("前端使用")
@@ -33,6 +33,6 @@ public class AdminConfig {
                         .contact(new Contact()
                                 .name("rickey-c")
                         ));
-        
+
     }
 }

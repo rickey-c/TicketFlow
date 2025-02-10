@@ -35,15 +35,15 @@ public abstract class AbstractCaptchaService implements CaptchaService {
 
     protected static final String IMAGE_TYPE_PNG = "png";
 
-	protected static int HAN_ZI_SIZE = 25;
+    protected static int HAN_ZI_SIZE = 25;
 
-	protected static int HAN_ZI_SIZE_HALF = HAN_ZI_SIZE / 2;
-    
+    protected static int HAN_ZI_SIZE_HALF = HAN_ZI_SIZE / 2;
+
     /**
      * check校验坐标
      */
     protected static String REDIS_CAPTCHA_KEY = "RUNNING:CAPTCHA:%s";
-    
+
     /**
      * 后台二次校验坐标
      */
@@ -59,7 +59,7 @@ public abstract class AbstractCaptchaService implements CaptchaService {
 
     /**
      * 水印字体
-     * */
+     */
     protected Font waterMarkFont;
 
     protected static String slipOffset = "5";
@@ -71,20 +71,21 @@ public abstract class AbstractCaptchaService implements CaptchaService {
     protected static String cacheType = "local";
 
     protected static int captchaInterferenceOptions = 0;
-    
+
     protected static String local = "local";
-    
+
     protected static String one = "1";
-    
+
     protected static String zero = "0";
-    
+
     protected static String ttf = ".ttf";
-    
+
     protected static String ttc = ".ttc";
+
     /**
      * 判断应用是否实现了自定义缓存，没有就使用内存
      */
-    
+
     @Override
     public void init(final Properties config) {
         //初始化底图
@@ -176,17 +177,17 @@ public abstract class AbstractCaptchaService implements CaptchaService {
         return resp == null || resp.isSuccess();
     }
 
-	protected String getValidateClientId(CaptchaVO req){
-    	// 以服务端获取的客户端标识 做识别标志
-		if(StringUtils.isNotEmpty(req.getBrowserInfo())){
-			return Md5Util.md5(req.getBrowserInfo());
-		}
-		// 以客户端Ui组件id做识别标志
-		if(StringUtils.isNotEmpty(req.getClientUid())){
-			return req.getClientUid();
-		}
-    	return null;
-	}
+    protected String getValidateClientId(CaptchaVO req) {
+        // 以服务端获取的客户端标识 做识别标志
+        if (StringUtils.isNotEmpty(req.getBrowserInfo())) {
+            return Md5Util.md5(req.getBrowserInfo());
+        }
+        // 以客户端Ui组件id做识别标志
+        if (StringUtils.isNotEmpty(req.getClientUid())) {
+            return req.getClientUid();
+        }
+        return null;
+    }
 
     protected void afterValidateFail(CaptchaVO data) {
         if (limitHandler != null) {
@@ -210,7 +211,7 @@ public abstract class AbstractCaptchaService implements CaptchaService {
             if (waterMarkFontStr.toLowerCase().endsWith(ttf) || waterMarkFontStr.toLowerCase().endsWith(ttc)
                     || waterMarkFontStr.toLowerCase().endsWith(".otf")) {
                 this.waterMarkFont = Font.createFont(Font.TRUETYPE_FONT,
-                        getClass().getResourceAsStream("/fonts/" + waterMarkFontStr))
+                                getClass().getResourceAsStream("/fonts/" + waterMarkFontStr))
                         .deriveFont(Font.BOLD, HAN_ZI_SIZE / 2);
             } else {
                 this.waterMarkFont = new Font(waterMarkFontStr, Font.BOLD, HAN_ZI_SIZE / 2);

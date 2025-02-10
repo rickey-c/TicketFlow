@@ -27,7 +27,7 @@ import java.util.List;
 @RequestMapping("/area")
 @Tag(name = "area", description = "区域")
 public class AreaController {
-    
+
     @Autowired
     private AreaService areaService;
 

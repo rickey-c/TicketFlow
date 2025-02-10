@@ -60,10 +60,10 @@ public class PayBill extends BaseTableData implements Serializable {
      * 支付金额
      */
     private BigDecimal payAmount;
-    
+
     /**
      * 支付种类
-     * */
+     */
     private Integer payBillType;
 
     /**

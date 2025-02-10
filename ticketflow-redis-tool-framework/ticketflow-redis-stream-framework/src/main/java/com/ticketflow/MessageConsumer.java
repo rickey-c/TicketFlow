@@ -8,6 +8,6 @@ import org.springframework.data.redis.connection.stream.ObjectRecord;
  * @Date: 2025/2/8 10:59
  */
 public interface MessageConsumer {
-    
+
     void accept(ObjectRecord<String, String> message);
 }

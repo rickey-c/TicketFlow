@@ -15,7 +15,7 @@ import java.util.Map;
 public class PayStrategyInitHandler extends AbstractApplicationInitializingBeanHandler {
 
     private final PayStrategyContext payStrategyContext;
-    
+
     @Override
     public Integer executeOrder() {
         return 1;
@@ -26,7 +26,7 @@ public class PayStrategyInitHandler extends AbstractApplicationInitializingBeanH
         Map<String, PayStrategyHandler> payStrategyHandlerMap = context.getBeansOfType(PayStrategyHandler.class);
         for (Map.Entry<String, PayStrategyHandler> entry : payStrategyHandlerMap.entrySet()) {
             PayStrategyHandler payStrategyHandler = entry.getValue();
-            payStrategyContext.put(payStrategyHandler.getChannel(),payStrategyHandler);
+            payStrategyContext.put(payStrategyHandler.getChannel(), payStrategyHandler);
         }
     }
 }

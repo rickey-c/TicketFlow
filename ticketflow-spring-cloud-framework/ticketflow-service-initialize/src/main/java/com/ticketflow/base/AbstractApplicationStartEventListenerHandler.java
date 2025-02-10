@@ -9,7 +9,7 @@ import static com.ticketflow.constant.InitializeHandlerType.APPLICATION_EVENT_LI
  * @Author: rickey-c
  * @Date: 2025/1/30 22:03
  */
-public abstract class AbstractApplicationStartEventListenerHandler implements InitializeHandler{
+public abstract class AbstractApplicationStartEventListenerHandler implements InitializeHandler {
 
     @Override
     public String type() {

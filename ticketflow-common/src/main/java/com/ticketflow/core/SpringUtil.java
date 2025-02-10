@@ -17,9 +17,10 @@ public class SpringUtil implements ApplicationContextInitializer<ConfigurableApp
 
     /**
      * 获取前缀名称
+     *
      * @return
      */
-    public static String getPrefixDistinctionName(){
+    public static String getPrefixDistinctionName() {
         return configurableApplicationContext.getEnvironment().getProperty(PREFIX_DISTINCTION_NAME,
                 DEFAULT_PREFIX_DISTINCTION_NAME);
     }

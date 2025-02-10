@@ -35,15 +35,15 @@ import static com.ticketflow.repeatexecutelimit.constant.RepeatExecuteLimitConst
 @Aspect
 @AllArgsConstructor
 public class RepeatExecuteLimitAspect {
-    
+
     private final LocalLockCache localLockCache;
-    
+
     private final LockInfoHandleFactory lockInfoHandleFactory;
-    
+
     private final ServiceLockFactory serviceLockFactory;
-    
+
     private final RedissonDataHandle redissonDataHandle;
-    
+
     @Around(value = "@annotation(repeatLimit)")
     public Object aspect(ProceedingJoinPoint joinPoint, RepeatExecuteLimit repeatLimit) throws Throwable {
         Object result;
@@ -68,14 +68,14 @@ public class RepeatExecuteLimitAspect {
         // 获取本地锁，执行本地锁逻辑
         ReentrantLock localLock = localLockCache.getLock(lockName, false);
         boolean localLockExecuteSuccess = localLock.tryLock();
-        if(!localLockExecuteSuccess){
+        if (!localLockExecuteSuccess) {
             throw new TicketFlowFrameException(message);
         }
         try {
             // 获取分布式锁，执行分布式锁逻辑
             ServiceLocker serviceLock = serviceLockFactory.getLock(LockType.Reentrant);
             boolean serviceLockExecuteSuccess = serviceLock.tryLock(lockName, TimeUnit.SECONDS, 0);
-            if (!serviceLockExecuteSuccess){
+            if (!serviceLockExecuteSuccess) {
                 throw new TicketFlowFrameException(message);
             }
 
@@ -87,12 +87,12 @@ public class RepeatExecuteLimitAspect {
                 }
                 // 执行业务逻辑
                 obj = joinPoint.proceed();
-                if(durationTime > 0){
-                    try{
+                if (durationTime > 0) {
+                    try {
                         // 设置幂等标识为success
-                        redissonDataHandle.set(repeatFlagName,SUCCESS_FLAG,durationTime,TimeUnit.SECONDS);
+                        redissonDataHandle.set(repeatFlagName, SUCCESS_FLAG, durationTime, TimeUnit.SECONDS);
                     } catch (RuntimeException e) {
-                        log.error("getBucket error",e);
+                        log.error("getBucket error", e);
                     }
                 }
                 result = obj;
@@ -104,5 +104,5 @@ public class RepeatExecuteLimitAspect {
         }
         return result;
     }
-    
+
 }

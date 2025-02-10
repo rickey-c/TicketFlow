@@ -26,26 +26,26 @@ public class ManageLocker {
 
     private final Map<LockType, ServiceLocker> cacheLocker = new HashMap<>();
 
-    public ManageLocker(RedissonClient redissonClient){
-        cacheLocker.put(Reentrant,new RedissonReentrantLocker(redissonClient));
-        cacheLocker.put(Fair,new RedissonFairLocker(redissonClient));
-        cacheLocker.put(Write,new RedissonWriteLocker(redissonClient));
-        cacheLocker.put(Read,new RedissonReadLocker(redissonClient));
+    public ManageLocker(RedissonClient redissonClient) {
+        cacheLocker.put(Reentrant, new RedissonReentrantLocker(redissonClient));
+        cacheLocker.put(Fair, new RedissonFairLocker(redissonClient));
+        cacheLocker.put(Write, new RedissonWriteLocker(redissonClient));
+        cacheLocker.put(Read, new RedissonReadLocker(redissonClient));
     }
 
-    public ServiceLocker getReentrantLocker(){
+    public ServiceLocker getReentrantLocker() {
         return cacheLocker.get(Reentrant);
     }
 
-    public ServiceLocker getFairLocker(){
+    public ServiceLocker getFairLocker() {
         return cacheLocker.get(Fair);
     }
 
-    public ServiceLocker getWriteLocker(){
+    public ServiceLocker getWriteLocker() {
         return cacheLocker.get(Write);
     }
 
-    public ServiceLocker getReadLocker(){
+    public ServiceLocker getReadLocker() {
         return cacheLocker.get(Read);
     }
 }

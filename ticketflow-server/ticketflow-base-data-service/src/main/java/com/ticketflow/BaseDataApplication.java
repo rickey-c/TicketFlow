@@ -13,7 +13,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @EnableTransactionManagement
 @EnableDiscoveryClient
 @EnableFeignClients
-@SpringBootApplication(scanBasePackages = {"com.ticketflow","com.baidu.fsg.uid"})
+@SpringBootApplication(scanBasePackages = {"com.ticketflow", "com.baidu.fsg.uid"})
 public class BaseDataApplication {
 
     public static void main(String[] args) {

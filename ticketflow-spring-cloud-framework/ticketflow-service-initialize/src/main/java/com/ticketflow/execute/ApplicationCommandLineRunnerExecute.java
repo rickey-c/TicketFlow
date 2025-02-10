@@ -13,10 +13,10 @@ import static com.ticketflow.constant.InitializeHandlerType.APPLICATION_COMMAND_
  */
 public class ApplicationCommandLineRunnerExecute extends AbstractApplicationExecute implements CommandLineRunner {
 
-    public ApplicationCommandLineRunnerExecute(ConfigurableApplicationContext applicationContext){
+    public ApplicationCommandLineRunnerExecute(ConfigurableApplicationContext applicationContext) {
         super(applicationContext);
     }
-    
+
     @Override
     public String type() {
         return APPLICATION_COMMAND_LINE_RUNNER;

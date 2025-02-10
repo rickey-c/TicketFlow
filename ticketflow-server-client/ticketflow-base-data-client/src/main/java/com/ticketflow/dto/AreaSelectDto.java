@@ -13,10 +13,10 @@ import java.util.List;
  * @Date: 2025/1/24 15:45
  */
 @Data
-@Schema(title="AreaSelectDto", description ="AreaSelectDto")
+@Schema(title = "AreaSelectDto", description = "AreaSelectDto")
 public class AreaSelectDto {
-    
-    @Schema(name ="idList", type ="List<Long>",description = "id集合",requiredMode= RequiredMode.REQUIRED)
+
+    @Schema(name = "idList", type = "List<Long>", description = "id集合", requiredMode = RequiredMode.REQUIRED)
     @NotNull
     private List<Long> idList;
 }

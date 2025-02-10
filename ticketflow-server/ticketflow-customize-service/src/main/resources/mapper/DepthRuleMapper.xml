@@ -4,6 +4,7 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.ticketflow.mapper.DepthRuleMapper">
     <delete id="delAll">
-        delete from d_depth_rule
+        delete
+        from d_depth_rule
     </delete>
 </mapper>

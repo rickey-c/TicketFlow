@@ -15,7 +15,7 @@ import java.nio.charset.StandardCharsets;
  * @Date: 2025/1/25 17:03
  */
 public class CustomizeRequestWrapper extends HttpServletRequestWrapper {
-    
+
     private final String requestBody;
 
     public CustomizeRequestWrapper(HttpServletRequest request) throws IOException {
@@ -23,9 +23,9 @@ public class CustomizeRequestWrapper extends HttpServletRequestWrapper {
         // 获取requestBody
         requestBody = StringUtil.inputStreamConvertString(request.getInputStream());
     }
-    
+
     @Override
-    public ServletInputStream getInputStream(){
+    public ServletInputStream getInputStream() {
         // 模拟请求，使得每次读取都能从头开始
         ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream(requestBody.getBytes(StandardCharsets.UTF_8));
         return new ServletInputStream() {
@@ -50,7 +50,7 @@ public class CustomizeRequestWrapper extends HttpServletRequestWrapper {
             }
         };
     }
-    
+
     @Override
     public BufferedReader getReader() {
         return new BufferedReader(new InputStreamReader(this.getInputStream()));
@@ -58,10 +58,11 @@ public class CustomizeRequestWrapper extends HttpServletRequestWrapper {
 
     /**
      * 包装使得请求体可以获取多次
+     *
      * @return
      */
     public String getRequestBody() {
         return this.requestBody;
     }
-    
+
 }

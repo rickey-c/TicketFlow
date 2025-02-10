@@ -9,7 +9,7 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
 @MapperScan({"com.ticketflow.mapper"})
 @EnableDiscoveryClient
 @EnableFeignClients
-@SpringBootApplication(scanBasePackages = {"com.ticketflow","com.baidu.fsg.uid"})
+@SpringBootApplication(scanBasePackages = {"com.ticketflow", "com.baidu.fsg.uid"})
 public class CustomizeApplication {
 
     public static void main(String[] args) {

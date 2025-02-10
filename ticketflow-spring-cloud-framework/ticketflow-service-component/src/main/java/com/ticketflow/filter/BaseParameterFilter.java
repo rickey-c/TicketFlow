@@ -27,8 +27,8 @@ public class BaseParameterFilter extends OncePerRequestFilter {
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
         ServletInputStream inputStream = request.getInputStream();
         String requestBody = StringUtil.inputStreamConvertString(inputStream);
-        if (StringUtil.isNotEmpty(requestBody)){
-            requestBody = requestBody.replaceAll(" ", "").replaceAll("\r\n","");
+        if (StringUtil.isNotEmpty(requestBody)) {
+            requestBody = requestBody.replaceAll(" ", "").replaceAll("\r\n", "");
         }
         String traceId = request.getHeader(TRACE_ID);
         String gray = request.getHeader(GRAY_PARAMETER);
@@ -36,24 +36,24 @@ public class BaseParameterFilter extends OncePerRequestFilter {
         String code = request.getHeader(CODE);
         try {
             if (StringUtil.isNotEmpty(traceId)) {
-                BaseParameterHolder.setParameter(TRACE_ID,traceId);
-                MDC.put(TRACE_ID,traceId);
+                BaseParameterHolder.setParameter(TRACE_ID, traceId);
+                MDC.put(TRACE_ID, traceId);
             }
             if (StringUtil.isNotEmpty(gray)) {
-                BaseParameterHolder.setParameter(GRAY_PARAMETER,gray);
-                MDC.put(GRAY_PARAMETER,gray);
+                BaseParameterHolder.setParameter(GRAY_PARAMETER, gray);
+                MDC.put(GRAY_PARAMETER, gray);
             }
             if (StringUtil.isNotEmpty(userId)) {
-                BaseParameterHolder.setParameter(USER_ID,userId);
-                MDC.put(USER_ID,userId);
+                BaseParameterHolder.setParameter(USER_ID, userId);
+                MDC.put(USER_ID, userId);
             }
             if (StringUtil.isNotEmpty(code)) {
-                BaseParameterHolder.setParameter(CODE,code);
-                MDC.put(CODE,code);
+                BaseParameterHolder.setParameter(CODE, code);
+                MDC.put(CODE, code);
             }
-            log.info("current api : {} requestBody : {}",request.getRequestURI(), requestBody);
+            log.info("current api : {} requestBody : {}", request.getRequestURI(), requestBody);
             filterChain.doFilter(request, response);
-        }finally {
+        } finally {
             BaseParameterHolder.removeParameter(TRACE_ID);
             MDC.remove(TRACE_ID);
             BaseParameterHolder.removeParameter(GRAY_PARAMETER);

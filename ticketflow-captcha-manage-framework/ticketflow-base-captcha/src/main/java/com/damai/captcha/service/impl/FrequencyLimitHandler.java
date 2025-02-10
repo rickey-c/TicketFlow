@@ -18,11 +18,11 @@ import java.util.Properties;
 public interface FrequencyLimitHandler {
 
     String LIMIT_KEY = "AJ.CAPTCHA.REQ.LIMIT-%s-%s";
-    
+
     String ONE_HUNDRED_AND_TWENTY = "120";
-    
+
     String FIVE = "5";
-    
+
     String SIX_HUNDRED = "600";
 
     /**
@@ -73,15 +73,15 @@ public interface FrequencyLimitHandler {
         }
 
         private String getClientCid(CaptchaVO input, String type) {
-            return String.format(LIMIT_KEY ,type,input.getClientUid());
+            return String.format(LIMIT_KEY, type, input.getClientUid());
         }
 
         @Override
         public ResponseModel validateGet(CaptchaVO d) {
-        	// 无客户端身份标识，不限制
-        	if(StringUtils.isEmpty(d.getClientUid())){
-        		return null;
-			}
+            // 无客户端身份标识，不限制
+            if (StringUtils.isEmpty(d.getClientUid())) {
+                return null;
+            }
             String getKey = getClientCid(d, "GET");
             String lockKey = getClientCid(d, "LOCK");
             // 失败次数过多，锁定
@@ -117,10 +117,10 @@ public interface FrequencyLimitHandler {
 
         @Override
         public ResponseModel validateCheck(CaptchaVO d) {
-			// 无客户端身份标识，不限制
-			if(StringUtils.isEmpty(d.getClientUid())){
-				return null;
-			}
+            // 无客户端身份标识，不限制
+            if (StringUtils.isEmpty(d.getClientUid())) {
+                return null;
+            }
             /*String getKey = getClientCId(d, "GET");
             if(Objects.isNull(cacheService.get(getKey))){
                 return ResponseModel.errorMsg(RepCodeEnum.API_REQ_INVALID);

@@ -17,24 +17,24 @@ import org.springframework.web.bind.annotation.*;
  */
 @RestController
 @RequestMapping("/allRule")
-@Tag(name = "allRule",description = "所有规则")
+@Tag(name = "allRule", description = "所有规则")
 @AllArgsConstructor
 public class AllRuleController {
-    
+
     private final AllRuleService allRuleService;
-    
+
     @Operation(summary = "添加所有规则")
     @PostMapping("/add")
-    public ApiResponse<Void> add(@Valid @RequestBody AllRuleDto allRuleDto){
+    public ApiResponse<Void> add(@Valid @RequestBody AllRuleDto allRuleDto) {
         allRuleService.add(allRuleDto);
         return ApiResponse.ok();
     }
-    
+
     @Operation(summary = "获取所有规则")
     @PostMapping("/get")
-    public ApiResponse<AllDepthRuleVo> get(){
+    public ApiResponse<AllDepthRuleVo> get() {
         return ApiResponse.ok(allRuleService.get());
     }
-    
-    
+
+
 }

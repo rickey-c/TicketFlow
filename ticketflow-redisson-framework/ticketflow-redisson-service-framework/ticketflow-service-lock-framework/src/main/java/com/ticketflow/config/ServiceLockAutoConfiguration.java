@@ -22,34 +22,35 @@ public class ServiceLockAutoConfiguration {
 
     /**
      * 显示指定Bean名称，返回的是分布式锁
+     *
      * @return service-lock
      */
     @Bean(LockInfoType.SERVICE_LOCK)
-    public LockInfoHandle serviceLockInfoHandle(){
+    public LockInfoHandle serviceLockInfoHandle() {
         return new ServiceLockInfoHandle();
     }
-    
+
     @Bean
-    public ManageLocker manageLocker(RedissonClient redissonClient){
+    public ManageLocker manageLocker(RedissonClient redissonClient) {
         return new ManageLocker(redissonClient);
     }
-    
+
     @Bean
-    public ServiceLockFactory serviceLockFactory(ManageLocker manageLocker){
+    public ServiceLockFactory serviceLockFactory(ManageLocker manageLocker) {
         return new ServiceLockFactory(manageLocker);
     }
-    
+
     @Bean
     public ServiceLockAspect serviceLockAspect(LockInfoHandleFactory lockInfoHandleFactory,
-                                               ServiceLockFactory serviceLockFactory){
-        return new ServiceLockAspect(lockInfoHandleFactory,serviceLockFactory);
+                                               ServiceLockFactory serviceLockFactory) {
+        return new ServiceLockAspect(lockInfoHandleFactory, serviceLockFactory);
     }
-    
+
     @Bean
     public ServiceLockTool serviceLockTool(LockInfoHandleFactory lockInfoHandleFactory,
-                                           ServiceLockFactory serviceLockFactory){
-        return new ServiceLockTool(lockInfoHandleFactory,serviceLockFactory);
+                                           ServiceLockFactory serviceLockFactory) {
+        return new ServiceLockTool(lockInfoHandleFactory, serviceLockFactory);
     }
-    
-    
+
+
 }

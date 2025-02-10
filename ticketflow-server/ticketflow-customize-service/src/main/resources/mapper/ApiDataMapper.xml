@@ -20,8 +20,8 @@
     </resultMap>
     <select id="pageList" resultMap="apiData">
         select
-            id,head_version,api_address,api_method,api_body,api_params,api_url,create_time,
-            status,call_day_time,call_hour_time,call_minute_time,call_second_time,type,count(1) as statistics
+        id,head_version,api_address,api_method,api_body,api_params,api_url,create_time,
+        status,call_day_time,call_hour_time,call_minute_time,call_second_time,type,count(1) as statistics
         from d_api_data
         where status = 1
         <if test='startDate != null and startDate != ""'>

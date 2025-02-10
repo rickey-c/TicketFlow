@@ -31,14 +31,14 @@ import java.util.concurrent.TimeUnit;
 
 /**
  * Represents an implementation of {@link UidGenerator}
- *
+ * <p>
  * The unique id has 64bits (long), default allocated as blow:<br>
  * <li>sign: The highest bit is 0
  * <li>delta seconds: The next 28 bits, represents delta seconds since a customer epoch(2016-05-20 00:00:00.000).
- *                    Supports about 8.7 years until to 2024-11-20 21:24:16
+ * Supports about 8.7 years until to 2024-11-20 21:24:16
  * <li>worker id: The next 22 bits, represents the worker's id which assigns based on database, max id is about 420W
  * <li>sequence: The next 13 bits, represents a sequence within the same second, max for 8192/s<br><br>
- *
+ * <p>
  * The {@link DefaultUidGenerator#parseUid(long)} is a damai method to parse the bits
  *
  * <pre>{@code
@@ -47,7 +47,7 @@ import java.util.concurrent.TimeUnit;
  * +------+----------------------+----------------+-----------+
  *   1bit          28bits              22bits         13bits
  * }</pre>
- *
+ * <p>
  * You can also specified the bits by Spring property setting.
  * <li>timeBits: default as 28
  * <li>workerBits: default as 22
@@ -61,29 +61,39 @@ import java.util.concurrent.TimeUnit;
 public class DefaultUidGenerator implements UidGenerator, InitializingBean {
     private static final Logger LOGGER = LoggerFactory.getLogger(DefaultUidGenerator.class);
 
-    /** Bits allocate */
+    /**
+     * Bits allocate
+     */
     protected int timeBits = 28;
     protected int workerBits = 22;
     protected int seqBits = 13;
 
-    /** Customer epoch, unit as second. For damai 2024-05-20 (ms: 1716134400000)*/
+    /**
+     * Customer epoch, unit as second. For damai 2024-05-20 (ms: 1716134400000)
+     */
     protected String epochStr = "2024-05-20";
     protected long epochSeconds = TimeUnit.MILLISECONDS.toSeconds(1716134400000L);
 
-    /** Stable fields after spring bean initializing */
+    /**
+     * Stable fields after spring bean initializing
+     */
     protected BitsAllocator bitsAllocator;
     protected long workerId;
 
-    /** Volatile fields caused by nextId() */
+    /**
+     * Volatile fields caused by nextId()
+     */
     protected long sequence = 0L;
     protected long lastSecond = -1L;
 
-    /** Spring property */
+    /**
+     * Spring property
+     */
     protected WorkerIdAssigner workerIdAssigner;
-    
+
     /**
      * 分库分表基因法生成id
-     * */
+     */
     protected SnowflakeIdGenerator snowflakeIdGenerator;
 
     @Override
@@ -109,15 +119,15 @@ public class DefaultUidGenerator implements UidGenerator, InitializingBean {
             throw new UidGenerateException(e);
         }
     }
-    
+
     @Override
-    public long getId(){
+    public long getId() {
         return snowflakeIdGenerator.nextId();
     }
-    
+
     @Override
-    public long getOrderNumber(long userId,long tableCount) {
-        return snowflakeIdGenerator.getOrderNumber(userId,tableCount);
+    public long getOrderNumber(long userId, long tableCount) {
+        return snowflakeIdGenerator.getOrderNumber(userId, tableCount);
     }
 
     @Override
@@ -164,7 +174,7 @@ public class DefaultUidGenerator implements UidGenerator, InitializingBean {
                 currentSecond = getNextSecond(lastSecond);
             }
 
-        // At the different second, sequence restart from zero
+            // At the different second, sequence restart from zero
         } else {
             sequence = 0L;
         }
@@ -205,7 +215,7 @@ public class DefaultUidGenerator implements UidGenerator, InitializingBean {
     public void setWorkerIdAssigner(WorkerIdAssigner workerIdAssigner) {
         this.workerIdAssigner = workerIdAssigner;
     }
-    
+
     public void setTimeBits(int timeBits) {
         if (timeBits > 0) {
             this.timeBits = timeBits;
@@ -230,7 +240,7 @@ public class DefaultUidGenerator implements UidGenerator, InitializingBean {
             this.epochSeconds = TimeUnit.MILLISECONDS.toSeconds(AbstractDateUtils.parseByDayPattern(epochStr).getTime());
         }
     }
-    
+
     public void setSnowflakeIdGenerator(SnowflakeIdGenerator snowflakeIdGenerator) {
         this.snowflakeIdGenerator = snowflakeIdGenerator;
     }

@@ -51,7 +51,7 @@ public class FileCopyUtils {
             return new byte[0];
         } else {
             ByteArrayOutputStream out = new ByteArrayOutputStream(4096);
-            copy((InputStream)in, (OutputStream)out);
+            copy((InputStream) in, (OutputStream) out);
             return out.toByteArray();
         }
     }
@@ -62,7 +62,7 @@ public class FileCopyUtils {
             char[] buffer = new char[4096];
 
             int bytesRead;
-            for(boolean var4 = true; (bytesRead = in.read(buffer)) != -1; byteCount += bytesRead) {
+            for (boolean var4 = true; (bytesRead = in.read(buffer)) != -1; byteCount += bytesRead) {
                 out.write(buffer, 0, bytesRead);
             }
 
@@ -101,7 +101,7 @@ public class FileCopyUtils {
             return "";
         } else {
             StringWriter out = new StringWriter();
-            copy((Reader)in, (Writer)out);
+            copy((Reader) in, (Writer) out);
             return out.toString();
         }
     }

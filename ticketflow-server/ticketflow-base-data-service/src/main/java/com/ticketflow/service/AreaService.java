@@ -33,15 +33,16 @@ import java.util.Objects;
 @Slf4j
 @Service
 public class AreaService extends ServiceImpl<AreaMapper, Area> {
-    
+
     @Autowired
     private AreaMapper areaMapper;
-    
+
     @Autowired
     private RedisCache redisCache;
 
     /**
      * 查询市区和直辖市数据
+     *
      * @return
      */
     public List<AreaVo> selectCityData() {
@@ -54,21 +55,21 @@ public class AreaService extends ServiceImpl<AreaMapper, Area> {
                             .eq(Area::getType, AreaType.PROVINCE.getCode())
                             .eq(Area::getMunicipality, BusinessStatus.YES.getCode()));
             List<Area> areas = areaMapper.selectList(lambdaQueryWrapper);
-            areaVos = BeanUtil.copyToList(areas,AreaVo.class);
+            areaVos = BeanUtil.copyToList(areas, AreaVo.class);
             if (CollectionUtil.isNotEmpty(areaVos)) {
-                redisCache.leftPushAllForList(RedisKeyBuild.createRedisKey(RedisKeyManage.AREA_PROVINCE_LIST),areaVos);
+                redisCache.leftPushAllForList(RedisKeyBuild.createRedisKey(RedisKeyManage.AREA_PROVINCE_LIST), areaVos);
             }
         }
         return areaVos;
     }
-    
+
     public List<AreaVo> selectByIdList(AreaSelectDto areaSelectDto) {
         final LambdaQueryWrapper<Area> lambdaQueryWrapper = Wrappers.lambdaQuery(Area.class)
                 .in(Area::getId, areaSelectDto.getIdList());
         List<Area> areas = areaMapper.selectList(lambdaQueryWrapper);
-        return BeanUtil.copyToList(areas,AreaVo.class);
+        return BeanUtil.copyToList(areas, AreaVo.class);
     }
-    
+
     public AreaVo getById(AreaGetDto areaGetDto) {
         log.info("基础服务调用 getById:{}", JSON.toJSONString(areaGetDto));
         final LambdaQueryWrapper<Area> lambdaQueryWrapper = Wrappers.lambdaQuery(Area.class)
@@ -76,26 +77,26 @@ public class AreaService extends ServiceImpl<AreaMapper, Area> {
         Area area = areaMapper.selectOne(lambdaQueryWrapper);
         AreaVo areaVo = new AreaVo();
         if (Objects.nonNull(area)) {
-            BeanUtil.copyProperties(area,areaVo);
+            BeanUtil.copyProperties(area, areaVo);
         }
         return areaVo;
     }
-    
+
     public AreaVo current() {
         final LambdaQueryWrapper<Area> lambdaQueryWrapper = Wrappers.lambdaQuery(Area.class)
                 .eq(Area::getId, 2);
         Area area = areaMapper.selectOne(lambdaQueryWrapper);
         AreaVo areaVo = new AreaVo();
         if (Objects.nonNull(area)) {
-            BeanUtil.copyProperties(area,areaVo);
+            BeanUtil.copyProperties(area, areaVo);
         }
         return areaVo;
     }
-    
+
     public List<AreaVo> hot() {
         final LambdaQueryWrapper<Area> lambdaQueryWrapper = Wrappers.lambdaQuery(Area.class)
-                .in(Area::getName, "全国","北京","上海","深圳","广州","杭州","天津","重庆","成都","中国香港");
+                .in(Area::getName, "全国", "北京", "上海", "深圳", "广州", "杭州", "天津", "重庆", "成都", "中国香港");
         List<Area> areas = areaMapper.selectList(lambdaQueryWrapper);
-        return BeanUtil.copyToList(areas,AreaVo.class);
+        return BeanUtil.copyToList(areas, AreaVo.class);
     }
 }

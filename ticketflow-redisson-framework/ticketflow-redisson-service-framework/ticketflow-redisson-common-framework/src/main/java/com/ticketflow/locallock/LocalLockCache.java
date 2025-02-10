@@ -19,7 +19,7 @@ public class LocalLockCache {
      * 本地锁缓存
      */
     private Cache<String, ReentrantLock> localLockCache;
-    
+
     /**
      * 本地锁过期时间
      */
@@ -27,14 +27,14 @@ public class LocalLockCache {
     private Integer durationTime;
 
     @PostConstruct
-    public void localLockCacheInit(){
+    public void localLockCacheInit() {
         localLockCache = Caffeine.newBuilder()
                 .expireAfterWrite(durationTime, TimeUnit.HOURS)
                 .build();
     }
 
-    public ReentrantLock getLock(String lockKey,boolean fair){
+    public ReentrantLock getLock(String lockKey, boolean fair) {
         return localLockCache.get(lockKey, key -> new ReentrantLock(fair));
     }
-    
+
 }

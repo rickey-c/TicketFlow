@@ -11,14 +11,13 @@
 
     <artifactId>ticketflow-redisson-service-framework</artifactId>
     <packaging>pom</packaging>
-    
+
     <modules>
         <module>ticketflow-bloom-filter-framework</module>
         <module>ticketflow-redisson-common-framework</module>
         <module>ticketflow-repeat-execute-limit-framework</module>
         <module>ticketflow-service-lock-framework</module>
     </modules>
-
 
 
 </project>

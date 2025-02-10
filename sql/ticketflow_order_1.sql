@@ -1,4 +1,5 @@
-USE ticketflow_order_1;
+USE
+ticketflow_order_1;
 
 DROP TABLE IF EXISTS `d_order_0`;
 /*!40101 SET @saved_cs_client = @@character_set_client */;
@@ -27,8 +28,8 @@ CREATE TABLE `d_order_0`
     `status`                     tinyint(1)     DEFAULT '1' COMMENT '1:正常 0:删除',
     PRIMARY KEY (`id`),
     UNIQUE KEY `d_order_order_number_IDX` (`order_number`) USING BTREE,
-    KEY `user_id_IDX` (`user_id`) USING BTREE,
-    KEY `program_id_IDX` (`program_id`) USING BTREE
+    KEY                          `user_id_IDX` (`user_id`) USING BTREE,
+    KEY                          `program_id_IDX` (`program_id`) USING BTREE
 ) ENGINE = InnoDB
   DEFAULT CHARSET = utf8 COMMENT ='订单表';
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -37,12 +38,14 @@ CREATE TABLE `d_order_0`
 -- Dumping data for table `d_order_0`
 --
 
-LOCK TABLES `d_order_0` WRITE;
+LOCK
+TABLES `d_order_0` WRITE;
 /*!40000 ALTER TABLE `d_order_0`
     DISABLE KEYS */;
 /*!40000 ALTER TABLE `d_order_0`
     ENABLE KEYS */;
-UNLOCK TABLES;
+UNLOCK
+TABLES;
 
 --
 -- Table structure for table `d_order_1`
@@ -75,8 +78,8 @@ CREATE TABLE `d_order_1`
     `status`                     tinyint(1)     DEFAULT '1' COMMENT '1:正常 0:删除',
     PRIMARY KEY (`id`),
     UNIQUE KEY `d_order_order_number_IDX` (`order_number`) USING BTREE,
-    KEY `user_id_IDX` (`user_id`) USING BTREE,
-    KEY `program_id_IDX` (`program_id`) USING BTREE
+    KEY                          `user_id_IDX` (`user_id`) USING BTREE,
+    KEY                          `program_id_IDX` (`program_id`) USING BTREE
 ) ENGINE = InnoDB
   DEFAULT CHARSET = utf8 COMMENT ='订单表';
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -85,12 +88,14 @@ CREATE TABLE `d_order_1`
 -- Dumping data for table `d_order_1`
 --
 
-LOCK TABLES `d_order_1` WRITE;
+LOCK
+TABLES `d_order_1` WRITE;
 /*!40000 ALTER TABLE `d_order_1`
     DISABLE KEYS */;
 /*!40000 ALTER TABLE `d_order_1`
     ENABLE KEYS */;
-UNLOCK TABLES;
+UNLOCK
+TABLES;
 
 --
 -- Table structure for table `d_order_2`
@@ -123,8 +128,8 @@ CREATE TABLE `d_order_2`
     `status`                     tinyint(1)     DEFAULT '1' COMMENT '1:正常 0:删除',
     PRIMARY KEY (`id`),
     UNIQUE KEY `d_order_order_number_IDX` (`order_number`) USING BTREE,
-    KEY `user_id_IDX` (`user_id`) USING BTREE,
-    KEY `program_id_IDX` (`program_id`) USING BTREE
+    KEY                          `user_id_IDX` (`user_id`) USING BTREE,
+    KEY                          `program_id_IDX` (`program_id`) USING BTREE
 ) ENGINE = InnoDB
   DEFAULT CHARSET = utf8 COMMENT ='订单表';
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -133,12 +138,14 @@ CREATE TABLE `d_order_2`
 -- Dumping data for table `d_order_2`
 --
 
-LOCK TABLES `d_order_2` WRITE;
+LOCK
+TABLES `d_order_2` WRITE;
 /*!40000 ALTER TABLE `d_order_2`
     DISABLE KEYS */;
 /*!40000 ALTER TABLE `d_order_2`
     ENABLE KEYS */;
-UNLOCK TABLES;
+UNLOCK
+TABLES;
 
 --
 -- Table structure for table `d_order_3`
@@ -171,8 +178,8 @@ CREATE TABLE `d_order_3`
     `status`                     tinyint(1)     DEFAULT '1' COMMENT '1:正常 0:删除',
     PRIMARY KEY (`id`),
     UNIQUE KEY `d_order_order_number_IDX` (`order_number`) USING BTREE,
-    KEY `user_id_IDX` (`user_id`) USING BTREE,
-    KEY `program_id_IDX` (`program_id`) USING BTREE
+    KEY                          `user_id_IDX` (`user_id`) USING BTREE,
+    KEY                          `program_id_IDX` (`program_id`) USING BTREE
 ) ENGINE = InnoDB
   DEFAULT CHARSET = utf8 COMMENT ='订单表';
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -181,12 +188,14 @@ CREATE TABLE `d_order_3`
 -- Dumping data for table `d_order_3`
 --
 
-LOCK TABLES `d_order_3` WRITE;
+LOCK
+TABLES `d_order_3` WRITE;
 /*!40000 ALTER TABLE `d_order_3`
     DISABLE KEYS */;
 /*!40000 ALTER TABLE `d_order_3`
     ENABLE KEYS */;
-UNLOCK TABLES;
+UNLOCK
+TABLES;
 
 --
 -- Table structure for table `d_order_ticket_user_0`
@@ -216,10 +225,10 @@ CREATE TABLE `d_order_ticket_user_0`
     `edit_time`          datetime       DEFAULT NULL COMMENT '编辑时间',
     `status`             tinyint(1)     DEFAULT '1' COMMENT '1:正常 0:删除',
     PRIMARY KEY (`id`),
-    KEY `d_order_ticket_user_order_id_IDX` (`order_number`) USING BTREE,
-    KEY `d_order_ticket_user_user_id_IDX` (`user_id`) USING BTREE,
-    KEY `d_order_ticket_user_ticket_user_id_IDX` (`ticket_user_id`) USING BTREE,
-    KEY `d_order_ticket_user_create_order_time_IDX` (`create_order_time`) USING BTREE
+    KEY                  `d_order_ticket_user_order_id_IDX` (`order_number`) USING BTREE,
+    KEY                  `d_order_ticket_user_user_id_IDX` (`user_id`) USING BTREE,
+    KEY                  `d_order_ticket_user_ticket_user_id_IDX` (`ticket_user_id`) USING BTREE,
+    KEY                  `d_order_ticket_user_create_order_time_IDX` (`create_order_time`) USING BTREE
 ) ENGINE = InnoDB
   DEFAULT CHARSET = utf8 COMMENT ='购票人订单表';
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -228,12 +237,14 @@ CREATE TABLE `d_order_ticket_user_0`
 -- Dumping data for table `d_order_ticket_user_0`
 --
 
-LOCK TABLES `d_order_ticket_user_0` WRITE;
+LOCK
+TABLES `d_order_ticket_user_0` WRITE;
 /*!40000 ALTER TABLE `d_order_ticket_user_0`
     DISABLE KEYS */;
 /*!40000 ALTER TABLE `d_order_ticket_user_0`
     ENABLE KEYS */;
-UNLOCK TABLES;
+UNLOCK
+TABLES;
 
 --
 -- Table structure for table `d_order_ticket_user_1`
@@ -263,10 +274,10 @@ CREATE TABLE `d_order_ticket_user_1`
     `edit_time`          datetime       DEFAULT NULL COMMENT '编辑时间',
     `status`             tinyint(1)     DEFAULT '1' COMMENT '1:正常 0:删除',
     PRIMARY KEY (`id`),
-    KEY `d_order_ticket_user_order_id_IDX` (`order_number`) USING BTREE,
-    KEY `d_order_ticket_user_user_id_IDX` (`user_id`) USING BTREE,
-    KEY `d_order_ticket_user_ticket_user_id_IDX` (`ticket_user_id`) USING BTREE,
-    KEY `d_order_ticket_user_create_order_time_IDX` (`create_order_time`) USING BTREE
+    KEY                  `d_order_ticket_user_order_id_IDX` (`order_number`) USING BTREE,
+    KEY                  `d_order_ticket_user_user_id_IDX` (`user_id`) USING BTREE,
+    KEY                  `d_order_ticket_user_ticket_user_id_IDX` (`ticket_user_id`) USING BTREE,
+    KEY                  `d_order_ticket_user_create_order_time_IDX` (`create_order_time`) USING BTREE
 ) ENGINE = InnoDB
   DEFAULT CHARSET = utf8 COMMENT ='购票人订单表';
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -275,12 +286,14 @@ CREATE TABLE `d_order_ticket_user_1`
 -- Dumping data for table `d_order_ticket_user_1`
 --
 
-LOCK TABLES `d_order_ticket_user_1` WRITE;
+LOCK
+TABLES `d_order_ticket_user_1` WRITE;
 /*!40000 ALTER TABLE `d_order_ticket_user_1`
     DISABLE KEYS */;
 /*!40000 ALTER TABLE `d_order_ticket_user_1`
     ENABLE KEYS */;
-UNLOCK TABLES;
+UNLOCK
+TABLES;
 
 --
 -- Table structure for table `d_order_ticket_user_2`
@@ -310,10 +323,10 @@ CREATE TABLE `d_order_ticket_user_2`
     `edit_time`          datetime       DEFAULT NULL COMMENT '编辑时间',
     `status`             tinyint(1)     DEFAULT '1' COMMENT '1:正常 0:删除',
     PRIMARY KEY (`id`),
-    KEY `d_order_ticket_user_order_id_IDX` (`order_number`) USING BTREE,
-    KEY `d_order_ticket_user_user_id_IDX` (`user_id`) USING BTREE,
-    KEY `d_order_ticket_user_ticket_user_id_IDX` (`ticket_user_id`) USING BTREE,
-    KEY `d_order_ticket_user_create_order_time_IDX` (`create_order_time`) USING BTREE
+    KEY                  `d_order_ticket_user_order_id_IDX` (`order_number`) USING BTREE,
+    KEY                  `d_order_ticket_user_user_id_IDX` (`user_id`) USING BTREE,
+    KEY                  `d_order_ticket_user_ticket_user_id_IDX` (`ticket_user_id`) USING BTREE,
+    KEY                  `d_order_ticket_user_create_order_time_IDX` (`create_order_time`) USING BTREE
 ) ENGINE = InnoDB
   DEFAULT CHARSET = utf8 COMMENT ='购票人订单表';
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -322,12 +335,14 @@ CREATE TABLE `d_order_ticket_user_2`
 -- Dumping data for table `d_order_ticket_user_2`
 --
 
-LOCK TABLES `d_order_ticket_user_2` WRITE;
+LOCK
+TABLES `d_order_ticket_user_2` WRITE;
 /*!40000 ALTER TABLE `d_order_ticket_user_2`
     DISABLE KEYS */;
 /*!40000 ALTER TABLE `d_order_ticket_user_2`
     ENABLE KEYS */;
-UNLOCK TABLES;
+UNLOCK
+TABLES;
 
 --
 -- Table structure for table `d_order_ticket_user_3`
@@ -357,10 +372,10 @@ CREATE TABLE `d_order_ticket_user_3`
     `edit_time`          datetime       DEFAULT NULL COMMENT '编辑时间',
     `status`             tinyint(1)     DEFAULT '1' COMMENT '1:正常 0:删除',
     PRIMARY KEY (`id`),
-    KEY `d_order_ticket_user_order_id_IDX` (`order_number`) USING BTREE,
-    KEY `d_order_ticket_user_user_id_IDX` (`user_id`) USING BTREE,
-    KEY `d_order_ticket_user_ticket_user_id_IDX` (`ticket_user_id`) USING BTREE,
-    KEY `d_order_ticket_user_create_order_time_IDX` (`create_order_time`) USING BTREE
+    KEY                  `d_order_ticket_user_order_id_IDX` (`order_number`) USING BTREE,
+    KEY                  `d_order_ticket_user_user_id_IDX` (`user_id`) USING BTREE,
+    KEY                  `d_order_ticket_user_ticket_user_id_IDX` (`ticket_user_id`) USING BTREE,
+    KEY                  `d_order_ticket_user_create_order_time_IDX` (`create_order_time`) USING BTREE
 ) ENGINE = InnoDB
   DEFAULT CHARSET = utf8 COMMENT ='购票人订单表';
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -369,9 +384,11 @@ CREATE TABLE `d_order_ticket_user_3`
 -- Dumping data for table `d_order_ticket_user_3`
 --
 
-LOCK TABLES `d_order_ticket_user_3` WRITE;
+LOCK
+TABLES `d_order_ticket_user_3` WRITE;
 /*!40000 ALTER TABLE `d_order_ticket_user_3`
     DISABLE KEYS */;
 /*!40000 ALTER TABLE `d_order_ticket_user_3`
     ENABLE KEYS */;
-UNLOCK TABLES;
+UNLOCK
+TABLES;

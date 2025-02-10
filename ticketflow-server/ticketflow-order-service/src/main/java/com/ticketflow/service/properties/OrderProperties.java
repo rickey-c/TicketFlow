@@ -16,13 +16,13 @@ public class OrderProperties {
 
     /**
      * 支付成功后通知接口地址
-     * */
+     */
     @Value("${orderPayNotifyUrl:http://localhost:6085/ticketflow/order/order/alipay/notify}")
     private String orderPayNotifyUrl;
 
     /**
      * 支付成功后跳转页面
-     * */
+     */
     @Value("${orderPayReturnUrl:http://localhost:5173/order/paySuccess}")
     private String orderPayReturnUrl;
 }

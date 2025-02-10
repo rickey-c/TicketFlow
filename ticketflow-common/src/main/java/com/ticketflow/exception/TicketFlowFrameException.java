@@ -65,6 +65,6 @@ public class TicketFlowFrameException extends BaseException {
         this.code = code;
         this.message = message;
     }
-    
-    
+
+
 }

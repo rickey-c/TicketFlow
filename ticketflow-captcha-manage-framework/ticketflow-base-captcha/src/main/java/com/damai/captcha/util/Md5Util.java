@@ -11,6 +11,7 @@ import java.security.MessageDigest;
 public class Md5Util {
     /**
      * 获取指定字符串的md5值
+     *
      * @param dataStr 明文
      * @return String
      */
@@ -32,10 +33,11 @@ public class Md5Util {
 
     /**
      * 获取指定字符串的md5值, md5(str+salt)
+     *
      * @param dataStr 明文
      * @return String
      */
-    public static String md5WithSalt(String dataStr,String salt) {
+    public static String md5WithSalt(String dataStr, String salt) {
         return md5(dataStr + salt);
     }
 

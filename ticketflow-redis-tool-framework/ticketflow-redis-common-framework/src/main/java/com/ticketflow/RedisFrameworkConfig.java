@@ -15,18 +15,18 @@ import org.springframework.data.redis.serializer.StringRedisSerializer;
  */
 @Configuration
 public class RedisFrameworkConfig {
-    
+
     @Bean("redisToolRedisTemplate")
-    public RedisTemplate redisTemplate(RedisConnectionFactory redisConnectionFactory){
+    public RedisTemplate redisTemplate(RedisConnectionFactory redisConnectionFactory) {
         RedisTemplate redisTemplate = new RedisTemplate();
         redisTemplate.setDefaultSerializer(new StringRedisSerializer());
         redisTemplate.setConnectionFactory(redisConnectionFactory);
         return redisTemplate;
     }
-    
+
     @Primary
     @Bean("redisToolStringRedisTemplate")
-    public StringRedisTemplate stringRedisTemplate(RedisConnectionFactory redisConnectionFactory){
+    public StringRedisTemplate stringRedisTemplate(RedisConnectionFactory redisConnectionFactory) {
         StringRedisTemplate stringRedisTemplate = new StringRedisTemplate();
         stringRedisTemplate.setConnectionFactory(redisConnectionFactory);
         stringRedisTemplate.setDefaultSerializer(new StringRedisSerializer());

@@ -25,7 +25,7 @@ public class RefundBill extends BaseTableData {
      * 商户订单号
      */
     private String outOrderNo;
-    
+
     /**
      * 账单id
      */
@@ -45,9 +45,9 @@ public class RefundBill extends BaseTableData {
      * 退款时间
      */
     private Date refundTime;
-    
+
     /**
      * 退款原因
-     * */
+     */
     private String reason;
 }

@@ -18,6 +18,6 @@ public class RequestWrapperFilter extends OncePerRequestFilter {
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
         CustomizeRequestWrapper customizeRequestWrapper = new CustomizeRequestWrapper(request);
-        filterChain.doFilter(customizeRequestWrapper,response);
+        filterChain.doFilter(customizeRequestWrapper, response);
     }
 }

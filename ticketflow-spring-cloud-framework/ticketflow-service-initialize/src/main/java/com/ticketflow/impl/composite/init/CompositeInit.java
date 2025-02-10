@@ -12,14 +12,14 @@ import org.springframework.context.ConfigurableApplicationContext;
  */
 @AllArgsConstructor
 public class CompositeInit extends AbstractApplicationStartEventListenerHandler {
-    
+
     private final CompositeContainer compositeContainer;
-    
+
     @Override
     public Integer executeOrder() {
         return 1;
     }
-    
+
     @Override
     public void executeInit(ConfigurableApplicationContext context) {
         compositeContainer.init(context);

@@ -22,7 +22,7 @@ import java.util.Enumeration;
 
 /**
  * AbstractNetUtils
- * 
+ *
  * @author yutianbao
  */
 public abstract class AbstractNetUtils {
@@ -74,7 +74,7 @@ public abstract class AbstractNetUtils {
 
     /**
      * Retrieve local address
-     * 
+     *
      * @return the string local address
      */
     public static String getLocalAddress() {

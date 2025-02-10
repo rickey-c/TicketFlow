@@ -11,39 +11,40 @@ import lombok.Data;
  * @Date: 2025/1/24 15:48
  */
 @Data
-@Schema(title="ChannelDataAddDto", description ="渠道数据")
+@Schema(title = "ChannelDataAddDto", description = "渠道数据")
 public class ChannelDataAddDto {
-    
-    @Schema(name ="name", type ="String", description ="名称",requiredMode= RequiredMode.REQUIRED)
+
+    @Schema(name = "name", type = "String", description = "名称", requiredMode = RequiredMode.REQUIRED)
     @NotBlank
     private String name;
-    
-    @Schema(name ="code", type ="String", description ="code码", requiredMode= RequiredMode.REQUIRED)
+
+    @Schema(name = "code", type = "String", description = "code码", requiredMode = RequiredMode.REQUIRED)
     @NotBlank
     private String code;
-    
-    @Schema(name ="introduce", type ="String", description ="介绍", requiredMode= RequiredMode.REQUIRED)
+
+    @Schema(name = "introduce", type = "String", description = "介绍", requiredMode = RequiredMode.REQUIRED)
     private String introduce;
-    
-    @Schema(name ="signPublicKey", type ="String", description ="rsa签名公钥", requiredMode= RequiredMode.REQUIRED)
+
+    @Schema(name = "signPublicKey", type = "String", description = "rsa签名公钥", requiredMode = RequiredMode.REQUIRED)
     @NotBlank
     private String signPublicKey;
-    
-    @Schema(name ="signSecretKey", type ="String", description ="rsa签名私钥", requiredMode= RequiredMode.REQUIRED)
+
+    @Schema(name = "signSecretKey", type = "String", description = "rsa签名私钥", requiredMode = RequiredMode.REQUIRED)
     @NotBlank
     private String signSecretKey;
-    
-    @Schema(name ="aesKey", type ="String", description ="aes私钥")
+
+    @Schema(name = "aesKey", type = "String", description = "aes私钥")
     private String aesKey;
-    
-    @Schema(name ="dataPublicKey", type ="String", description ="rsa参数公钥")
+
+    @Schema(name = "dataPublicKey", type = "String", description = "rsa参数公钥")
     private String dataPublicKey;
-    
-    @Schema(name ="dataSecretKey", type ="String", description ="rsa参数私钥")
+
+    @Schema(name = "dataSecretKey", type = "String", description = "rsa参数私钥")
     private String dataSecretKey;
-    
-    @Schema(name ="tokenSecret", type ="String", description ="token秘钥", requiredMode= RequiredMode.REQUIRED)
+
+    @Schema(name = "tokenSecret", type = "String", description = "token秘钥", requiredMode = RequiredMode.REQUIRED)
     @NotBlank
-    private String tokenSecret;;
-    
+    private String tokenSecret;
+    ;
+
 }

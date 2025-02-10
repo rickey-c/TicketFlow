@@ -11,10 +11,10 @@ import org.redisson.api.RedissonClient;
  * @Date: 2025/1/26 17:00
  */
 public class BloomFilterHandler {
-    
+
     private final RBloomFilter<String> cachePenetrationBloomFilter;
-    
-    public BloomFilterHandler(RedissonClient redissonClient, BloomFilterProperties bloomFilterProperties){
+
+    public BloomFilterHandler(RedissonClient redissonClient, BloomFilterProperties bloomFilterProperties) {
         RBloomFilter<String> cachePenetrationBloomFilter = redissonClient.getBloomFilter(
                 SpringUtil.getPrefixDistinctionName() + "-" + bloomFilterProperties.getName()
         );

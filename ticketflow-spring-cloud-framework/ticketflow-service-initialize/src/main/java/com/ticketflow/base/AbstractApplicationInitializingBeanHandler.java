@@ -15,5 +15,5 @@ public abstract class AbstractApplicationInitializingBeanHandler implements Init
     public String type() {
         return APPLICATION_INITIALIZING_BEAN;
     }
-    
+
 }

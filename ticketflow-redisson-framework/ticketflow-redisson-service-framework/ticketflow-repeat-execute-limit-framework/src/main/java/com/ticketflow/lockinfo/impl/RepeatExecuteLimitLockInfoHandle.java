@@ -10,9 +10,9 @@ import com.ticketflow.lockinfo.AbstractLockInfoHandle;
 public class RepeatExecuteLimitLockInfoHandle extends AbstractLockInfoHandle {
 
     private static final String PREFIX_NAME = "repeat_execute_limit";
-    
+
     @Override
     protected String getLockPrefixName() {
-        return PREFIX_NAME; 
+        return PREFIX_NAME;
     }
 }

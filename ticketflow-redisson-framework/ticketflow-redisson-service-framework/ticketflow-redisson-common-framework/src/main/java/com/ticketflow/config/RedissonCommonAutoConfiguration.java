@@ -27,22 +27,23 @@ import java.util.concurrent.atomic.AtomicInteger;
 @Configuration
 @EnableConfigurationProperties(RedissonBaseProperties.class)
 public class RedissonCommonAutoConfiguration {
-    
+
     private final AtomicInteger executeTaskThreadCount = new AtomicInteger(1);
 
     /**
      * 用于配置和创建 redissonClient
+     *
      * @param redisProperties
      * @param redissonBaseProperties
      * @return
      */
     @Bean
-    public RedissonClient redissonClient(RedisProperties redisProperties,RedissonBaseProperties redissonBaseProperties){
+    public RedissonClient redissonClient(RedisProperties redisProperties, RedissonBaseProperties redissonBaseProperties) {
         Config config = new Config();
         String prefix = "redis://";
         // 查看是否需要https
         Method method = ReflectionUtils.findMethod(RedisProperties.class, "isSsl");
-        if (method != null && (Boolean)ReflectionUtils.invokeMethod(method, redisProperties)) {
+        if (method != null && (Boolean) ReflectionUtils.invokeMethod(method, redisProperties)) {
             prefix = "rediss://";
         }
         // 配置redis连接参数
@@ -70,18 +71,18 @@ public class RedissonCommonAutoConfiguration {
     }
 
     @Bean
-    public RedissonDataHandle redissonDataHandle(RedissonClient redissonClient){
+    public RedissonDataHandle redissonDataHandle(RedissonClient redissonClient) {
         return new RedissonDataHandle(redissonClient);
     }
 
     @Bean
-    public LocalLockCache localLockCache(){
+    public LocalLockCache localLockCache() {
         return new LocalLockCache();
     }
 
     @Bean
-    public LockInfoHandleFactory lockInfoHandleFactory(){
+    public LockInfoHandleFactory lockInfoHandleFactory() {
         return new LockInfoHandleFactory();
     }
-    
+
 }

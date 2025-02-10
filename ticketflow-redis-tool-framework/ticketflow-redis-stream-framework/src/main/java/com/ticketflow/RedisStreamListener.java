@@ -16,7 +16,7 @@ import org.springframework.data.redis.stream.StreamListener;
 public class RedisStreamListener implements StreamListener<String, ObjectRecord<String, String>> {
 
     private final MessageConsumer messageConsumer;
-    
+
     @Override
     public void onMessage(ObjectRecord<String, String> message) {
         try {

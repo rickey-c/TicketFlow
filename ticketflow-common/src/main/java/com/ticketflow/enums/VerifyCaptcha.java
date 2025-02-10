@@ -18,10 +18,10 @@ public enum VerifyCaptcha {
 
     @Getter
     private Integer code;
-    
+
     @Getter
     private String value;
-    
+
     @Getter
     private String msg;
 

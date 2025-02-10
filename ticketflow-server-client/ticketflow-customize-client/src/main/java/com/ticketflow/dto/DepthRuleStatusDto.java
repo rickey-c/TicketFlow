@@ -11,14 +11,14 @@ import lombok.Data;
  * @Date: 2025/1/24 16:39
  */
 @Data
-@Schema(title="DepthRuleStatusDto", description ="深度规则状态修改")
+@Schema(title = "DepthRuleStatusDto", description = "深度规则状态修改")
 public class DepthRuleStatusDto {
-    
-    @Schema(name ="id", type ="String", description ="深度规则id", requiredMode= RequiredMode.REQUIRED)
+
+    @Schema(name = "id", type = "String", description = "深度规则id", requiredMode = RequiredMode.REQUIRED)
     @NotNull
     private Long id;
-    
-    @Schema(name ="status", type ="Integer", description ="状态 1生效 0禁用", requiredMode= RequiredMode.REQUIRED)
+
+    @Schema(name = "status", type = "Integer", description = "状态 1生效 0禁用", requiredMode = RequiredMode.REQUIRED)
     @NotNull
     private Integer status;
 }

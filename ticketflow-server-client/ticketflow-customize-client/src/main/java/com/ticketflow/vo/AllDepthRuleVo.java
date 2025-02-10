@@ -11,12 +11,12 @@ import java.util.List;
  * @Date: 2025/1/25 21:44
  */
 @Data
-@Schema(title="AllDepthRuleVo", description ="全部规则")
+@Schema(title = "AllDepthRuleVo", description = "全部规则")
 public class AllDepthRuleVo {
-    
-    @Schema(name ="ruleDto", type ="RuleDto", description ="普通规则")
+
+    @Schema(name = "ruleDto", type = "RuleDto", description = "普通规则")
     private RuleVo ruleVo;
-    
-    @Schema(name ="depthRuleDtoList", type ="DepthRuleDto[]", description ="深度规则")
+
+    @Schema(name = "depthRuleDtoList", type = "DepthRuleDto[]", description = "深度规则")
     private List<DepthRuleVo> depthRuleVoList;
 }

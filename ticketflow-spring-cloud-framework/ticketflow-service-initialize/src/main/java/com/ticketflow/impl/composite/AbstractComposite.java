@@ -11,72 +11,78 @@ import java.util.Queue;
  * @Date: 2025/1/30 23:50
  */
 public abstract class AbstractComposite<T> {
-    
+
     /**
      * 存储子节点的列表
-     * 
      */
-    protected List<AbstractComposite<T>> list = new ArrayList<>(); 
-    
+    protected List<AbstractComposite<T>> list = new ArrayList<>();
+
     /**
      * 执行具体业务的抽象方法，由子类具体实现。
+     *
      * @param param 泛型参数，用于业务执行。
      */
     protected abstract void execute(T param);
-    
+
     /**
      * 获取返回组件的类型
+     *
      * @return 返回组件的类型。
      */
     public abstract String type();
-    
+
     /**
      * 返回父级执行顺序，用于建立层级关系.(根节点的话返回值为0)
+     *
      * @return 返回父级执行顺序，用于建立层级关系.(根节点的话返回值为0)
      */
     public abstract Integer executeParentOrder();
-    
+
     /**
      * 返回组件的执行层级
+     *
      * @return 返回组件的执行层级
      */
     public abstract Integer executeTier();
-    
+
     /**
      * 返回组件在同一层级中的执行顺序
+     *
      * @return 返回组件在同一层级中的执行顺序
      */
     public abstract Integer executeOrder();
-    
+
     /**
      * 将子组件添加到当前组件的子列表中
+     *
      * @param abstractComposite 子组件实例
      */
     public void add(AbstractComposite<T> abstractComposite) {
         list.add(abstractComposite);
     }
-    
+
     /**
      * 按层次结构执行每个组件的业务逻辑
+     *
      * @param param 泛型参数，用于业务执行
      */
     public void allExecute(T param) {
         Queue<AbstractComposite<T>> queue = new LinkedList<>();
-        
-        queue.add(this); 
-        
+
+        queue.add(this);
+
         while (!queue.isEmpty()) {
-           
-            int levelSize = queue.size(); 
-            
+
+            int levelSize = queue.size();
+
             for (int i = 0; i < levelSize; i++) {
-               
-                AbstractComposite<T> current = queue.poll(); 
-                
-                
+
+                AbstractComposite<T> current = queue.poll();
+
+
                 assert current != null;
                 current.execute(param);
-                
+
                 queue.addAll(current.list);
             }
         }

@@ -87,20 +87,21 @@ public class CaptchaVO implements Serializable {
      */
     private String captchaVerification;
 
-	/***
-	 * 客户端UI组件id,组件初始化时设置一次，UUID
-	 */
-	private String clientUid;
-	/***
-	 * 客户端的请求时间，预留字段
-	 */
-	private Long ts;
+    /***
+     * 客户端UI组件id,组件初始化时设置一次，UUID
+     */
+    private String clientUid;
+    /***
+     * 客户端的请求时间，预留字段
+     */
+    private Long ts;
 
     /***
      * 客户端ip+userAgent
      */
     private String browserInfo;
-    public void resetClientFlag(){
+
+    public void resetClientFlag() {
         this.browserInfo = null;
         this.clientUid = null;
     }
@@ -233,21 +234,21 @@ public class CaptchaVO implements Serializable {
         this.secretKey = secretKey;
     }
 
-	public String getClientUid() {
-		return clientUid;
-	}
+    public String getClientUid() {
+        return clientUid;
+    }
 
-	public void setClientUid(String clientUid) {
-		this.clientUid = clientUid;
-	}
+    public void setClientUid(String clientUid) {
+        this.clientUid = clientUid;
+    }
 
-	public Long getTs() {
-		return ts;
-	}
+    public Long getTs() {
+        return ts;
+    }
 
-	public void setTs(Long ts) {
-		this.ts = ts;
-	}
+    public void setTs(Long ts) {
+        this.ts = ts;
+    }
 
     public String getBrowserInfo() {
         return browserInfo;

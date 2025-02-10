@@ -13,10 +13,10 @@ import org.springframework.context.annotation.Configuration;
  */
 @Configuration
 public class SwaggerConfiguration {
-    
+
     @Bean
     public OpenAPI customOpenApi() {
-        
+
         return new OpenAPI()
                 .info(new Info()
                         .title("前端使用")
@@ -25,7 +25,7 @@ public class SwaggerConfiguration {
                         .contact(new Contact()
                                 .name("rickey-c")
                         ));
-        
+
     }
 }
 

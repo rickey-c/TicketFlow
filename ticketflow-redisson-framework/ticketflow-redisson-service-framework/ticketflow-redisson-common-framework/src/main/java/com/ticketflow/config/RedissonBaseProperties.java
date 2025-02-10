@@ -13,7 +13,7 @@ import java.util.concurrent.TimeUnit;
 @Data
 @ConfigurationProperties("spring.redis.redisson")
 public class RedissonBaseProperties {
-    
+
     private Integer threads = 16;
 
     private Integer nettyThreads = 32;

@@ -8,16 +8,16 @@ package com.ticketflow.enums;
 public enum ApiRuleType {
     /**
      * 没有规则
-     * */
-    NO_RULE(0,"没有规则"),
+     */
+    NO_RULE(0, "没有规则"),
     /**
      * 普通规则
-     * */
-    RULE(1,"普通规则"),
+     */
+    RULE(1, "普通规则"),
     /**
      * 深度规则
-     * */
-    DEPTH_RULE(2,"深度规则"),
+     */
+    DEPTH_RULE(2, "深度规则"),
     ;
 
     private Integer code;

@@ -23,5 +23,5 @@ public class BloomFilterAutoConfiguration {
                                                BloomFilterProperties bloomFilterProperties) {
         return new BloomFilterHandler(redissonClient, bloomFilterProperties);
     }
-    
+
 }

@@ -20,7 +20,6 @@ public class RandomUtils {
 
     /**
      * 生成UUID
-     *
      */
     public static String getUuid() {
         String uuid = UUID.randomUUID().toString();
@@ -37,7 +36,7 @@ public class RandomUtils {
         return String.valueOf(hanZi.charAt(new Random().nextInt(hanZi.length())));
     }
 
-    public static int getRandomInt(int bound){
+    public static int getRandomInt(int bound) {
         return ThreadLocalRandom.current().nextInt(bound);
     }
 
@@ -52,11 +51,11 @@ public class RandomUtils {
         int lowCode;
 
         Random random = new Random();
-        
+
         //B0 + 0~39(16~55) 一级汉字所占区
         highCode = (176 + Math.abs(random.nextInt(39)));
         //A1 + 0~93 每区有94个汉字
-        lowCode = (161 + Math.abs(random.nextInt(93))); 
+        lowCode = (161 + Math.abs(random.nextInt(93)));
 
         byte[] b = new byte[2];
         b[0] = (Integer.valueOf(highCode)).byteValue();
@@ -74,18 +73,18 @@ public class RandomUtils {
      * 随机范围内数字
      */
     public static Integer getRandomInt(int startNum, int endNum) {
-        return ThreadLocalRandom.current().nextInt(endNum-startNum) + startNum;
+        return ThreadLocalRandom.current().nextInt(endNum - startNum) + startNum;
     }
 
     /**
      * 获取随机字符串
      */
-    public static String getRandomString(int length){
-        String str="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
-        Random random=new Random();
-        StringBuffer sb=new StringBuffer();
-        for(int i=0;i<length;i++){
-            int number=random.nextInt(62);
+    public static String getRandomString(int length) {
+        String str = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+        Random random = new Random();
+        StringBuffer sb = new StringBuffer();
+        for (int i = 0; i < length; i++) {
+            int number = random.nextInt(62);
             sb.append(str.charAt(number));
         }
         return sb.toString();

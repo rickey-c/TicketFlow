@@ -33,14 +33,14 @@ public class CaptchaCacheServiceMemImpl implements CaptchaCacheService {
         return CacheUtil.get(key);
     }
 
-	@Override
-	public Long increment(String key, long val) {
-    	Long ret = Long.parseLong(Objects.requireNonNull(CacheUtil.get(key)))+val;
-		CacheUtil.set(key, String.valueOf(ret),0);
-		return ret;
-	}
+    @Override
+    public Long increment(String key, long val) {
+        Long ret = Long.parseLong(Objects.requireNonNull(CacheUtil.get(key))) + val;
+        CacheUtil.set(key, String.valueOf(ret), 0);
+        return ret;
+    }
 
-	@Override
+    @Override
     public String type() {
         return "local";
     }

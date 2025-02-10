@@ -27,6 +27,7 @@ public class DateUtils {
     public static final String DC_TIME_FORMAT = "yyyy/MM/dd HH:mm:ss";
     public static final Integer TEN = 10;
     public static final char T = 'T';
+
     /**
      * 获取两个日期之间的所有月份 (年月)
      *
@@ -34,7 +35,7 @@ public class DateUtils {
      * @param endTime
      * @return：YYYY-MM
      */
-    public static List<String> getMonthBetweenDate(String startTime, String endTime,String format){
+    public static List<String> getMonthBetweenDate(String startTime, String endTime, String format) {
         SimpleDateFormat sdf = new SimpleDateFormat(format);
         // 声明保存日期集合
         List<String> list = new ArrayList<>();
@@ -45,7 +46,7 @@ public class DateUtils {
 
             //用Calendar 进行日期比较判断
             Calendar calendar = Calendar.getInstance();
-            while (startDate.getTime()<=endDate.getTime()){
+            while (startDate.getTime() <= endDate.getTime()) {
                 // 把日期添加到集合
                 list.add(sdf.format(startDate));
                 // 设置日期
@@ -53,7 +54,7 @@ public class DateUtils {
                 //把日期增加一天
                 calendar.add(Calendar.MONTH, 1);
                 // 获取增加后的日期
-                startDate=calendar.getTime();
+                startDate = calendar.getTime();
             }
         } catch (ParseException e) {
             e.printStackTrace();
@@ -76,7 +77,7 @@ public class DateUtils {
         eCalendar.set(Calendar.MILLISECOND, 0);
         System.out.println(eCalendar.getTimeInMillis());
         System.out.println(sCalendar.getTimeInMillis());
-        int days = (int)((eCalendar.getTimeInMillis() - sCalendar.getTimeInMillis())/(1000*3600*24));
+        int days = (int) ((eCalendar.getTimeInMillis() - sCalendar.getTimeInMillis()) / (1000 * 3600 * 24));
         return days;
     }
 
@@ -99,15 +100,15 @@ public class DateUtils {
         return new SimpleDateFormat(dateFormat).format(date);
     }
 
-    private static final String[] FORMATS = { "yyyy-MM-dd", "yyyy-MM-dd HH:mm",
+    private static final String[] FORMATS = {"yyyy-MM-dd", "yyyy-MM-dd HH:mm",
             "yyyy-MM-dd HH:mm:ss", "HH:mm", "HH:mm:ss", "yyyy-MM",
-            "yyyy-MM-dd HH:mm:ss.S",DC_DATE_FORMAT,DC_TIME_FORMAT };
+            "yyyy-MM-dd HH:mm:ss.S", DC_DATE_FORMAT, DC_TIME_FORMAT};
 
     public static Date convert(String str) {
         if (str != null && str.length() > 0) {
             if (str.length() > TEN && str.charAt(TEN) == T) {
                 // 去掉json-lib加的T字母
-                str = str.replace(T, ' '); 
+                str = str.replace(T, ' ');
             }
             for (String format : FORMATS) {
                 if (str.length() == format.length()) {
@@ -123,6 +124,7 @@ public class DateUtils {
         }
         return null;
     }
+
     /**
      * 返回该天从00:00:00开始的日期
      *

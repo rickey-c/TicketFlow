@@ -11,14 +11,14 @@ import lombok.Data;
  * @Date: 2025/12/3 14:04
  */
 @Data
-@Schema(title="AccountOrderCountDto", description ="账户下某个节目的订单数量")
+@Schema(title = "AccountOrderCountDto", description = "账户下某个节目的订单数量")
 public class AccountOrderCountDto {
-    
-    @Schema(name ="userId", type ="Long", description ="用户id", requiredMode= RequiredMode.REQUIRED)
+
+    @Schema(name = "userId", type = "Long", description = "用户id", requiredMode = RequiredMode.REQUIRED)
     @NotNull
     private Long userId;
-    
-    @Schema(name ="programId", type ="Long", description ="节目id", requiredMode= RequiredMode.REQUIRED)
+
+    @Schema(name = "programId", type = "Long", description = "节目id", requiredMode = RequiredMode.REQUIRED)
     @NotNull
     private Long programId;
 }

@@ -15,7 +15,7 @@ import org.springframework.context.annotation.Configuration;
  **/
 @Configuration
 public class WorkerNodeConfig {
-    
+
     @Bean
     public UidGenerator uidGenerator(WorkerIdAssigner disposableWorkerIdAssigner, SnowflakeIdGenerator snowflakeIdGenerator) {
         CachedUidGenerator cachedUidGenerator = new CachedUidGenerator();

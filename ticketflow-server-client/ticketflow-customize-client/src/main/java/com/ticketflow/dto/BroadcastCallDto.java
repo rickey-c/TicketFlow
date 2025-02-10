@@ -11,14 +11,14 @@ import lombok.Data;
  * @Date: 2025/1/25 10:15
  */
 @Data
-@Schema(title="BroadcastCallDto", description ="广播调用")
+@Schema(title = "BroadcastCallDto", description = "广播调用")
 public class BroadcastCallDto {
-    
-    @Schema(name ="serviceName", type ="String", description ="服务名", requiredMode= RequiredMode.REQUIRED)
+
+    @Schema(name = "serviceName", type = "String", description = "服务名", requiredMode = RequiredMode.REQUIRED)
     @NotBlank
     private String serviceName;
-    
-    @Schema(name ="requestBody", type ="String", description ="请求体", requiredMode= RequiredMode.REQUIRED)
+
+    @Schema(name = "requestBody", type = "String", description = "请求体", requiredMode = RequiredMode.REQUIRED)
     @NotBlank
     private String requestBody;
 }

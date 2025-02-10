@@ -7,14 +7,14 @@
         <artifactId>ticketflow-server</artifactId>
         <version>${revision}</version>
     </parent>
-    
+
     <groupId>org.rickey</groupId>
     <artifactId>ticketflow-base-data-service</artifactId>
     <version>${revision}</version>
-    
+
     <name>ticketflow-base-data-service</name>
     <description>ticketflow-base-data-service</description>
-    
+
     <url/>
     <licenses>
         <license/>

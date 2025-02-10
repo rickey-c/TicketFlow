@@ -2,45 +2,46 @@ package com.ticketflow.vo;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
+
 /**
  * @Description: 渠道数据Vo
  * @Author: rickey-c
  * @Date: 2025/1/24 15:48
  */
 @Data
-@Schema(title="GetChannelDataVo", description ="渠道数据")
+@Schema(title = "GetChannelDataVo", description = "渠道数据")
 public class GetChannelDataVo {
-    
-    @Schema(name ="id", type ="String", description ="id")
+
+    @Schema(name = "id", type = "String", description = "id")
     private Long id;
-    
-    @Schema(name ="name", type ="String", description ="名称")
+
+    @Schema(name = "name", type = "String", description = "名称")
     private String name;
-    
-    @Schema(name ="code", type ="String", description ="code码")
+
+    @Schema(name = "code", type = "String", description = "code码")
     private String code;
-    
-    @Schema(name ="introduce", type ="String", description ="介绍")
+
+    @Schema(name = "introduce", type = "String", description = "介绍")
     private String introduce;
-    
-    @Schema(name ="status", type ="Integer", description ="装填 1:正常 0:禁用")
+
+    @Schema(name = "status", type = "Integer", description = "装填 1:正常 0:禁用")
     private Integer status;
-    
-    @Schema(name ="signPublicKey", type ="String", description ="rsa签名公钥")
+
+    @Schema(name = "signPublicKey", type = "String", description = "rsa签名公钥")
     private String signPublicKey;
-    
-    @Schema(name ="signSecretKey", type ="String", description ="rsa签名私钥")
+
+    @Schema(name = "signSecretKey", type = "String", description = "rsa签名私钥")
     private String signSecretKey;
-    
-    @Schema(name ="aesKey", type ="String", description ="aes私钥")
+
+    @Schema(name = "aesKey", type = "String", description = "aes私钥")
     private String aesKey;
-    
-    @Schema(name ="dataPublicKey", type ="String", description ="rsa参数公钥")
+
+    @Schema(name = "dataPublicKey", type = "String", description = "rsa参数公钥")
     private String dataPublicKey;
-    
-    @Schema(name ="dataSecretKey", type ="String", description ="rsa参数私钥")
+
+    @Schema(name = "dataSecretKey", type = "String", description = "rsa参数私钥")
     private String dataSecretKey;
-    
-    @Schema(name ="tokenSecret", type ="String", description ="token秘钥")
+
+    @Schema(name = "tokenSecret", type = "String", description = "token秘钥")
     private String tokenSecret;
 }

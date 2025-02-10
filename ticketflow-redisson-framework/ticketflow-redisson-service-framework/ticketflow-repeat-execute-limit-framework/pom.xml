@@ -10,7 +10,7 @@
     </parent>
 
     <artifactId>ticketflow-repeat-execute-limit-framework</artifactId>
-    
+
     <dependencies>
         <dependency>
             <groupId>com.rickey</groupId>

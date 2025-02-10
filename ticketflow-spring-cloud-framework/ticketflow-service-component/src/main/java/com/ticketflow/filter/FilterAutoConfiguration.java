@@ -14,15 +14,15 @@ public class FilterAutoConfiguration {
 
     @Bean
     @Order(-10)
-    public RequestWrapperFilter requestWrapperFilter(){
+    public RequestWrapperFilter requestWrapperFilter() {
         return new RequestWrapperFilter();
     }
 
     @Bean
     @Order(1)
-    public BaseParameterFilter baseParameterFilter(){
+    public BaseParameterFilter baseParameterFilter() {
         return new BaseParameterFilter();
     }
-    
-    
+
+
 }

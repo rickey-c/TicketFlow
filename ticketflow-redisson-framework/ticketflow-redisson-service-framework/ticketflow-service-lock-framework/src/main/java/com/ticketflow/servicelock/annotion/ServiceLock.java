@@ -14,50 +14,57 @@ import java.util.concurrent.TimeUnit;
  * @Author: rickey-c
  * @Date: 2025/1/27 16:37
  */
-@Target(value = {ElementType.TYPE,ElementType.METHOD})
+@Target(value = {ElementType.TYPE, ElementType.METHOD})
 @Retention(value = RetentionPolicy.RUNTIME)
 public @interface ServiceLock {
 
     /**
      * 锁类型，默认可重入锁
+     *
      * @return lockType
      */
     LockType lockType() default LockType.Reentrant;
 
     /**
      * 锁名称
+     *
      * @return name
      */
     String name() default "";
 
     /**
      * 业务keys
+     *
      * @return keys
      */
     String[] keys();
 
     /**
      * 锁等待时间
+     *
      * @return waitTime
      */
     long waitTime() default 10;
 
     /**
      * 时间单位
+     *
      * @return TimeUnit
      */
     TimeUnit timeUnit() default TimeUnit.SECONDS;
 
     /**
      * 加锁超时处理策略
+     *
      * @return timeUnit
      */
     LockTimeOutStrategy lockTimeOutStrategy() default LockTimeOutStrategy.FAIL;
 
     /**
      * 自定义加锁超时处理策略
+     *
      * @return customLockTimeOutStrategy
      */
     String customLockTimeOutStrategy() default "";
-    
+
 }

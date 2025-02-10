@@ -19,24 +19,24 @@ import java.util.List;
 @Slf4j
 @Component
 public class OrderProgramCacheResolutionOperate {
-    
+
     @Autowired
     private RedisCache redisCache;
-    
+
     private DefaultRedisScript redisScript;
-    
+
     @PostConstruct
-    public void init(){
+    public void init() {
         try {
             redisScript = new DefaultRedisScript<>();
             redisScript.setScriptSource(new ResourceScriptSource(new ClassPathResource("lua/OrderProgramDataResolution.lua")));
             redisScript.setResultType(Integer.class);
         } catch (Exception e) {
-            log.error("redisScript init lua error",e);
+            log.error("redisScript init lua error", e);
         }
     }
-    
-    public void programCacheReverseOperate(List<String> keys, Object... args){
+
+    public void programCacheReverseOperate(List<String> keys, Object... args) {
         redisCache.getInstance().execute(redisScript, keys, args);
     }
 }

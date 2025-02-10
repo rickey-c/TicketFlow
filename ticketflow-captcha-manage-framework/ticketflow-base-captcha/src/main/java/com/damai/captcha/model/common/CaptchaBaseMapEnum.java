@@ -8,7 +8,7 @@ package com.damai.captcha.model.common;
 public enum CaptchaBaseMapEnum {
     /**
      * 枚举
-     * */
+     */
     ROTATE("ROTATE", "旋转拼图底图"),
     ROTATE_BLOCK("ROTATE_BLOCK", "旋转拼图旋转块底图"),
     ORIGINAL("ORIGINAL", "滑动拼图底图"),
@@ -33,7 +33,7 @@ public enum CaptchaBaseMapEnum {
 
     /**
      * 根据codeValue获取枚举
-     * */
+     */
     public static CaptchaBaseMapEnum parseFromCodeValue(String codeValue) {
         for (CaptchaBaseMapEnum e : CaptchaBaseMapEnum.values()) {
             if (e.codeValue.equals(codeValue)) {
@@ -42,7 +42,7 @@ public enum CaptchaBaseMapEnum {
         }
         return null;
     }
-    
+
     /**
      * 根据codeValue获取描述
      */
@@ -50,14 +50,14 @@ public enum CaptchaBaseMapEnum {
         CaptchaBaseMapEnum enumItem = parseFromCodeValue(codeValue);
         return enumItem == null ? "" : enumItem.getCodeDesc();
     }
-    
+
     /**
      * 验证codeValue是否有效
      */
     public static boolean validateCodeValue(String codeValue) {
         return parseFromCodeValue(codeValue) != null;
     }
-    
+
     /**
      * 列出所有值字符串
      */

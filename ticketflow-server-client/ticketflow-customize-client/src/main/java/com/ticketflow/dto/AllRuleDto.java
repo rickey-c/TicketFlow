@@ -13,13 +13,13 @@ import java.util.List;
  * @Date: 2025/1/24 15:32
  */
 @Data
-@Schema(title="AllRuleDto", description ="全部规则")
+@Schema(title = "AllRuleDto", description = "全部规则")
 public class AllRuleDto {
-    
-    @Schema(name ="ruleDto", type ="RuleDto", description ="普通规则", requiredMode= RequiredMode.REQUIRED)
+
+    @Schema(name = "ruleDto", type = "RuleDto", description = "普通规则", requiredMode = RequiredMode.REQUIRED)
     @NotNull
     private RuleDto ruleDto;
-    
-    @Schema(name ="depthRuleDtoList", type ="DepthRuleDto[]", description ="深度规则")
+
+    @Schema(name = "depthRuleDtoList", type = "DepthRuleDto[]", description = "深度规则")
     private List<DepthRuleDto> depthRuleDtoList;
 }

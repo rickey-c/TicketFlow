@@ -21,13 +21,13 @@ import com.baidu.fsg.uid.utils.ValuedEnum;
  * WorkerNodeType
  * <li>CONTAINER: Such as Docker
  * <li>ACTUAL: Actual machine
- * 
+ *
  * @author yutianbao
  */
 public enum WorkerNodeType implements ValuedEnum<Integer> {
     /**
      * 百度uid
-     * */
+     */
     CONTAINER(1), ACTUAL(2);
 
     /**

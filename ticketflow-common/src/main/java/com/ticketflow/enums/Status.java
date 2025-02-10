@@ -8,10 +8,9 @@ package com.ticketflow.enums;
 public enum Status {
     /**
      * 基础状态
-     * */
-    RUN(1,"正常"),
-    STOP(0,"禁用")
-    ;
+     */
+    RUN(1, "正常"),
+    STOP(0, "禁用");
 
     private Integer code;
 

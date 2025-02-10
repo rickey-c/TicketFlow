@@ -11,10 +11,10 @@ import lombok.Data;
  * @Date: 2025/1/28 13:02
  */
 @Data
-@Schema(title="RuleGetDto", description ="普通规则查询")
+@Schema(title = "RuleGetDto", description = "普通规则查询")
 public class RuleGetDto {
-    
-    @Schema(name ="id", type ="String", description ="普通规则id", requiredMode= RequiredMode.REQUIRED)
+
+    @Schema(name = "id", type = "String", description = "普通规则id", requiredMode = RequiredMode.REQUIRED)
     @NotNull
     private Long id;
 }

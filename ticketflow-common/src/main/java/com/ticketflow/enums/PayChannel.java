@@ -8,10 +8,10 @@ package com.ticketflow.enums;
 public enum PayChannel {
     /**
      * 支付渠道
-     * */
-    ALIPAY(1,"alipay","支付宝"),
+     */
+    ALIPAY(1, "alipay", "支付宝"),
 
-    WX(2,"wx","微信"),
+    WX(2, "wx", "微信"),
     ;
 
     private Integer code;

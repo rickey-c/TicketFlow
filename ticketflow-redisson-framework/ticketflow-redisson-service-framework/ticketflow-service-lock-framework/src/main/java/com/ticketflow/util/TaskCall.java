@@ -10,8 +10,9 @@ public interface TaskCall<T> {
 
     /**
      * call
+     *
      * @return
      */
     T call();
-    
+
 }

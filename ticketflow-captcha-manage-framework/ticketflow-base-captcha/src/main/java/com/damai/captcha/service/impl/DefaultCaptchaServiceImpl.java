@@ -20,7 +20,7 @@ import java.util.Properties;
  * @Author: rickey-c
  * @Date: 2025/1/30 21:45
  */
-public class DefaultCaptchaServiceImpl extends AbstractCaptchaService{
+public class DefaultCaptchaServiceImpl extends AbstractCaptchaService {
 
     @Override
     public String captchaType() {
@@ -30,24 +30,24 @@ public class DefaultCaptchaServiceImpl extends AbstractCaptchaService{
     @Override
     public void init(Properties config) {
         for (String s : CaptchaServiceFactory.instances.keySet()) {
-            if(captchaType().equals(s)){
+            if (captchaType().equals(s)) {
                 continue;
             }
             getService(s).init(config);
         }
     }
 
-	@Override
-	public void destroy(Properties config) {
-		for (String s : CaptchaServiceFactory.instances.keySet()) {
-			if(captchaType().equals(s)){
-				continue;
-			}
-			getService(s).destroy(config);
-		}
-	}
+    @Override
+    public void destroy(Properties config) {
+        for (String s : CaptchaServiceFactory.instances.keySet()) {
+            if (captchaType().equals(s)) {
+                continue;
+            }
+            getService(s).destroy(config);
+        }
+    }
 
-	private CaptchaService getService(String captchaType){
+    private CaptchaService getService(String captchaType) {
         return CaptchaServiceFactory.instances.get(captchaType);
     }
 

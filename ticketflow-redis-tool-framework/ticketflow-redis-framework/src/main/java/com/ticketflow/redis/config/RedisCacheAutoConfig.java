@@ -13,7 +13,7 @@ import org.springframework.data.redis.core.StringRedisTemplate;
  */
 @Configuration
 public class RedisCacheAutoConfig {
-    
+
     @Bean
     public RedisCacheImpl redisCache(@Qualifier("redisToolStringRedisTemplate") StringRedisTemplate stringRedisTemplate) {
         return new RedisCacheImpl(stringRedisTemplate);

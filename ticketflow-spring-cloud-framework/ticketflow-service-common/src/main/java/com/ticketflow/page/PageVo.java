@@ -24,6 +24,7 @@ import lombok.NoArgsConstructor;
 import java.io.Serial;
 import java.io.Serializable;
 import java.util.List;
+
 /**
  * @Description: 分页Vo
  * @Author: rickey-c
@@ -36,12 +37,12 @@ public class PageVo<T> implements Serializable {
 
     @Serial
     private static final long serialVersionUID = 1L;
-    
+
     private long pageNum;
-    
+
     private long pageSize;
-    
+
     private long totalSize;
-    
+
     private List<T> list;
 }

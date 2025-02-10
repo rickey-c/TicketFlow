@@ -10,7 +10,7 @@ import org.springframework.core.env.ConfigurableEnvironment;
  * @Date: 2025/1/30 21:45
  */
 public class CaptchaEnvironment implements EnvironmentPostProcessor {
-    
+
     @Override
     public void postProcessEnvironment(ConfigurableEnvironment environment, SpringApplication application) {
         application.setAllowBeanDefinitionOverriding(true);

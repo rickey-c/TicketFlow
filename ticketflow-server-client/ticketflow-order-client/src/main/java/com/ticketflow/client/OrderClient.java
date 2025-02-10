@@ -15,11 +15,12 @@ import static com.ticketflow.constant.Constant.SPRING_INJECT_PREFIX_DISTINCTION_
  * @Date: 2025/2/3 18:08
  */
 @Component
-@FeignClient(value = SPRING_INJECT_PREFIX_DISTINCTION_NAME+"-"+"order-service",fallback = OrderClientFallback.class)
+@FeignClient(value = SPRING_INJECT_PREFIX_DISTINCTION_NAME + "-" + "order-service", fallback = OrderClientFallback.class)
 public interface OrderClient {
 
     /**
      * 创建订单
+     *
      * @param orderCreateDto 创建订单 dto
      * @return 结果
      */
@@ -27,9 +28,10 @@ public interface OrderClient {
 
     /**
      * 账户下某个节目的订单数量
+     *
      * @param accountOrderCountDto 订单数量 dto
      * @return 结果
      */
     ApiResponse<AccountOrderCountVo> accountOrderCount(AccountOrderCountDto accountOrderCountDto);
-    
+
 }

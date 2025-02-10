@@ -27,6 +27,6 @@ public abstract class AbstractApplicationExecute {
                     initializeHandler.executeInit(applicationContext);
                 });
     }
-    
+
     public abstract String type();
 }

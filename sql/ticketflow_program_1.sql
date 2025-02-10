@@ -1,4 +1,5 @@
-USE ticketflow_program_1;
+USE
+ticketflow_program_1;
 
 DROP TABLE IF EXISTS `d_program_0`;
 /*!40101 SET @saved_cs_client = @@character_set_client */;
@@ -12,50 +13,50 @@ CREATE TABLE `d_program_0`
     `program_category_id`                bigint(20)   NOT NULL COMMENT '节目类型表id',
     `parent_program_category_id`         bigint(20)   NOT NULL COMMENT '父节目类型表id',
     `title`                              varchar(512) NOT NULL COMMENT '标题',
-    `actor`                              varchar(256)          DEFAULT NULL COMMENT '艺人',
-    `place`                              varchar(100)          DEFAULT NULL COMMENT '地点',
+    `actor`                              varchar(256) DEFAULT NULL COMMENT '艺人',
+    `place`                              varchar(100) DEFAULT NULL COMMENT '地点',
     `item_picture`                       text COMMENT '项目图片',
     `pre_sell`                           tinyint(1)   NOT NULL DEFAULT '0' COMMENT '预售 1:是 0:否',
-    `pre_sell_instruction`               varchar(256)          DEFAULT NULL COMMENT '预售说明',
-    `important_notice`                   varchar(100)          DEFAULT NULL COMMENT '重要通知',
+    `pre_sell_instruction`               varchar(256) DEFAULT NULL COMMENT '预售说明',
+    `important_notice`                   varchar(100) DEFAULT NULL COMMENT '重要通知',
     `detail`                             text         NOT NULL COMMENT '项目详情',
     `per_order_limit_purchase_count`     int(11)               DEFAULT '6' COMMENT '每笔订单最多购买数量',
     `per_account_limit_purchase_count`   int(11)               DEFAULT '6' COMMENT '每个账号最多购买数量',
-    `refund_ticket_rule`                 varchar(512)          DEFAULT NULL COMMENT '退票/换票规则',
-    `delivery_instruction`               varchar(512)          DEFAULT NULL COMMENT '配送信息说明',
-    `entry_rule`                         varchar(512)          DEFAULT NULL COMMENT '入场规则',
-    `child_purchase`                     varchar(512)          DEFAULT NULL COMMENT '儿童购票',
-    `invoice_specification`              varchar(512)          DEFAULT NULL COMMENT '发票说明',
+    `refund_ticket_rule`                 varchar(512) DEFAULT NULL COMMENT '退票/换票规则',
+    `delivery_instruction`               varchar(512) DEFAULT NULL COMMENT '配送信息说明',
+    `entry_rule`                         varchar(512) DEFAULT NULL COMMENT '入场规则',
+    `child_purchase`                     varchar(512) DEFAULT NULL COMMENT '儿童购票',
+    `invoice_specification`              varchar(512) DEFAULT NULL COMMENT '发票说明',
     `real_ticket_purchase_rule`          text COMMENT '实名购票规则',
     `abnormal_order_description`         text COMMENT '异常排单说明',
     `kind_reminder`                      text COMMENT '温馨提示',
-    `performance_duration`               varchar(100)          DEFAULT NULL COMMENT '演出时长',
-    `entry_time`                         varchar(512)          DEFAULT NULL COMMENT '入场时间',
+    `performance_duration`               varchar(100) DEFAULT NULL COMMENT '演出时长',
+    `entry_time`                         varchar(512) DEFAULT NULL COMMENT '入场时间',
     `min_performance_count`              int(11)               DEFAULT NULL COMMENT '最低演出曲目',
-    `main_actor`                         varchar(100)          DEFAULT NULL COMMENT '主要演员',
-    `min_performance_duration`           varchar(100)          DEFAULT NULL COMMENT '最低演出时长',
+    `main_actor`                         varchar(100) DEFAULT NULL COMMENT '主要演员',
+    `min_performance_duration`           varchar(100) DEFAULT NULL COMMENT '最低演出时长',
     `prohibited_item`                    text COMMENT '禁止携带物品',
-    `deposit_specification`              varchar(512)          DEFAULT NULL COMMENT '寄存说明',
+    `deposit_specification`              varchar(512) DEFAULT NULL COMMENT '寄存说明',
     `total_count`                        bigint(20)            DEFAULT NULL COMMENT '大麦网初始开售时全场可售门票总张数',
     `permit_refund`                      tinyint(1)   NOT NULL DEFAULT '0' COMMENT '是否允许退款  0:不支持退 1:条件退 2:全部退',
-    `refund_explain`                     varchar(512)          DEFAULT NULL COMMENT '退款说明',
+    `refund_explain`                     varchar(512) DEFAULT NULL COMMENT '退款说明',
     `rel_name_ticket_entrance`           tinyint(1)   NOT NULL DEFAULT '0' COMMENT '实名制购票和入场 1:是 0:否',
-    `rel_name_ticket_entrance_explain`   varchar(512)          DEFAULT NULL COMMENT '实名制购票和入场说明',
+    `rel_name_ticket_entrance_explain`   varchar(512) DEFAULT NULL COMMENT '实名制购票和入场说明',
     `permit_choose_seat`                 tinyint(1)   NOT NULL DEFAULT '0' COMMENT '是否允许选座 1:允许选座 0:不允许选座',
-    `choose_seat_explain`                varchar(512)          DEFAULT NULL COMMENT '选座说明',
+    `choose_seat_explain`                varchar(512) DEFAULT NULL COMMENT '选座说明',
     `electronic_delivery_ticket`         tinyint(1)   NOT NULL DEFAULT '1' COMMENT '电子票/快递票 0:都没有1:电子票 2:快递票',
-    `electronic_delivery_ticket_explain` varchar(512)          DEFAULT NULL COMMENT '电子票说明',
+    `electronic_delivery_ticket_explain` varchar(512) DEFAULT NULL COMMENT '电子票说明',
     `electronic_invoice`                 tinyint(1)   NOT NULL DEFAULT '1' COMMENT '电子发票 1:是 0:不是',
-    `electronic_invoice_explain`         varchar(512)          DEFAULT NULL COMMENT '电子发票说明',
+    `electronic_invoice_explain`         varchar(512) DEFAULT NULL COMMENT '电子发票说明',
     `high_heat`                          tinyint(1)   NOT NULL DEFAULT '0' COMMENT '高热度节目 0:否 1:是',
     `program_status`                     tinyint(1)   NOT NULL DEFAULT '1' COMMENT '节目状态 1:上架 0:下架',
-    `issue_time`                         datetime              DEFAULT NULL COMMENT '上架发行时间',
+    `issue_time`                         datetime     DEFAULT NULL COMMENT '上架发行时间',
     `create_time`                        datetime     NOT NULL COMMENT '创建时间',
     `edit_time`                          datetime     NOT NULL COMMENT '编辑时间',
     `status`                             tinyint(1)   NOT NULL DEFAULT '1' COMMENT '1:正常 0:删除',
     PRIMARY KEY (`id`),
-    KEY `program_group_id_idx` (`program_group_id`) USING BTREE,
-    KEY `issue_time_idx` (`issue_time`) USING BTREE
+    KEY                                  `program_group_id_idx` (`program_group_id`) USING BTREE,
+    KEY                                  `issue_time_idx` (`issue_time`) USING BTREE
 ) ENGINE = InnoDB
   DEFAULT CHARSET = utf8mb4 COMMENT ='节目表';
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -64,12 +65,14 @@ CREATE TABLE `d_program_0`
 -- Dumping data for table `d_program_0`
 --
 
-LOCK TABLES `d_program_0` WRITE;
+LOCK
+TABLES `d_program_0` WRITE;
 /*!40000 ALTER TABLE `d_program_0`
     DISABLE KEYS */;
 /*!40000 ALTER TABLE `d_program_0`
     ENABLE KEYS */;
-UNLOCK TABLES;
+UNLOCK
+TABLES;
 
 --
 -- Table structure for table `d_program_1`
@@ -87,50 +90,50 @@ CREATE TABLE `d_program_1`
     `program_category_id`                bigint(20)   NOT NULL COMMENT '节目类型表id',
     `parent_program_category_id`         bigint(20)   NOT NULL COMMENT '父节目类型表id',
     `title`                              varchar(512) NOT NULL COMMENT '标题',
-    `actor`                              varchar(256)          DEFAULT NULL COMMENT '艺人',
-    `place`                              varchar(100)          DEFAULT NULL COMMENT '地点',
+    `actor`                              varchar(256) DEFAULT NULL COMMENT '艺人',
+    `place`                              varchar(100) DEFAULT NULL COMMENT '地点',
     `item_picture`                       text COMMENT '项目图片',
     `pre_sell`                           tinyint(1)   NOT NULL DEFAULT '0' COMMENT '预售 1:是 0:否',
-    `pre_sell_instruction`               varchar(256)          DEFAULT NULL COMMENT '预售说明',
-    `important_notice`                   varchar(100)          DEFAULT NULL COMMENT '重要通知',
+    `pre_sell_instruction`               varchar(256) DEFAULT NULL COMMENT '预售说明',
+    `important_notice`                   varchar(100) DEFAULT NULL COMMENT '重要通知',
     `detail`                             text         NOT NULL COMMENT '项目详情',
     `per_order_limit_purchase_count`     int(11)               DEFAULT '6' COMMENT '每笔订单最多购买数量',
     `per_account_limit_purchase_count`   int(11)               DEFAULT '6' COMMENT '每个账号最多购买数量',
-    `refund_ticket_rule`                 varchar(512)          DEFAULT NULL COMMENT '退票/换票规则',
-    `delivery_instruction`               varchar(512)          DEFAULT NULL COMMENT '配送信息说明',
-    `entry_rule`                         varchar(512)          DEFAULT NULL COMMENT '入场规则',
-    `child_purchase`                     varchar(512)          DEFAULT NULL COMMENT '儿童购票',
-    `invoice_specification`              varchar(512)          DEFAULT NULL COMMENT '发票说明',
+    `refund_ticket_rule`                 varchar(512) DEFAULT NULL COMMENT '退票/换票规则',
+    `delivery_instruction`               varchar(512) DEFAULT NULL COMMENT '配送信息说明',
+    `entry_rule`                         varchar(512) DEFAULT NULL COMMENT '入场规则',
+    `child_purchase`                     varchar(512) DEFAULT NULL COMMENT '儿童购票',
+    `invoice_specification`              varchar(512) DEFAULT NULL COMMENT '发票说明',
     `real_ticket_purchase_rule`          text COMMENT '实名购票规则',
     `abnormal_order_description`         text COMMENT '异常排单说明',
     `kind_reminder`                      text COMMENT '温馨提示',
-    `performance_duration`               varchar(100)          DEFAULT NULL COMMENT '演出时长',
-    `entry_time`                         varchar(512)          DEFAULT NULL COMMENT '入场时间',
+    `performance_duration`               varchar(100) DEFAULT NULL COMMENT '演出时长',
+    `entry_time`                         varchar(512) DEFAULT NULL COMMENT '入场时间',
     `min_performance_count`              int(11)               DEFAULT NULL COMMENT '最低演出曲目',
-    `main_actor`                         varchar(100)          DEFAULT NULL COMMENT '主要演员',
-    `min_performance_duration`           varchar(100)          DEFAULT NULL COMMENT '最低演出时长',
+    `main_actor`                         varchar(100) DEFAULT NULL COMMENT '主要演员',
+    `min_performance_duration`           varchar(100) DEFAULT NULL COMMENT '最低演出时长',
     `prohibited_item`                    text COMMENT '禁止携带物品',
-    `deposit_specification`              varchar(512)          DEFAULT NULL COMMENT '寄存说明',
+    `deposit_specification`              varchar(512) DEFAULT NULL COMMENT '寄存说明',
     `total_count`                        bigint(20)            DEFAULT NULL COMMENT '大麦网初始开售时全场可售门票总张数',
     `permit_refund`                      tinyint(1)   NOT NULL DEFAULT '0' COMMENT '是否允许退款  0:不支持退 1:条件退 2:全部退',
-    `refund_explain`                     varchar(512)          DEFAULT NULL COMMENT '退款说明',
+    `refund_explain`                     varchar(512) DEFAULT NULL COMMENT '退款说明',
     `rel_name_ticket_entrance`           tinyint(1)   NOT NULL DEFAULT '0' COMMENT '实名制购票和入场 1:是 0:否',
-    `rel_name_ticket_entrance_explain`   varchar(512)          DEFAULT NULL COMMENT '实名制购票和入场说明',
+    `rel_name_ticket_entrance_explain`   varchar(512) DEFAULT NULL COMMENT '实名制购票和入场说明',
     `permit_choose_seat`                 tinyint(1)   NOT NULL DEFAULT '0' COMMENT '是否允许选座 1:允许选座 0:不允许选座',
-    `choose_seat_explain`                varchar(512)          DEFAULT NULL COMMENT '选座说明',
+    `choose_seat_explain`                varchar(512) DEFAULT NULL COMMENT '选座说明',
     `electronic_delivery_ticket`         tinyint(1)   NOT NULL DEFAULT '1' COMMENT '电子票/快递票 0:都没有1:电子票 2:快递票',
-    `electronic_delivery_ticket_explain` varchar(512)          DEFAULT NULL COMMENT '电子票说明',
+    `electronic_delivery_ticket_explain` varchar(512) DEFAULT NULL COMMENT '电子票说明',
     `electronic_invoice`                 tinyint(1)   NOT NULL COMMENT '电子发票 1:是 0:不是',
-    `electronic_invoice_explain`         varchar(512)          DEFAULT NULL COMMENT '电子发票说明',
+    `electronic_invoice_explain`         varchar(512) DEFAULT NULL COMMENT '电子发票说明',
     `high_heat`                          tinyint(1)   NOT NULL DEFAULT '0' COMMENT '高热度节目 0:否 1:是',
     `program_status`                     tinyint(1)   NOT NULL DEFAULT '1' COMMENT '节目状态 1:上架 0:下架',
-    `issue_time`                         datetime              DEFAULT NULL COMMENT '上架发行时间',
+    `issue_time`                         datetime     DEFAULT NULL COMMENT '上架发行时间',
     `create_time`                        datetime     NOT NULL COMMENT '创建时间',
     `edit_time`                          datetime     NOT NULL COMMENT '编辑时间',
     `status`                             tinyint(1)   NOT NULL DEFAULT '1' COMMENT '1:正常 0:删除',
     PRIMARY KEY (`id`),
-    KEY `program_group_id_idx` (`program_group_id`) USING BTREE,
-    KEY `issue_time_idx` (`issue_time`) USING BTREE
+    KEY                                  `program_group_id_idx` (`program_group_id`) USING BTREE,
+    KEY                                  `issue_time_idx` (`issue_time`) USING BTREE
 ) ENGINE = InnoDB
   DEFAULT CHARSET = utf8mb4 COMMENT ='节目表';
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -139,7 +142,8 @@ CREATE TABLE `d_program_1`
 -- Dumping data for table `d_program_1`
 --
 
-LOCK TABLES `d_program_1` WRITE;
+LOCK
+TABLES `d_program_1` WRITE;
 /*!40000 ALTER TABLE `d_program_1`
     DISABLE KEYS */;
 INSERT INTO `d_program_1`
@@ -446,7 +450,8 @@ VALUES (1, 1, 1, 2, 1, 1, '《漂洋过海来看你》致敬经典老歌', '众�
         '2024-02-04 00:00:00', '2024-02-04 00:00:00', '2024-02-04 00:00:00', 1);
 /*!40000 ALTER TABLE `d_program_1`
     ENABLE KEYS */;
-UNLOCK TABLES;
+UNLOCK
+TABLES;
 
 --
 -- Table structure for table `d_program_category`
@@ -466,8 +471,8 @@ CREATE TABLE `d_program_category`
     `status`      tinyint(1)   NOT NULL DEFAULT '1' COMMENT '1:正常 0:删除',
     PRIMARY KEY (`id`),
     UNIQUE KEY `parent_id_name_type_idx` (`parent_id`, `name`, `type`) USING BTREE,
-    KEY `parent_id` (`parent_id`),
-    KEY `ctype` (`type`)
+    KEY           `parent_id` (`parent_id`),
+    KEY           `ctype` (`type`)
 ) ENGINE = InnoDB
   AUTO_INCREMENT = 22
   DEFAULT CHARSET = utf8 COMMENT ='节目类型表';
@@ -477,7 +482,8 @@ CREATE TABLE `d_program_category`
 -- Dumping data for table `d_program_category`
 --
 
-LOCK TABLES `d_program_category` WRITE;
+LOCK
+TABLES `d_program_category` WRITE;
 /*!40000 ALTER TABLE `d_program_category`
     DISABLE KEYS */;
 INSERT INTO `d_program_category`
@@ -504,7 +510,8 @@ VALUES (1, 0, '演唱会', 1, '2024-01-07 22:15:00', '2024-01-07 22:15:00', 1),
        (21, 7, '戏曲', 2, '2024-01-07 22:15:00', '2024-01-07 22:15:00', 1);
 /*!40000 ALTER TABLE `d_program_category`
     ENABLE KEYS */;
-UNLOCK TABLES;
+UNLOCK
+TABLES;
 
 --
 -- Table structure for table `d_program_group_0`
@@ -516,10 +523,10 @@ DROP TABLE IF EXISTS `d_program_group_0`;
 CREATE TABLE `d_program_group_0`
 (
     `id`               bigint(20) NOT NULL COMMENT '主键id',
-    `program_json`     text       NOT NULL COMMENT '节目json',
-    `recent_show_time` datetime   NOT NULL COMMENT '最近的节目演出时间',
-    `create_time`      datetime   NOT NULL COMMENT '创建时间',
-    `edit_time`        datetime   NOT NULL COMMENT '编辑时间',
+    `program_json`     text     NOT NULL COMMENT '节目json',
+    `recent_show_time` datetime NOT NULL COMMENT '最近的节目演出时间',
+    `create_time`      datetime NOT NULL COMMENT '创建时间',
+    `edit_time`        datetime NOT NULL COMMENT '编辑时间',
     `status`           tinyint(1) NOT NULL DEFAULT '1' COMMENT '1:正常 0:删除',
     PRIMARY KEY (`id`)
 ) ENGINE = InnoDB
@@ -530,12 +537,14 @@ CREATE TABLE `d_program_group_0`
 -- Dumping data for table `d_program_group_0`
 --
 
-LOCK TABLES `d_program_group_0` WRITE;
+LOCK
+TABLES `d_program_group_0` WRITE;
 /*!40000 ALTER TABLE `d_program_group_0`
     DISABLE KEYS */;
 /*!40000 ALTER TABLE `d_program_group_0`
     ENABLE KEYS */;
-UNLOCK TABLES;
+UNLOCK
+TABLES;
 
 --
 -- Table structure for table `d_program_group_1`
@@ -547,10 +556,10 @@ DROP TABLE IF EXISTS `d_program_group_1`;
 CREATE TABLE `d_program_group_1`
 (
     `id`               bigint(20) NOT NULL COMMENT '主键id',
-    `program_json`     text       NOT NULL COMMENT '节目json',
-    `recent_show_time` datetime   NOT NULL COMMENT '最近的节目演出时间',
-    `create_time`      datetime   NOT NULL COMMENT '创建时间',
-    `edit_time`        datetime   NOT NULL COMMENT '编辑时间',
+    `program_json`     text     NOT NULL COMMENT '节目json',
+    `recent_show_time` datetime NOT NULL COMMENT '最近的节目演出时间',
+    `create_time`      datetime NOT NULL COMMENT '创建时间',
+    `edit_time`        datetime NOT NULL COMMENT '编辑时间',
     `status`           tinyint(1) NOT NULL DEFAULT '1' COMMENT '1:正常 0:删除',
     PRIMARY KEY (`id`)
 ) ENGINE = InnoDB
@@ -561,7 +570,8 @@ CREATE TABLE `d_program_group_1`
 -- Dumping data for table `d_program_group_1`
 --
 
-LOCK TABLES `d_program_group_1` WRITE;
+LOCK
+TABLES `d_program_group_1` WRITE;
 /*!40000 ALTER TABLE `d_program_group_1`
     DISABLE KEYS */;
 INSERT INTO `d_program_group_1`
@@ -613,7 +623,8 @@ VALUES (1, '[{\"programId\":1,\"areaId\":2,\"areaIdName\":\"北京\"}]', '2024-0
         '2024-04-30 20:52:00', 1);
 /*!40000 ALTER TABLE `d_program_group_1`
     ENABLE KEYS */;
-UNLOCK TABLES;
+UNLOCK
+TABLES;
 
 --
 -- Table structure for table `d_program_show_time_0`
@@ -627,16 +638,16 @@ CREATE TABLE `d_program_show_time_0`
     `id`             bigint(20)  NOT NULL COMMENT '主键id',
     `program_id`     bigint(20)  NOT NULL COMMENT '节目表id',
     `show_time`      datetime    NOT NULL COMMENT '演出时间',
-    `show_day_time`  datetime             DEFAULT NULL COMMENT '演出时间(精确到天)',
+    `show_day_time`  datetime DEFAULT NULL COMMENT '演出时间(精确到天)',
     `show_week_time` varchar(64) NOT NULL COMMENT '演出时间所在的星期',
     `area_id`        bigint(20)           DEFAULT NULL COMMENT '地区id',
-    `create_time`    datetime             DEFAULT NULL COMMENT '创建时间',
-    `edit_time`      datetime             DEFAULT NULL COMMENT '编辑时间',
+    `create_time`    datetime DEFAULT NULL COMMENT '创建时间',
+    `edit_time`      datetime DEFAULT NULL COMMENT '编辑时间',
     `status`         tinyint(1)  NOT NULL DEFAULT '1' COMMENT '1:正常 0:删除',
     PRIMARY KEY (`id`),
-    KEY `program_id_idx` (`program_id`) USING BTREE,
-    KEY `show_time_idx` (`show_time`) USING BTREE,
-    KEY `show_day_time_idx` (`show_day_time`) USING BTREE
+    KEY              `program_id_idx` (`program_id`) USING BTREE,
+    KEY              `show_time_idx` (`show_time`) USING BTREE,
+    KEY              `show_day_time_idx` (`show_day_time`) USING BTREE
 ) ENGINE = InnoDB
   DEFAULT CHARSET = utf8mb4 COMMENT ='节目演出时间表';
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -645,12 +656,14 @@ CREATE TABLE `d_program_show_time_0`
 -- Dumping data for table `d_program_show_time_0`
 --
 
-LOCK TABLES `d_program_show_time_0` WRITE;
+LOCK
+TABLES `d_program_show_time_0` WRITE;
 /*!40000 ALTER TABLE `d_program_show_time_0`
     DISABLE KEYS */;
 /*!40000 ALTER TABLE `d_program_show_time_0`
     ENABLE KEYS */;
-UNLOCK TABLES;
+UNLOCK
+TABLES;
 
 --
 -- Table structure for table `d_program_show_time_1`
@@ -664,16 +677,16 @@ CREATE TABLE `d_program_show_time_1`
     `id`             bigint(20)  NOT NULL COMMENT '主键id',
     `program_id`     bigint(20)  NOT NULL COMMENT '节目表id',
     `show_time`      datetime    NOT NULL COMMENT '演出时间',
-    `show_day_time`  datetime             DEFAULT NULL COMMENT '演出时间(精确到天)',
+    `show_day_time`  datetime DEFAULT NULL COMMENT '演出时间(精确到天)',
     `show_week_time` varchar(64) NOT NULL COMMENT '演出时间所在的星期',
     `area_id`        bigint(20)           DEFAULT NULL COMMENT '地区id',
-    `create_time`    datetime             DEFAULT NULL COMMENT '创建时间',
-    `edit_time`      datetime             DEFAULT NULL COMMENT '编辑时间',
+    `create_time`    datetime DEFAULT NULL COMMENT '创建时间',
+    `edit_time`      datetime DEFAULT NULL COMMENT '编辑时间',
     `status`         tinyint(1)  NOT NULL DEFAULT '1' COMMENT '1:正常 0:删除',
     PRIMARY KEY (`id`),
-    KEY `program_id_idx` (`program_id`) USING BTREE,
-    KEY `show_time_idx` (`show_time`) USING BTREE,
-    KEY `show_day_time_idx` (`show_day_time`) USING BTREE
+    KEY              `program_id_idx` (`program_id`) USING BTREE,
+    KEY              `show_time_idx` (`show_time`) USING BTREE,
+    KEY              `show_day_time_idx` (`show_day_time`) USING BTREE
 ) ENGINE = InnoDB
   DEFAULT CHARSET = utf8mb4 COMMENT ='节目演出时间表';
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -682,7 +695,8 @@ CREATE TABLE `d_program_show_time_1`
 -- Dumping data for table `d_program_show_time_1`
 --
 
-LOCK TABLES `d_program_show_time_1` WRITE;
+LOCK
+TABLES `d_program_show_time_1` WRITE;
 /*!40000 ALTER TABLE `d_program_show_time_1`
     DISABLE KEYS */;
 INSERT INTO `d_program_show_time_1`
@@ -734,7 +748,8 @@ VALUES (1, 1, '2024-07-21 20:00:00', '2024-07-21 00:00:00', '周日', NULL, '202
         '2024-07-04 23:00:00', 1);
 /*!40000 ALTER TABLE `d_program_show_time_1`
     ENABLE KEYS */;
-UNLOCK TABLES;
+UNLOCK
+TABLES;
 
 --
 -- Table structure for table `d_seat_0`
@@ -757,9 +772,9 @@ CREATE TABLE `d_seat_0`
     `edit_time`          datetime       NOT NULL COMMENT '编辑时间',
     `status`             tinyint(1)     NOT NULL DEFAULT '1' COMMENT '1:正常 0:删除',
     PRIMARY KEY (`id`),
-    KEY `program_id_idx` (`program_id`) USING BTREE,
-    KEY `row_code_idx` (`row_code`) USING BTREE,
-    KEY `col_code_idx` (`col_code`) USING BTREE
+    KEY                  `program_id_idx` (`program_id`) USING BTREE,
+    KEY                  `row_code_idx` (`row_code`) USING BTREE,
+    KEY                  `col_code_idx` (`col_code`) USING BTREE
 ) ENGINE = InnoDB
   DEFAULT CHARSET = utf8mb4 COMMENT ='座位表';
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -768,12 +783,14 @@ CREATE TABLE `d_seat_0`
 -- Dumping data for table `d_seat_0`
 --
 
-LOCK TABLES `d_seat_0` WRITE;
+LOCK
+TABLES `d_seat_0` WRITE;
 /*!40000 ALTER TABLE `d_seat_0`
     DISABLE KEYS */;
 /*!40000 ALTER TABLE `d_seat_0`
     ENABLE KEYS */;
-UNLOCK TABLES;
+UNLOCK
+TABLES;
 
 --
 -- Table structure for table `d_seat_1`
@@ -796,9 +813,9 @@ CREATE TABLE `d_seat_1`
     `edit_time`          datetime       NOT NULL COMMENT '编辑时间',
     `status`             tinyint(1)     NOT NULL DEFAULT '1' COMMENT '1:正常 0:删除',
     PRIMARY KEY (`id`),
-    KEY `program_id_idx` (`program_id`) USING BTREE,
-    KEY `row_code_idx` (`row_code`) USING BTREE,
-    KEY `col_code_idx` (`col_code`) USING BTREE
+    KEY                  `program_id_idx` (`program_id`) USING BTREE,
+    KEY                  `row_code_idx` (`row_code`) USING BTREE,
+    KEY                  `col_code_idx` (`col_code`) USING BTREE
 ) ENGINE = InnoDB
   AUTO_INCREMENT = 1291
   DEFAULT CHARSET = utf8mb4 COMMENT ='座位表';
@@ -808,7 +825,8 @@ CREATE TABLE `d_seat_1`
 -- Dumping data for table `d_seat_1`
 --
 
-LOCK TABLES `d_seat_1` WRITE;
+LOCK
+TABLES `d_seat_1` WRITE;
 /*!40000 ALTER TABLE `d_seat_1`
     DISABLE KEYS */;
 INSERT INTO `d_seat_1`
@@ -2104,7 +2122,8 @@ VALUES (1, 1, 2, 1, 1, 1, 180, 1, '2024-01-11 19:00:00', '2024-01-11 19:00:00', 
        (1290, 45, 40, 10, 10, 1, 1500, 1, '2024-06-12 09:53:45', '2024-06-12 09:53:45', 1);
 /*!40000 ALTER TABLE `d_seat_1`
     ENABLE KEYS */;
-UNLOCK TABLES;
+UNLOCK
+TABLES;
 
 --
 -- Table structure for table `d_ticket_category_0`
@@ -2133,12 +2152,14 @@ CREATE TABLE `d_ticket_category_0`
 -- Dumping data for table `d_ticket_category_0`
 --
 
-LOCK TABLES `d_ticket_category_0` WRITE;
+LOCK
+TABLES `d_ticket_category_0` WRITE;
 /*!40000 ALTER TABLE `d_ticket_category_0`
     DISABLE KEYS */;
 /*!40000 ALTER TABLE `d_ticket_category_0`
     ENABLE KEYS */;
-UNLOCK TABLES;
+UNLOCK
+TABLES;
 
 --
 -- Table structure for table `d_ticket_category_1`
@@ -2167,7 +2188,8 @@ CREATE TABLE `d_ticket_category_1`
 -- Dumping data for table `d_ticket_category_1`
 --
 
-LOCK TABLES `d_ticket_category_1` WRITE;
+LOCK
+TABLES `d_ticket_category_1` WRITE;
 /*!40000 ALTER TABLE `d_ticket_category_1`
     DISABLE KEYS */;
 INSERT INTO `d_ticket_category_1`
@@ -2210,6 +2232,7 @@ VALUES (1, 1, '全价票', 120, 0, 0, '2024-01-08 00:00:00', '2024-01-08 00:00:0
        (40, 45, '1500', 1500, 100, 100, '2024-02-04 17:10:00', '2024-02-04 17:10:00', 1);
 /*!40000 ALTER TABLE `d_ticket_category_1`
     ENABLE KEYS */;
-UNLOCK TABLES;
+UNLOCK
+TABLES;
 
 

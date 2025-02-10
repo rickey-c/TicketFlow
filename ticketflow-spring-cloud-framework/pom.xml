@@ -11,7 +11,7 @@
 
     <artifactId>ticketflow-spring-cloud-framework</artifactId>
     <packaging>pom</packaging>
-    
+
     <modules>
         <module>ticketflow-service-common</module>
         <module>ticketflow-service-component</module>

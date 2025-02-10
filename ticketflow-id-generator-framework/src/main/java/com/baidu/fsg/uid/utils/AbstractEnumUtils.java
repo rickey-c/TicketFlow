@@ -19,14 +19,14 @@ import org.springframework.util.Assert;
 
 /**
  * AbstractEnumUtils provides the operations for {@link ValuedEnum} such as Parse, value of...
- * 
+ *
  * @author yutianbao
  */
 public abstract class AbstractEnumUtils {
 
     /**
      * Parse the bounded value into ValuedEnum
-     * 
+     *
      * @param clz
      * @param value
      * @return
@@ -47,7 +47,7 @@ public abstract class AbstractEnumUtils {
 
     /**
      * Null-safe valueOf function
-     * 
+     *
      * @param <T>
      * @param enumType
      * @param name

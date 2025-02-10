@@ -12,7 +12,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 @ConfigurationProperties(prefix = BloomFilterProperties.PREFIX)
 public class BloomFilterProperties {
     public static final String PREFIX = "bloom-filter";
-    
+
     private String name;
 
     private Long expectedInsertions = 20000L;

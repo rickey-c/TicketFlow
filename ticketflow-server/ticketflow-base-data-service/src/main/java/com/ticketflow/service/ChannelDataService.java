@@ -38,7 +38,7 @@ public class ChannelDataService {
 
     @Autowired
     private UidGenerator uidGenerator;
-    
+
     @Autowired
     private RedisCache redisCache;
 

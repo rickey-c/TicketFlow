@@ -11,14 +11,14 @@ import lombok.Data;
  * @Date: 2025/1/24 15:48
  */
 @Data
-@Schema(title="TokenDataDto", description ="token数据")
+@Schema(title = "TokenDataDto", description = "token数据")
 public class TokenDataDto {
-    
-    @Schema(name ="name", type ="String", description ="名字",requiredMode= RequiredMode.REQUIRED)
+
+    @Schema(name = "name", type = "String", description = "名字", requiredMode = RequiredMode.REQUIRED)
     @NotBlank
     private String name;
-    
-    @Schema(name ="secret", type ="String", description ="秘钥",requiredMode= RequiredMode.REQUIRED)
+
+    @Schema(name = "secret", type = "String", description = "秘钥", requiredMode = RequiredMode.REQUIRED)
     @NotBlank
     private String secret;
 }

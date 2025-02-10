@@ -25,33 +25,33 @@ import org.springframework.web.bind.annotation.*;
 @Tag(name = "rule", description = "规则")
 @AllArgsConstructor
 public class RuleController {
-    
+
     private final RuleService ruleService;
-    
-    @Operation(summary  = "添加普通规则")
+
+    @Operation(summary = "添加普通规则")
     @PostMapping("/add")
     public ApiResponse<Void> add(@Valid @RequestBody RuleDto ruleDto) {
         ruleService.ruleAdd(ruleDto);
         return ApiResponse.ok();
     }
-    
-    @Operation(summary  = "修改普通规则")
+
+    @Operation(summary = "修改普通规则")
     @PostMapping("/update")
     public ApiResponse<Void> update(@Valid @RequestBody RuleUpdateDto ruleUpdateDto) {
         ruleService.ruleUpdate(ruleUpdateDto);
         return ApiResponse.ok();
     }
-    
-    @Operation(summary  = "修改普通规则状态")
+
+    @Operation(summary = "修改普通规则状态")
     @PostMapping("/updateStatus")
-    public ApiResponse<Void> updateStatus(@Valid @RequestBody RuleStatusDto ruleStatusDto){
+    public ApiResponse<Void> updateStatus(@Valid @RequestBody RuleStatusDto ruleStatusDto) {
         ruleService.ruleUpdateStatus(ruleStatusDto);
         return ApiResponse.ok();
     }
-    
-    @Operation(summary  = "查询普通规则")
+
+    @Operation(summary = "查询普通规则")
     @PostMapping("/get")
-    public ApiResponse<RuleVo> get(@Valid @RequestBody RuleGetDto ruleGetDto){
+    public ApiResponse<RuleVo> get(@Valid @RequestBody RuleGetDto ruleGetDto) {
         return ApiResponse.ok(ruleService.get(ruleGetDto));
     }
 }

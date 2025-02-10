@@ -9,9 +9,9 @@ import lombok.Data;
  * @Date: 2025/12/3 14:31
  */
 @Data
-@Schema(title="AccountOrderCountVo", description ="账户下订单数量")
+@Schema(title = "AccountOrderCountVo", description = "账户下订单数量")
 public class AccountOrderCountVo {
-    
-    @Schema(name ="count", type ="Integer", description ="账户下的订单数量")
+
+    @Schema(name = "count", type = "Integer", description = "账户下的订单数量")
     private Integer count;
 }

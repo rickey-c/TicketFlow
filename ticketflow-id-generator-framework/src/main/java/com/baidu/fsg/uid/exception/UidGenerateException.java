@@ -17,7 +17,7 @@ package com.baidu.fsg.uid.exception;
 
 /**
  * UidGenerateException
- * 
+ *
  * @author yutianbao
  */
 public class UidGenerateException extends RuntimeException {
@@ -36,7 +36,7 @@ public class UidGenerateException extends RuntimeException {
 
     /**
      * Constructor with message & cause
-     * 
+     *
      * @param message
      * @param cause
      */
@@ -46,16 +46,16 @@ public class UidGenerateException extends RuntimeException {
 
     /**
      * Constructor with message
-     * 
+     *
      * @param message
      */
     public UidGenerateException(String message) {
         super(message);
     }
-    
+
     /**
      * Constructor with message format
-     * 
+     *
      * @param msgFormat
      * @param args
      */
@@ -65,7 +65,7 @@ public class UidGenerateException extends RuntimeException {
 
     /**
      * Constructor with cause
-     * 
+     *
      * @param cause
      */
     public UidGenerateException(Throwable cause) {

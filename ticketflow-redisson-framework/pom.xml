@@ -11,7 +11,7 @@
 
     <artifactId>ticketflow-redisson-framework</artifactId>
     <packaging>pom</packaging>
-    
+
     <modules>
         <module>ticketflow-redisson-service-framework</module>
         <module>ticketflow-service-delay-queue-framework</module>

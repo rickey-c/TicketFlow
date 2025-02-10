@@ -21,14 +21,14 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RestController
 @RequestMapping("/apiData")
-@Tag(name = "apiData",description = "api调用记录")
+@Tag(name = "apiData", description = "api调用记录")
 @AllArgsConstructor
 public class ApiDataController {
-    
+
     private final ApiDataService apiDataService;
 
-    @Operation(summary  = "分页查询api调用记录")
-    @RequestMapping(value = "/pageList",method = RequestMethod.POST)
+    @Operation(summary = "分页查询api调用记录")
+    @RequestMapping(value = "/pageList", method = RequestMethod.POST)
     public ApiResponse<Page<ApiDataVo>> pageList(@Valid @RequestBody ApiDataDto dto) {
         return ApiResponse.ok(apiDataService.pageList(dto));
     }

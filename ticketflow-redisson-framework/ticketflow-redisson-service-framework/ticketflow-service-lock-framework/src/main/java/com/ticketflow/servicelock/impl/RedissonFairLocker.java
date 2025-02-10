@@ -16,9 +16,9 @@ import java.util.concurrent.TimeUnit;
  */
 @AllArgsConstructor
 public class RedissonFairLocker implements ServiceLocker {
-    
+
     private final RedissonClient redissonClient;
-    
+
     @Override
     public RLock getLock(String lockKey) {
         return redissonClient.getFairLock(lockKey);
@@ -49,7 +49,7 @@ public class RedissonFairLocker implements ServiceLocker {
     public boolean tryLock(String lockKey, TimeUnit unit, long waitTime) {
         RLock lock = redissonClient.getFairLock(lockKey);
         try {
-            return lock.tryLock(waitTime,unit);
+            return lock.tryLock(waitTime, unit);
         } catch (InterruptedException e) {
             return false;
         }
@@ -60,7 +60,7 @@ public class RedissonFairLocker implements ServiceLocker {
     public boolean tryLock(String lockKey, TimeUnit unit, long waitTime, long leaseTime) {
         RLock lock = redissonClient.getFairLock(lockKey);
         try {
-            return lock.tryLock(waitTime,leaseTime,unit);
+            return lock.tryLock(waitTime, leaseTime, unit);
         } catch (InterruptedException e) {
             return false;
         }

@@ -11,13 +11,13 @@ import org.springframework.context.ApplicationContextAware;
  * @Date: 2025/1/26 14:48
  */
 public class LockInfoHandleFactory implements ApplicationContextAware {
-    
+
     private ApplicationContext applicationContext;
-    
-    public LockInfoHandle getLockInfoHandler(String lockInfoType){
+
+    public LockInfoHandle getLockInfoHandler(String lockInfoType) {
         return applicationContext.getBean(lockInfoType, LockInfoHandle.class);
     }
-    
+
 
     @Override
     public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {

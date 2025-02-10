@@ -27,7 +27,7 @@ public class WorkAndDataIdCenterHandler {
     private final StringRedisTemplate stringRedisTemplate;
 
     private DefaultRedisScript<String> redisScript;
-    
+
     public WorkAndDataIdCenterHandler(StringRedisTemplate stringRedisTemplate) {
         this.stringRedisTemplate = stringRedisTemplate;
         try {

@@ -8,10 +8,9 @@ package com.ticketflow.enums;
 public enum RuleTimeUnit {
     /**
      * 规则时间单位
-     * */
-    SECOND(1,"秒"),
-    MINUTE(2,"分钟")
-    ;
+     */
+    SECOND(1, "秒"),
+    MINUTE(2, "分钟");
 
     private Integer code;
 

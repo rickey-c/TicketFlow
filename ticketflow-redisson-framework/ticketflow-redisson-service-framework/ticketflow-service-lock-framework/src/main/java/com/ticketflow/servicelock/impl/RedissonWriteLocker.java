@@ -15,7 +15,7 @@ import java.util.concurrent.TimeUnit;
  */
 @AllArgsConstructor
 public class RedissonWriteLocker implements ServiceLocker {
-    
+
     private final RedissonClient redissonClient;
 
     @Override

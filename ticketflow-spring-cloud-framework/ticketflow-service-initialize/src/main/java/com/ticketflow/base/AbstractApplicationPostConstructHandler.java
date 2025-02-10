@@ -9,10 +9,10 @@ import static com.ticketflow.constant.InitializeHandlerType.APPLICATION_POST_CON
  * @Author: rickey-c
  * @Date: 2025/1/30 21:59
  */
-public abstract class AbstractApplicationPostConstructHandler implements InitializeHandler{
-    
+public abstract class AbstractApplicationPostConstructHandler implements InitializeHandler {
+
     @Override
-    public String type(){
+    public String type() {
         return APPLICATION_POST_CONSTRUCT;
     }
 

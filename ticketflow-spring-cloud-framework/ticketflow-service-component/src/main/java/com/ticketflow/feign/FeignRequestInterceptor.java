@@ -22,28 +22,28 @@ import static com.ticketflow.constant.Constant.*;
 @Slf4j
 @AllArgsConstructor
 public class FeignRequestInterceptor implements RequestInterceptor {
-    
+
     private final String serverGray;
-    
+
     @Override
     public void apply(RequestTemplate requestTemplate) {
-        try{
+        try {
             RequestAttributes requestAttributes = RequestContextHolder.getRequestAttributes();
-            if (Objects.nonNull(requestAttributes)){
+            if (Objects.nonNull(requestAttributes)) {
                 ServletRequestAttributes servletRequestAttributes = (ServletRequestAttributes) requestAttributes;
                 HttpServletRequest request = servletRequestAttributes.getRequest();
                 String traceId = request.getHeader(TRACE_ID);
                 String code = request.getHeader(CODE);
                 String gray = request.getHeader(GRAY_PARAMETER);
-                if(StringUtil.isNotEmpty(gray)){
+                if (StringUtil.isNotEmpty(gray)) {
                     gray = serverGray;
                 }
-                requestTemplate.header(TRACE_ID,traceId);
-                requestTemplate.header(CODE,code);
-                requestTemplate.header(GRAY_PARAMETER,gray);
+                requestTemplate.header(TRACE_ID, traceId);
+                requestTemplate.header(CODE, code);
+                requestTemplate.header(GRAY_PARAMETER, gray);
             }
-        }catch (Exception e){
-            log.error("FeignRequestInterceptor apply error",e);
+        } catch (Exception e) {
+            log.error("FeignRequestInterceptor apply error", e);
         }
     }
 }

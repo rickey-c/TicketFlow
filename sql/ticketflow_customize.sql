@@ -1,4 +1,5 @@
-USE ticketflow_customize;
+USE
+ticketflow_customize;
 
 DROP TABLE IF EXISTS `d_api_data`;
 /*!40101 SET @saved_cs_client = @@character_set_client */;
@@ -21,13 +22,13 @@ CREATE TABLE `d_api_data`
     `edit_time`        datetime     DEFAULT NULL COMMENT '编辑时间',
     `create_time`      datetime     DEFAULT NULL COMMENT '创建时间',
     PRIMARY KEY (`id`),
-    KEY `idx_create_time` (`create_time`) USING BTREE,
-    KEY `idx_api_address` (`api_address`) USING BTREE,
-    KEY `idx_api_url` (`api_url`) USING BTREE,
-    KEY `idx_call_day_time` (`call_day_time`) USING BTREE,
-    KEY `idx_call_hour_time` (`call_hour_time`) USING BTREE,
-    KEY `idx_call_minute_time` (`call_minute_time`) USING BTREE,
-    KEY `idx_call_second_time` (`call_second_time`) USING BTREE
+    KEY                `idx_create_time` (`create_time`) USING BTREE,
+    KEY                `idx_api_address` (`api_address`) USING BTREE,
+    KEY                `idx_api_url` (`api_url`) USING BTREE,
+    KEY                `idx_call_day_time` (`call_day_time`) USING BTREE,
+    KEY                `idx_call_hour_time` (`call_hour_time`) USING BTREE,
+    KEY                `idx_call_minute_time` (`call_minute_time`) USING BTREE,
+    KEY                `idx_call_second_time` (`call_second_time`) USING BTREE
 ) ENGINE = InnoDB
   DEFAULT CHARSET = utf8mb4 COMMENT ='api执行表';
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -36,12 +37,14 @@ CREATE TABLE `d_api_data`
 -- Dumping data for table `d_api_data`
 --
 
-LOCK TABLES `d_api_data` WRITE;
+LOCK
+TABLES `d_api_data` WRITE;
 /*!40000 ALTER TABLE `d_api_data`
     DISABLE KEYS */;
 /*!40000 ALTER TABLE `d_api_data`
     ENABLE KEYS */;
-UNLOCK TABLES;
+UNLOCK
+TABLES;
 
 --
 -- Table structure for table `d_depth_rule`
@@ -74,12 +77,14 @@ CREATE TABLE `d_depth_rule`
 -- Dumping data for table `d_depth_rule`
 --
 
-LOCK TABLES `d_depth_rule` WRITE;
+LOCK
+TABLES `d_depth_rule` WRITE;
 /*!40000 ALTER TABLE `d_depth_rule`
     DISABLE KEYS */;
 /*!40000 ALTER TABLE `d_depth_rule`
     ENABLE KEYS */;
-UNLOCK TABLES;
+UNLOCK
+TABLES;
 
 --
 -- Table structure for table `d_rule`
@@ -110,11 +115,13 @@ CREATE TABLE `d_rule`
 -- Dumping data for table `d_rule`
 --
 
-LOCK TABLES `d_rule` WRITE;
+LOCK
+TABLES `d_rule` WRITE;
 /*!40000 ALTER TABLE `d_rule`
     DISABLE KEYS */;
 /*!40000 ALTER TABLE `d_rule`
     ENABLE KEYS */;
-UNLOCK TABLES;
+UNLOCK
+TABLES;
 
 

@@ -79,6 +79,7 @@ public class SnowflakeIdGenerator {
 
     /**
      * 通过workId和dataCenterId初始化
+     *
      * @param workerId
      * @param datacenterId
      */
@@ -94,6 +95,7 @@ public class SnowflakeIdGenerator {
 
     /**
      * 获取当前时间
+     *
      * @return
      */
     public long getBase() {
@@ -194,6 +196,7 @@ public class SnowflakeIdGenerator {
 
     /**
      * 尝试再次生成时间戳
+     *
      * @param lastTimestamp
      * @return
      */

@@ -158,17 +158,18 @@ public class PayService {
 
     /**
      * 主动查询账单状态
+     *
      * @param tradeCheckDto 查询账单状态dto
      * @return 真实的账单状态
      */
     @Transactional(rollbackFor = Exception.class)
-    @ServiceLock(name = TRADE_CHECK,keys = {"#tradeCheckDto.outTradeNo"})
-    public TradeCheckVo tradeCheck(TradeCheckDto tradeCheckDto){
+    @ServiceLock(name = TRADE_CHECK, keys = {"#tradeCheckDto.outTradeNo"})
+    public TradeCheckVo tradeCheck(TradeCheckDto tradeCheckDto) {
         TradeCheckVo tradeCheckVo = new TradeCheckVo();
         PayStrategyHandler payStrategyHandler = payStrategyContext.get(tradeCheckDto.getChannel());
         TradeResult tradeResult = payStrategyHandler.queryTrade(tradeCheckDto.getOutTradeNo());
-        BeanUtil.copyProperties(tradeResult,tradeCheckVo);
-        if (!tradeResult.isSuccess()){
+        BeanUtil.copyProperties(tradeResult, tradeCheckVo);
+        if (!tradeResult.isSuccess()) {
             return tradeCheckVo;
         }
         BigDecimal totalAmount = tradeResult.getTotalAmount();
@@ -178,19 +179,19 @@ public class PayService {
                 .eq(PayBill::getOutOrderNo, outTradeNo));
         if (payBill.getPayAmount().compareTo(totalAmount) != 0) {
             log.error("支付渠道 和库中账单支付金额不一致 支付渠道支付金额 : {}, 库中账单支付金额 : {}, tradeCheckDto : {}",
-                    totalAmount,payBill.getPayAmount(),JSON.toJSONString(tradeCheckDto));
+                    totalAmount, payBill.getPayAmount(), JSON.toJSONString(tradeCheckDto));
             return tradeCheckVo;
         }
         if (!Objects.equals(payBill.getPayBillStatus(), payBillStatus)) {
             log.warn("支付渠道和库中账单交易状态不一致 支付渠道payBillStatus : {}, 库中payBillStatus : {}, tradeCheckDto : {}",
-                    payBillStatus,payBill.getPayBillStatus(),JSON.toJSONString(tradeCheckDto));
+                    payBillStatus, payBill.getPayBillStatus(), JSON.toJSONString(tradeCheckDto));
             PayBill updatePayBill = new PayBill();
             updatePayBill.setId(payBill.getId());
             updatePayBill.setPayBillStatus(payBillStatus);
             LambdaUpdateWrapper<PayBill> payBillLambdaUpdateWrapper =
                     Wrappers.lambdaUpdate(PayBill.class).eq(PayBill::getOutOrderNo, outTradeNo);
             // 更新，以支付渠道为准
-            payBillMapper.update(updatePayBill,payBillLambdaUpdateWrapper);
+            payBillMapper.update(updatePayBill, payBillLambdaUpdateWrapper);
             return tradeCheckVo;
         }
         return tradeCheckVo;
@@ -238,6 +239,7 @@ public class PayService {
 
     /**
      * 查看账单详细
+     *
      * @param payBillDto 账单dto
      * @return 账单vo
      */

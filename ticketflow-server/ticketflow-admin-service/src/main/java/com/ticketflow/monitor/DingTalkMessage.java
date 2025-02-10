@@ -19,11 +19,11 @@ import java.util.Map;
  */
 @RequiredArgsConstructor
 public class DingTalkMessage {
-    
+
     private final String token;
-    
+
     private final RestTemplate restTemplate = new RestTemplate();
-    
+
     private HttpEntity<String> createMessage(String message) {
         Map<String, Object> messageJson = new HashMap<>(8);
         Map<String, Object> context = new HashMap<>(8);
@@ -34,8 +34,8 @@ public class DingTalkMessage {
         headers.setContentType(MediaType.APPLICATION_JSON);
         return new HttpEntity<>(JSON.toJSONString(messageJson), headers);
     }
-    
-    public void sendMessage(String message){
+
+    public void sendMessage(String message) {
         if (StringUtils.isNotEmpty(token)) {
             restTemplate.postForEntity(token, createMessage(message), Void.class);
         }

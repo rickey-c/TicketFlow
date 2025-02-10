@@ -15,7 +15,7 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 @EnableConfigurationProperties(AlipayProperties.class)
 public class PayAutoConfig {
-    
+
     @Bean
     public AlipayClient alipayClient(AlipayProperties alipayProperties) throws AlipayApiException {
         AlipayConfig alipayConfig = new AlipayConfig();
@@ -31,17 +31,17 @@ public class PayAutoConfig {
     }
 
     @Bean
-    public PayStrategyContext payStrategyContext(){
+    public PayStrategyContext payStrategyContext() {
         return new PayStrategyContext();
     }
 
     @Bean
-    public PayStrategyInitHandler payStrategyInitHandler(PayStrategyContext payStrategyContext){
+    public PayStrategyInitHandler payStrategyInitHandler(PayStrategyContext payStrategyContext) {
         return new PayStrategyInitHandler(payStrategyContext);
     }
 
     @Bean
-    public AlipayStrategyHandler alipayCall(AlipayClient alipayClient, AlipayProperties aliPayProperties){
-        return new AlipayStrategyHandler(alipayClient,aliPayProperties);
+    public AlipayStrategyHandler alipayCall(AlipayClient alipayClient, AlipayProperties aliPayProperties) {
+        return new AlipayStrategyHandler(alipayClient, aliPayProperties);
     }
 }

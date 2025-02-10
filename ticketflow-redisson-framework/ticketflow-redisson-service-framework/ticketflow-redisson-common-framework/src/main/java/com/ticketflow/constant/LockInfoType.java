@@ -16,5 +16,5 @@ public class LockInfoType {
      * 分布式锁
      */
     public static final String SERVICE_LOCK = "service_lock";
-    
+
 }

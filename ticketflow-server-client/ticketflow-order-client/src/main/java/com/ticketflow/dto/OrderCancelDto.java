@@ -11,11 +11,11 @@ import lombok.Data;
  * @Date: 2025/12/3 14:14
  */
 @Data
-@Schema(title="OrderCancelDto", description ="订单取消")
+@Schema(title = "OrderCancelDto", description = "订单取消")
 public class OrderCancelDto {
-    
-    @Schema(name ="orderNumber", type ="Long", description ="订单编号", requiredMode= RequiredMode.REQUIRED)
+
+    @Schema(name = "orderNumber", type = "Long", description = "订单编号", requiredMode = RequiredMode.REQUIRED)
     @NotNull
     private Long orderNumber;
-    
+
 }
