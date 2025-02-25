@@ -15,9 +15,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.annotation.Order;
-
 
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.locks.ReentrantLock;
@@ -82,6 +80,7 @@ public class RepeatExecuteLimitAspect {
             try {
                 // 幂等标识
                 flagObject = redissonDataHandle.get(repeatFlagName);
+                // 二次判定
                 if (SUCCESS_FLAG.equals(flagObject)) {
                     throw new TicketFlowFrameException(message);
                 }
@@ -89,7 +88,7 @@ public class RepeatExecuteLimitAspect {
                 obj = joinPoint.proceed();
                 if (durationTime > 0) {
                     try {
-                        // 设置幂等标识为success
+                        // 设置幂等标识为success，时间为设置的保持幂等的时间
                         redissonDataHandle.set(repeatFlagName, SUCCESS_FLAG, durationTime, TimeUnit.SECONDS);
                     } catch (RuntimeException e) {
                         log.error("getBucket error", e);
