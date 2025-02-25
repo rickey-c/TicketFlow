@@ -309,6 +309,7 @@ public class ProgramOrderService {
         ProgramVo programVo = programService.simpleGetProgramAndShowMultipleCache(programOrderCreateDto.getProgramId());
         OrderCreateDto orderCreateDto = new OrderCreateDto();
         // 构建主订单参数
+        // 基因法构建订单ID
         orderCreateDto.setOrderNumber(uidGenerator.getOrderNumber(programOrderCreateDto.getUserId(), ORDER_TABLE_COUNT));
         orderCreateDto.setProgramId(programOrderCreateDto.getProgramId());
         orderCreateDto.setProgramItemPicture(programVo.getItemPicture());
