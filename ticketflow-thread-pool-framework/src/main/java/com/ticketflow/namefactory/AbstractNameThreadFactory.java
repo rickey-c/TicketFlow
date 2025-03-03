@@ -1,5 +1,7 @@
 package com.ticketflow.namefactory;
 
+import com.ticketflow.exception.TicketFlowFrameException;
+
 import java.util.concurrent.ThreadFactory;
 import java.util.concurrent.atomic.AtomicLong;
 
@@ -42,6 +44,11 @@ public abstract class AbstractNameThreadFactory implements ThreadFactory {
     public Thread newThread(Runnable r) {
         String name = namePrefix + threadNum.getAndIncrement();
         Thread t = new Thread(group, r, name, 0);
+        t.setUncaughtExceptionHandler((t1, e) -> {
+            // 构建错误信息
+            String msg = String.format("线程名称 : %s,线程编号 : %d", name, threadNum.get());
+            throw new TicketFlowFrameException(msg);
+        });
         if (t.isDaemon()) {
             t.setDaemon(false);
         }
