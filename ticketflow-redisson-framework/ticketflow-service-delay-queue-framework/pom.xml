@@ -30,8 +30,8 @@
         <!--            <version>${redisson.version}</version>-->
         <!--        </dependency>-->
         <dependency>
-            <groupId>com.example</groupId>
-            <artifactId>damai-redisson-common-framework</artifactId>
+            <groupId>com.rickey</groupId>
+            <artifactId>ticketflow-redisson-common-framework</artifactId>
             <version>${revision}</version>
         </dependency>
         <dependency>
