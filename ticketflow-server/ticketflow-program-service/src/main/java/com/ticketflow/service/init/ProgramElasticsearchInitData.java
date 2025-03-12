@@ -1,6 +1,6 @@
 package com.ticketflow.service.init;
 
-import com.damai.core.SpringUtil;
+import com.ticketflow.core.SpringUtil;
 import com.ticketflow.BusinessThreadPool;
 import com.ticketflow.base.AbstractApplicationPostConstructHandler;
 import com.ticketflow.dto.EsDocumentMappingDto;
@@ -47,13 +47,17 @@ public class ProgramElasticsearchInitData extends AbstractApplicationPostConstru
     }
 
     public void initElasticsearchData() {
+        // 如果索引存在就不继续往下执行
         if (!indexAdd()) {
             return;
         }
+        // 查询所有节目id集合
         List<Long> allProgramIdList = programService.getAllProgramIdList();
+        // 根据节目id统计出票档最高和最低价的map
         Map<Long, TicketCategoryAggregate> ticketCategorieMap = programService.selectTicketCategorieMap(allProgramIdList);
 
         for (Long programId : allProgramIdList) {
+            // 根据节目id从数据库中查询节目数据
             ProgramVo programVo = programService.getDetailFromDb(programId);
             Map<String, Object> map = new HashMap<>(32);
             map.put(ProgramDocumentParamName.ID, programVo.getId());
@@ -80,6 +84,7 @@ public class ProgramElasticsearchInitData extends AbstractApplicationPostConstru
             map.put(ProgramDocumentParamName.MAX_PRICE,
                     Optional.ofNullable(ticketCategorieMap.get(programVo.getId()))
                             .map(TicketCategoryAggregate::getMaxPrice).orElse(null));
+            // 添加数据到Es
             businessEsHandle.add(SpringUtil.getPrefixDistinctionName() + "-" +
                     ProgramDocumentParamName.INDEX_NAME, ProgramDocumentParamName.INDEX_TYPE, map);
         }
@@ -90,19 +95,25 @@ public class ProgramElasticsearchInitData extends AbstractApplicationPostConstru
         boolean result = businessEsHandle.checkIndex(SpringUtil.getPrefixDistinctionName() + "-" +
                 ProgramDocumentParamName.INDEX_NAME, ProgramDocumentParamName.INDEX_TYPE);
         if (result) {
-            businessEsHandle.deleteIndex(SpringUtil.getPrefixDistinctionName() + "-" +
-                    ProgramDocumentParamName.INDEX_NAME);
+            // 存在，无需继续创建
+            return false;
         }
+
         try {
+            // 不存在就创建索引
             businessEsHandle.createIndex(SpringUtil.getPrefixDistinctionName() + "-" +
                     ProgramDocumentParamName.INDEX_NAME, ProgramDocumentParamName.INDEX_TYPE, getEsMapping());
             return true;
         } catch (Exception e) {
             log.error("createIndex error", e);
+            return false;
         }
-        return false;
     }
 
+    /**
+     * 创建Es索引（index）
+     * @return 创建的索引文档映射集合
+     */
     public List<EsDocumentMappingDto> getEsMapping() {
         List<EsDocumentMappingDto> list = new ArrayList<>();
 

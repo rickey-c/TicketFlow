@@ -470,6 +470,7 @@ public class ProgramService extends ServiceImpl<ProgramMapper, Program> {
      * @return 执行后的结果
      */
     public ProgramVo getDetailV2(ProgramGetDto programGetDto) {
+        // 查询节目演出时间
         ProgramShowTime programShowTime =
                 programShowTimeService.selectProgramShowTimeByProgramIdMultipleCache(programGetDto.getId());
 
@@ -479,6 +480,7 @@ public class ProgramService extends ServiceImpl<ProgramMapper, Program> {
         programVo.setShowDayTime(programShowTime.getShowDayTime());
         programVo.setShowWeekTime(programShowTime.getShowWeekTime());
 
+        // 查询节目分组信息
         ProgramGroupVo programGroupVo = programService.getProgramGroupMultipleCache(programVo.getProgramGroupId());
         programVo.setProgramGroupVo(programGroupVo);
 
@@ -486,15 +488,18 @@ public class ProgramService extends ServiceImpl<ProgramMapper, Program> {
 
         preloadAccountOrderCount(programVo.getId());
 
+        // 查询节目类型信息
         ProgramCategory programCategory = getProgramCategoryMultipleCache(programVo.getProgramCategoryId());
         if (Objects.nonNull(programCategory)) {
             programVo.setProgramCategoryName(programCategory.getName());
         }
+        // 查询父类节目信息
         ProgramCategory parentProgramCategory = getProgramCategoryMultipleCache(programVo.getParentProgramCategoryId());
         if (Objects.nonNull(parentProgramCategory)) {
             programVo.setParentProgramCategoryName(parentProgramCategory.getName());
         }
 
+        // 查询节目票档信息
         List<TicketCategoryVo> ticketCategoryVoList = ticketCategoryService
                 .selectTicketCategoryListByProgramIdMultipleCache(programVo.getId(), programShowTime.getShowTime());
         programVo.setTicketCategoryVoList(ticketCategoryVoList);
