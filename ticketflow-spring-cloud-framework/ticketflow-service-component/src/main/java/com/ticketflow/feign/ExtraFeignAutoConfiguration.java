@@ -1,5 +1,6 @@
 package com.ticketflow.feign;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Component;
@@ -13,12 +14,15 @@ import static com.ticketflow.constant.Constant.SERVER_GRAY;
  */
 @Component
 public class ExtraFeignAutoConfiguration {
+    
+    @Autowired
+    private HeaderCacheService headerCacheService;
 
-    @Value(SERVER_GRAY)
+    @Value("${" + SERVER_GRAY + ":default-gray-value}")
     public String serverGray;
 
     @Bean
     public FeignRequestInterceptor feignRequestInterceptor() {
-        return new FeignRequestInterceptor(serverGray);
+        return new FeignRequestInterceptor(serverGray,headerCacheService);
     }
 }

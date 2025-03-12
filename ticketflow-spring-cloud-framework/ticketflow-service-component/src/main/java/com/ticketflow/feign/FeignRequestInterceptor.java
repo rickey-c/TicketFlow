@@ -14,16 +14,12 @@ import java.util.Objects;
 
 import static com.ticketflow.constant.Constant.*;
 
-/**
- * @Description: 定制feign参数传递
- * @Author: rickey-c
- * @Date: 2025/1/25 16:50
- */
 @Slf4j
 @AllArgsConstructor
 public class FeignRequestInterceptor implements RequestInterceptor {
 
     private final String serverGray;
+    private final HeaderCacheService headerCacheService;
 
     @Override
     public void apply(RequestTemplate requestTemplate) {
@@ -32,9 +28,9 @@ public class FeignRequestInterceptor implements RequestInterceptor {
             if (Objects.nonNull(requestAttributes)) {
                 ServletRequestAttributes servletRequestAttributes = (ServletRequestAttributes) requestAttributes;
                 HttpServletRequest request = servletRequestAttributes.getRequest();
-                String traceId = request.getHeader(TRACE_ID);
-                String code = request.getHeader(CODE);
-                String gray = request.getHeader(GRAY_PARAMETER);
+                String traceId = headerCacheService.getHeaderValue(request, TRACE_ID);
+                String code = headerCacheService.getHeaderValue(request, CODE);
+                String gray = headerCacheService.getHeaderValue(request, GRAY_PARAMETER);
                 if (StringUtil.isNotEmpty(gray)) {
                     gray = serverGray;
                 }
