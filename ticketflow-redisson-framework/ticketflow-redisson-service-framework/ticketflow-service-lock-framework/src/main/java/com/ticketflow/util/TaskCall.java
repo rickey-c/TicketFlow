@@ -11,7 +11,7 @@ public interface TaskCall<T> {
     /**
      * call
      *
-     * @return
+     * @return 有返回值的业务方法
      */
     T call();
 

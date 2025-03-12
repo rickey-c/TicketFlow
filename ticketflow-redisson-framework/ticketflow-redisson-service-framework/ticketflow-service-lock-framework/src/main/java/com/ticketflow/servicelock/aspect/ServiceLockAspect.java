@@ -16,7 +16,6 @@ import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.reflect.MethodSignature;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.annotation.Order;
 
 import java.lang.reflect.InvocationTargetException;
@@ -41,12 +40,11 @@ public class ServiceLockAspect {
     /**
      * 执行环切AOP逻辑
      *
-     * @param joinPoint
-     * @param serviceLock
-     * @return
-     * @throws Throwable
+     * @param joinPoint 切点
+     * @param serviceLock 参数，分布式锁
+     * @return 执行方法
      */
-    @Around("@annotation(serviceLock)")
+    @Around(value = "@annotation(serviceLock)")
     public Object around(ProceedingJoinPoint joinPoint, ServiceLock serviceLock) throws Throwable {
         // 分布式锁处理器
         LockInfoHandle lockInfoHandler = lockInfoHandleFactory.getLockInfoHandler(LockInfoType.SERVICE_LOCK);
@@ -86,9 +84,9 @@ public class ServiceLockAspect {
     /**
      * 执行自定义失败方法
      *
-     * @param customLockTimeoutStrategy
-     * @param joinPoint
-     * @return
+     * @param customLockTimeoutStrategy 锁超时策略
+     * @param joinPoint 切点
+     * @return 方法执行结果
      */
     public Object handleCustomLockTimeoutStrategy(String customLockTimeoutStrategy, JoinPoint joinPoint) {
         // 获取当前方法的信息，包括方法名和参数类型
@@ -120,16 +118,15 @@ public class ServiceLockAspect {
     }
 
     /**
-     * 保存用户的超时处理方法
+     * 获取用户的超时处理方法
      *
-     * @param customLockTimeoutStrategy
-     * @param target
-     * @param currentMethod
-     * @return
+     * @param customLockTimeoutStrategy 用户的锁超时方法
+     * @param target 被代理的目标对象
+     * @param currentMethod 当前的方法
+     * @return 超时处理方法
      */
     private static Method getMethod(String customLockTimeoutStrategy, Object target, Method currentMethod) {
-        Method handleMethod = null;
-
+        Method handleMethod ;
         try {
             // 根据用户指定的方法名和当前方法的参数类型，在目标类中查找对应的方法
             handleMethod = target.getClass().getDeclaredMethod(customLockTimeoutStrategy, currentMethod.getParameterTypes());

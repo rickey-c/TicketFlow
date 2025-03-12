@@ -6,7 +6,6 @@ import com.ticketflow.servicelock.impl.RedissonFairLocker;
 import com.ticketflow.servicelock.impl.RedissonReadLocker;
 import com.ticketflow.servicelock.impl.RedissonReentrantLocker;
 import com.ticketflow.servicelock.impl.RedissonWriteLocker;
-import lombok.AllArgsConstructor;
 import org.redisson.api.RedissonClient;
 
 import java.util.HashMap;
