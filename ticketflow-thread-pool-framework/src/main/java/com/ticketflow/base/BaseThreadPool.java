@@ -17,7 +17,7 @@ public class BaseThreadPool {
     /**
      * 获取当前的MDC上下文Map
      *
-     * @return
+     * @return 当前的MDC上下文Map
      */
     protected static Map<String, String> getContextForTask() {
         return MDC.getCopyOfContextMap();
@@ -26,7 +26,7 @@ public class BaseThreadPool {
     /**
      * 获取当前的ThreadLocal的参数Map
      *
-     * @return
+     * @return 当前的ThreadLocal的参数Map
      */
     protected static Map<String, String> getContextForHold() {
         return BaseParameterHolder.getParameterMap();
@@ -35,10 +35,10 @@ public class BaseThreadPool {
     /**
      * Runnable包装线程池异步线程
      *
-     * @param runnable
-     * @param parentMDCContext
-     * @param parentHoldContext
-     * @return
+     * @param runnable runnable任务
+     * @param parentMDCContext 父线程的MDC上下文
+     * @param parentHoldContext 父线程的ThreadLocal上下文
+     * @return 包装之后的任务
      */
     protected static Runnable wrapTask(Runnable runnable,
                                        final Map<String, String> parentMDCContext,
@@ -60,11 +60,11 @@ public class BaseThreadPool {
     /**
      * Callable包装线程池异步线程
      *
-     * @param task
-     * @param parentMdcContext
-     * @param parentHoldContext
-     * @param <T>
-     * @return
+     * @param task 任务
+     * @param parentMdcContext 父线程的MDC上下文
+     * @param parentHoldContext 父线程的ThreadLocal上下文
+     * @param <T> 泛型
+     * @return 包装之后的Callable
      */
     protected static <T> Callable<T> wrapTask(Callable<T> task,
                                               final Map<String, String> parentMdcContext,
@@ -84,9 +84,9 @@ public class BaseThreadPool {
     /**
      * 设置父线程的MDC和HolderContext到线程池的子线程中
      *
-     * @param parentMDCContext
-     * @param parentHoldContext
-     * @return
+     * @param parentMDCContext 父线程的MDC上下文
+     * @param parentHoldContext 父线程的ThreadLocal上下文
+     * @return 包装之后的map
      */
     protected static Map<String, Map<String, String>> preprocess(Map<String, String> parentMDCContext, Map<String, String> parentHoldContext) {
         Map<String, Map<String, String>> map = new HashMap<>(8);
@@ -111,8 +111,8 @@ public class BaseThreadPool {
     /**
      * 执行完之后替换回来
      *
-     * @param mdcContext
-     * @param holdContext
+     * @param mdcContext 原本的mdc上下文
+     * @param holdContext 原本的ThreadLocal
      */
     private static void postProcess(Map<String, String> mdcContext, Map<String, String> holdContext) {
         if (mdcContext == null) {
