@@ -4,7 +4,6 @@ import com.ticketflow.core.ManageLocker;
 import com.ticketflow.servicelock.LockType;
 import com.ticketflow.servicelock.ServiceLocker;
 import lombok.AllArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 
 
 /**
@@ -18,22 +17,12 @@ public class ServiceLockFactory {
     private final ManageLocker manageLocker;
 
     public ServiceLocker getLock(LockType lockType) {
-        ServiceLocker lock;
-        switch (lockType) {
-            case Fair:
-                lock = manageLocker.getFairLocker();
-                break;
-            case Write:
-                lock = manageLocker.getWriteLocker();
-                break;
-            case Read:
-                lock = manageLocker.getReadLocker();
-                break;
-            default:
-                lock = manageLocker.getReentrantLocker();
-                break;
-        }
-        return lock;
+        return switch (lockType) {
+            case Fair -> manageLocker.getFairLocker();
+            case Write -> manageLocker.getWriteLocker();
+            case Read -> manageLocker.getReadLocker();
+            default -> manageLocker.getReentrantLocker();
+        };
     }
 
 }
