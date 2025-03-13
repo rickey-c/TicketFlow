@@ -112,6 +112,7 @@ public class ProgramElasticsearchInitData extends AbstractApplicationPostConstru
 
     /**
      * 创建Es索引（index）
+     *
      * @return 创建的索引文档映射集合
      */
     public List<EsDocumentMappingDto> getEsMapping() {

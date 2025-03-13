@@ -1,6 +1,6 @@
 package com.ticketflow.service.delaysend;
 
-import com.damai.core.SpringUtil;
+import com.ticketflow.core.SpringUtil;
 import com.ticketflow.context.DelayQueueContext;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
