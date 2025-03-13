@@ -6,12 +6,9 @@ import com.baidu.fsg.uid.UidGenerator;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.damai.enums.BaseCode;
-import com.damai.enums.BusinessStatus;
-import com.damai.enums.SeatType;
-import com.damai.enums.SellStatus;
-import com.damai.exception.DaMaiFrameException;
-import com.damai.util.DateUtils;
+import com.ticketflow.enums.*;
+import com.ticketflow.exception.TicketFlowFrameException;
+import com.ticketflow.utils.DateUtils;
 import com.ticketflow.core.RedisKeyManage;
 import com.ticketflow.dto.*;
 import com.ticketflow.entity.ProgramShowTime;
@@ -77,7 +74,7 @@ public class SeatService extends ServiceImpl<SeatMapper, Seat> {
                 .eq(Seat::getColCode, seatAddDto.getColCode());
         Seat seat = seatMapper.selectOne(seatLambdaQueryWrapper);
         if (Objects.nonNull(seat)) {
-            throw new DaMaiFrameException(BaseCode.SEAT_IS_EXIST);
+            throw new TicketFlowFrameException(BaseCode.SEAT_IS_EXIST);
         }
         seat = new Seat();
         BeanUtil.copyProperties(seatAddDto, seat);
@@ -191,7 +188,7 @@ public class SeatService extends ServiceImpl<SeatMapper, Seat> {
         }
         //如果节目不允许选择座位，直接抛出异常
         if (programVo.getPermitChooseSeat().equals(BusinessStatus.NO.getCode())) {
-            throw new DaMaiFrameException(BaseCode.PROGRAM_NOT_ALLOW_CHOOSE_SEAT);
+            throw new TicketFlowFrameException(BaseCode.PROGRAM_NOT_ALLOW_CHOOSE_SEAT);
         }
 
         Map<String, List<SeatVo>> seatVoMap =

@@ -1,6 +1,6 @@
 package com.ticketflow.service.composite;
 
-import com.damai.enums.CompositeCheckType;
+import com.ticketflow.enums.CompositeCheckType;
 import com.ticketflow.dto.ProgramOrderCreateDto;
 import com.ticketflow.impl.composite.AbstractComposite;
 

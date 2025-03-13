@@ -6,7 +6,7 @@ import com.baidu.fsg.uid.UidGenerator;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.damai.util.DateUtils;
+import com.ticketflow.utils.DateUtils;
 import com.ticketflow.core.RedisKeyManage;
 import com.ticketflow.dto.TicketCategoryAddDto;
 import com.ticketflow.dto.TicketCategoryDto;

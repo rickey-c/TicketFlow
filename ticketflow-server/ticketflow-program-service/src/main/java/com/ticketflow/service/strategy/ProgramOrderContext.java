@@ -1,7 +1,7 @@
 package com.ticketflow.service.strategy;
 
-import com.damai.enums.BaseCode;
-import com.damai.exception.DaMaiFrameException;
+import com.ticketflow.enums.BaseCode;
+import com.ticketflow.exception.TicketFlowFrameException;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -22,6 +22,6 @@ public class ProgramOrderContext {
 
     public static ProgramOrderStrategy get(String version) {
         return Optional.ofNullable(MAP.get(version)).orElseThrow(() ->
-                new DaMaiFrameException(BaseCode.PROGRAM_ORDER_STRATEGY_NOT_EXIST));
+                new TicketFlowFrameException(BaseCode.PROGRAM_ORDER_STRATEGY_NOT_EXIST));
     }
 }

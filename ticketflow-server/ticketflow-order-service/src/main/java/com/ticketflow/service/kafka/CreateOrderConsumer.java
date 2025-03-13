@@ -18,7 +18,7 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-import static com.damai.constant.Constant.SPRING_INJECT_PREFIX_DISTINCTION_NAME;
+import static com.ticketflow.constant.Constant.SPRING_INJECT_PREFIX_DISTINCTION_NAME;
 
 /**
  * @Description: kafka创建订单消费

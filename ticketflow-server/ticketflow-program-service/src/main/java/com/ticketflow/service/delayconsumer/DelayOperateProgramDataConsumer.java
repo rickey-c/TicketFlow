@@ -1,10 +1,12 @@
 package com.ticketflow.service.delayconsumer;
 
 import com.alibaba.fastjson.JSON;
-import com.damai.core.SpringUtil;
-import com.damai.util.StringUtil;
+import com.ticketflow.core.SpringUtil;
+import com.ticketflow.utils.StringUtil;
 import com.ticketflow.core.ConsumerTask;
 import com.ticketflow.dto.ProgramOperateDataDto;
+import com.ticketflow.service.ProgramService;
+
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;

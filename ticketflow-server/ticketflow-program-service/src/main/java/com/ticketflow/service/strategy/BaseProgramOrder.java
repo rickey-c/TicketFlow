@@ -2,7 +2,7 @@ package com.ticketflow.service.strategy;
 
 import cn.hutool.core.collection.CollectionUtil;
 import cn.hutool.core.util.StrUtil;
-import com.damai.locallock.LocalLockCache;
+import com.ticketflow.locallock.LocalLockCache;
 import com.ticketflow.dto.ProgramOrderCreateDto;
 import com.ticketflow.dto.SeatDto;
 import com.ticketflow.lock.LockTask;

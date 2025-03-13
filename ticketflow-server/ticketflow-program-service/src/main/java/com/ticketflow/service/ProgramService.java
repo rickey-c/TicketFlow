@@ -9,14 +9,14 @@ import com.baomidou.mybatisplus.core.conditions.update.LambdaUpdateWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.damai.enums.BaseCode;
-import com.damai.enums.BusinessStatus;
-import com.damai.enums.CompositeCheckType;
-import com.damai.enums.SellStatus;
-import com.damai.exception.DaMaiFrameException;
-import com.damai.threadlocal.BaseParameterHolder;
-import com.damai.util.DateUtils;
-import com.damai.util.StringUtil;
+import com.ticketflow.enums.BaseCode;
+import com.ticketflow.enums.BusinessStatus;
+import com.ticketflow.enums.CompositeCheckType;
+import com.ticketflow.enums.SellStatus;
+import com.ticketflow.exception.TicketFlowFrameException;
+import com.ticketflow.threadlocal.BaseParameterHolder;
+import com.ticketflow.utils.DateUtils;
+import com.ticketflow.utils.StringUtil;
 import com.ticketflow.BusinessThreadPool;
 import com.ticketflow.RedisStreamPushHandler;
 import com.ticketflow.client.BaseDataClient;
@@ -54,9 +54,9 @@ import java.util.*;
 import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 
-import static com.damai.constant.Constant.CODE;
-import static com.damai.constant.Constant.USER_ID;
-import static com.damai.util.DateUtils.FORMAT_DATE;
+import static com.ticketflow.constant.Constant.CODE;
+import static com.ticketflow.constant.Constant.USER_ID;
+import static com.ticketflow.utils.DateUtils.FORMAT_DATE;
 import static com.ticketflow.core.DistributedLockConstants.*;
 import static com.ticketflow.core.RepeatExecuteLimitConstants.CANCEL_PROGRAM_ORDER;
 
@@ -309,10 +309,10 @@ public class ProgramService extends ServiceImpl<ProgramMapper, Program> {
                 break;
             case ProgramTimeType.CALENDAR:
                 if (Objects.isNull(programPageListDto.getStartDateTime())) {
-                    throw new DaMaiFrameException(BaseCode.START_DATE_TIME_NOT_EXIST);
+                    throw new TicketFlowFrameException(BaseCode.START_DATE_TIME_NOT_EXIST);
                 }
                 if (Objects.isNull(programPageListDto.getEndDateTime())) {
-                    throw new DaMaiFrameException(BaseCode.END_DATE_TIME_NOT_EXIST);
+                    throw new TicketFlowFrameException(BaseCode.END_DATE_TIME_NOT_EXIST);
                 }
                 break;
             default:
@@ -539,12 +539,12 @@ public class ProgramService extends ServiceImpl<ProgramMapper, Program> {
         ProgramShowTime programShowTime =
                 programShowTimeService.simpleSelectProgramShowTimeByProgramIdMultipleCache(programId);
         if (Objects.isNull(programShowTime)) {
-            throw new DaMaiFrameException(BaseCode.PROGRAM_SHOW_TIME_NOT_EXIST);
+            throw new TicketFlowFrameException(BaseCode.PROGRAM_SHOW_TIME_NOT_EXIST);
         }
 
         ProgramVo programVo = simpleGetByIdMultipleCache(programId);
         if (Objects.isNull(programVo)) {
-            throw new DaMaiFrameException(BaseCode.PROGRAM_NOT_EXIST);
+            throw new TicketFlowFrameException(BaseCode.PROGRAM_NOT_EXIST);
         }
 
         programVo.setShowTime(programShowTime.getShowTime());
@@ -625,14 +625,14 @@ public class ProgramService extends ServiceImpl<ProgramMapper, Program> {
                         .in(Seat::getId, seatIdList);
         List<Seat> seatList = seatMapper.selectList(seatLambdaQueryWrapper);
         if (CollectionUtil.isEmpty(seatList)) {
-            throw new DaMaiFrameException(BaseCode.SEAT_NOT_EXIST);
+            throw new TicketFlowFrameException(BaseCode.SEAT_NOT_EXIST);
         }
         if (seatList.size() != seatIdList.size()) {
-            throw new DaMaiFrameException(BaseCode.SEAT_UPDATE_REL_COUNT_NOT_EQUAL_PRESET_COUNT);
+            throw new TicketFlowFrameException(BaseCode.SEAT_UPDATE_REL_COUNT_NOT_EQUAL_PRESET_COUNT);
         }
         for (Seat seat : seatList) {
             if (Objects.equals(seat.getSellStatus(), SellStatus.SOLD.getCode())) {
-                throw new DaMaiFrameException(BaseCode.SEAT_SOLD);
+                throw new TicketFlowFrameException(BaseCode.SEAT_SOLD);
             }
         }
         LambdaUpdateWrapper<Seat> seatLambdaUpdateWrapper =
@@ -646,7 +646,7 @@ public class ProgramService extends ServiceImpl<ProgramMapper, Program> {
         int updateRemainNumberCount =
                 ticketCategoryMapper.batchUpdateRemainNumber(ticketCategoryCountDtoList, programOperateDataDto.getProgramId());
         if (updateRemainNumberCount != ticketCategoryCountDtoList.size()) {
-            throw new DaMaiFrameException(BaseCode.UPDATE_TICKET_CATEGORY_COUNT_NOT_CORRECT);
+            throw new TicketFlowFrameException(BaseCode.UPDATE_TICKET_CATEGORY_COUNT_NOT_CORRECT);
         }
     }
 
@@ -654,12 +654,12 @@ public class ProgramService extends ServiceImpl<ProgramMapper, Program> {
         ProgramVo programVo = new ProgramVo();
         Program program =
                 Optional.ofNullable(programMapper.selectById(programId))
-                        .orElseThrow(() -> new DaMaiFrameException(BaseCode.PROGRAM_NOT_EXIST));
+                        .orElseThrow(() -> new TicketFlowFrameException(BaseCode.PROGRAM_NOT_EXIST));
         BeanUtil.copyProperties(program, programVo);
         AreaGetDto areaGetDto = new AreaGetDto();
         areaGetDto.setId(program.getAreaId());
         ApiResponse<AreaVo> areaResponse = baseDataClient.getById(areaGetDto);
-        if (Objects.equals(areaResponse.getCode(), com.damai.common.ApiResponse.ok().getCode())) {
+        if (Objects.equals(areaResponse.getCode(), ApiResponse.ok().getCode())) {
             if (Objects.nonNull(areaResponse.getData())) {
                 programVo.setAreaName(areaResponse.getData().getName());
             }
@@ -673,7 +673,7 @@ public class ProgramService extends ServiceImpl<ProgramMapper, Program> {
         ProgramGroupVo programGroupVo = new ProgramGroupVo();
         ProgramGroup programGroup =
                 Optional.ofNullable(programGroupMapper.selectById(programGroupId))
-                        .orElseThrow(() -> new DaMaiFrameException(BaseCode.PROGRAM_GROUP_NOT_EXIST));
+                        .orElseThrow(() -> new TicketFlowFrameException(BaseCode.PROGRAM_GROUP_NOT_EXIST));
         programGroupVo.setId(programGroup.getId());
         programGroupVo.setProgramSimpleInfoVoList(JSON.parseArray(programGroup.getProgramJson(), ProgramSimpleInfoVo.class));
         programGroupVo.setRecentShowTime(programGroup.getRecentShowTime());
@@ -703,7 +703,7 @@ public class ProgramService extends ServiceImpl<ProgramMapper, Program> {
         LambdaQueryWrapper<ProgramShowTime> programShowTimeLambdaQueryWrapper =
                 Wrappers.lambdaQuery(ProgramShowTime.class).eq(ProgramShowTime::getProgramId, programId);
         ProgramShowTime programShowTime = Optional.ofNullable(programShowTimeMapper.selectOne(programShowTimeLambdaQueryWrapper))
-                .orElseThrow(() -> new DaMaiFrameException(BaseCode.PROGRAM_SHOW_TIME_NOT_EXIST));
+                .orElseThrow(() -> new TicketFlowFrameException(BaseCode.PROGRAM_SHOW_TIME_NOT_EXIST));
 
         programVo.setShowTime(programShowTime.getShowTime());
         programVo.setShowDayTime(programShowTime.getShowDayTime());
@@ -830,7 +830,7 @@ public class ProgramService extends ServiceImpl<ProgramMapper, Program> {
 
     public void delRedisData(Long programId) {
         Program program = Optional.ofNullable(programMapper.selectById(programId))
-                .orElseThrow(() -> new DaMaiFrameException(BaseCode.PROGRAM_NOT_EXIST));
+                .orElseThrow(() -> new TicketFlowFrameException(BaseCode.PROGRAM_NOT_EXIST));
         List<String> keys = new ArrayList<>();
         keys.add(RedisKeyBuild.createRedisKey(RedisKeyManage.PROGRAM, programId).getRelKey());
         keys.add(RedisKeyBuild.createRedisKey(RedisKeyManage.PROGRAM_GROUP, program.getProgramGroupId()).getRelKey());

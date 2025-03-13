@@ -9,8 +9,8 @@ import com.baidu.fsg.uid.UidGenerator;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.update.LambdaUpdateWrapper;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
-import com.damai.enums.PayBillStatus;
-import com.damai.enums.PayChannel;
+import com.ticketflow.enums.PayBillStatus;
+import com.ticketflow.enums.PayChannel;
 import com.ticketflow.utils.StringUtil;
 import com.ticketflow.client.PayClient;
 import com.ticketflow.client.UserClient;
@@ -51,7 +51,7 @@ import java.util.*;
 import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 
-import static com.damai.constant.Constant.ALIPAY_NOTIFY_SUCCESS_RESULT;
+import static com.ticketflow.constant.Constant.ALIPAY_NOTIFY_SUCCESS_RESULT;
 import static com.ticketflow.core.DistributedLockConstants.*;
 import static com.ticketflow.core.RepeatExecuteLimitConstants.*;
 
@@ -397,7 +397,7 @@ public class OrderService {
             if (response.getCode().equals(BaseCode.SUCCESS.getCode())) {
                 //调用支付服务退款成功后，把订单更新为已退款状态
                 Order updateOrder = new Order();
-                updateOrder.setEditTime(com.damai.util.DateUtils.now());
+                updateOrder.setEditTime(DateUtils.now());
                 updateOrder.setOrderStatus(OrderStatus.REFUND.getCode());
                 orderMapper.update(updateOrder, Wrappers.lambdaUpdate(Order.class).
                         eq(Order::getOrderNumber, order.getOrderNumber()));
@@ -406,7 +406,7 @@ public class OrderService {
                         JSON.toJSONString(refundDto), JSON.toJSONString(response));
             }
             orderPayCheckVo.setOrderStatus(OrderStatus.REFUND.getCode());
-            orderPayCheckVo.setCancelOrderTime(com.damai.util.DateUtils.now());
+            orderPayCheckVo.setCancelOrderTime(DateUtils.now());
             return orderPayCheckVo;
         }
 
@@ -432,11 +432,11 @@ public class OrderService {
                 try {
                     //如果账单的状态是支付，那么执行订单支付的操作
                     if (Objects.equals(payBillStatus, PayBillStatus.PAY.getCode())) {
-                        orderPayCheckVo.setPayOrderTime(com.damai.util.DateUtils.now());
+                        orderPayCheckVo.setPayOrderTime(DateUtils.now());
                         orderService.updateOrderRelatedData(order.getOrderNumber(), OrderStatus.PAY);
                         //如果账单的状态是取消，那么执行订单取消的操作
                     } else if (Objects.equals(payBillStatus, PayBillStatus.CANCEL.getCode())) {
-                        orderPayCheckVo.setCancelOrderTime(com.damai.util.DateUtils.now());
+                        orderPayCheckVo.setCancelOrderTime(DateUtils.now());
                         orderService.updateOrderRelatedData(order.getOrderNumber(), OrderStatus.CANCEL);
                     }
                 } catch (Exception e) {
@@ -586,7 +586,7 @@ public class OrderService {
                 ApiResponse<String> response = payClient.refund(refundDto);
                 if (response.getCode().equals(BaseCode.SUCCESS.getCode())) {
                     Order updateOrder = new Order();
-                    updateOrder.setEditTime(com.damai.util.DateUtils.now());
+                    updateOrder.setEditTime(DateUtils.now());
                     updateOrder.setOrderStatus(OrderStatus.REFUND.getCode());
                     orderMapper.update(updateOrder, Wrappers.lambdaUpdate(Order.class).eq(Order::getOrderNumber, outTradeNo));
                 } else {
