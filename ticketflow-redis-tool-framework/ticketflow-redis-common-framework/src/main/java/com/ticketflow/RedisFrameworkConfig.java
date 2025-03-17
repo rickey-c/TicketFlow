@@ -1,7 +1,7 @@
 package com.ticketflow;
 
+import org.springframework.boot.autoconfigure.AutoConfiguration;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
 import org.springframework.data.redis.connection.RedisConnectionFactory;
 import org.springframework.data.redis.core.RedisTemplate;
@@ -13,7 +13,7 @@ import org.springframework.data.redis.serializer.StringRedisSerializer;
  * @Author: rickey-c
  * @Date: 2025/1/25 13:18
  */
-@Configuration
+@AutoConfiguration
 public class RedisFrameworkConfig {
 
     @Bean("redisToolRedisTemplate")

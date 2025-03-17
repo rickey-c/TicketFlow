@@ -2,8 +2,8 @@ package com.ticketflow.redis.config;
 
 import com.ticketflow.redis.RedisCacheImpl;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.boot.autoconfigure.AutoConfiguration;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.data.redis.core.StringRedisTemplate;
 
 /**
@@ -11,7 +11,7 @@ import org.springframework.data.redis.core.StringRedisTemplate;
  * @Author: rickey-c
  * @Date: 2025/1/25 13:31
  */
-@Configuration
+@AutoConfiguration
 public class RedisCacheAutoConfig {
 
     @Bean
